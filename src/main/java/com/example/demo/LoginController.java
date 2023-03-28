@@ -12,4 +12,9 @@ public class LoginController {
     public String login() {
         return "Login";
     }
+
+    @GetMapping("/plant")
+    public String plant() {
+        return "plantdescription";
+    }
 }
