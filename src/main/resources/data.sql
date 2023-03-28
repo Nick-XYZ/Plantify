@@ -1,6 +1,8 @@
 
     INSERT INTO PLANT (PLANT_NAME, SPECIES_ID) VALUES
-        ('Tomat', 1);
+        ('Tomat', 1),
+        ('Davids Tomat', 1),
+        ('Inte Tomat', 1);
 
 
 

@@ -1,30 +1,36 @@
 package com.example.demo;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Species {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
     private String name;
     private String sunlight;
-    // Måste ändras till date.
     private Integer water;
     private Integer nutrition;
     private Integer readyToEat;
-    private String short_info;
-    private String full_info;
+    private String shortInfo;
+    private String fullInfo;
 
+    @ManyToOne
+    private Plant plant;
 
-    public Integer getId() {
+    public Plant getPlant() {
+        return plant;
+    }
+
+    public void setPlant(Plant plant) {
+        this.plant = plant;
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -68,19 +74,19 @@ public class Species {
         this.readyToEat = readyToEat;
     }
 
-    public String getShort_info() {
-        return short_info;
+    public String getShortInfo() {
+        return shortInfo;
     }
 
-    public void setShort_info(String short_info) {
-        this.short_info = short_info;
+    public void setShortInfo(String shortInfo) {
+        this.shortInfo = shortInfo;
     }
 
-    public String getFull_info() {
-        return full_info;
+    public String getFullInfo() {
+        return fullInfo;
     }
 
-    public void setFull_info(String full_info) {
-        this.full_info = full_info;
+    public void setFullInfo(String fullInfo) {
+        this.fullInfo = fullInfo;
     }
 }
