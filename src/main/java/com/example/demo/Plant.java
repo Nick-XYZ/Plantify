@@ -17,6 +17,9 @@ public class Plant {
     @CreationTimestamp
     private Timestamp created;
 
+    /*@ManyToOne
+    private User user;*/
+
     @OneToMany(mappedBy = "plant", cascade = CascadeType.ALL)
     private List<Species> species = new ArrayList<>();
 
