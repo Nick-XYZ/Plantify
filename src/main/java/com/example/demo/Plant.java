@@ -11,18 +11,15 @@ import java.util.List;
 public class Plant {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private String name;
-    private Long speciesId;
+    private Integer id;
+    private String plant_name;
+    private Integer species_id;
     @CreationTimestamp
     private Timestamp created;
 
-    @OneToMany(mappedBy = "plant", cascade = CascadeType.ALL)
-    private List<Species> species = new ArrayList<>();
+
 
     public Plant() {
     }
-
-
 
 }
