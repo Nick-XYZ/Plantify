@@ -1,10 +1,11 @@
-package com.example.demo.controllers;
+package com.example.demo.controller;
 
 
 import com.example.demo.LoginService;
-import com.example.demo.User;
+import com.example.demo.model.User;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,6 +18,9 @@ import org.springframework.web.servlet.view.RedirectView;
 public class LoginController {
     @Autowired
     LoginService loginService;
+
+    @Autowired
+    PasswordEncoder encoder;
 
 
     @GetMapping("/")
@@ -41,11 +45,12 @@ public class LoginController {
 
     }
 
-    @PostMapping("/process_registration")
-    public String postRegistration(User user){
+   /* @PostMapping("/createUser")
+    public String postRegistration(HttpSession session, @RequestParam String email, @RequestParam String password){
+        User user = new User(email, encoder.encode(password));
         loginService.addUser(user);
         return "login";
-    }
+    }*/
 
     @GetMapping("/home")
     public String LoadHomePage(){return "home";}

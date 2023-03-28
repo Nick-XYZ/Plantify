@@ -1,4 +1,4 @@
-package com.example.demo;
+package com.example.demo.model;
 
 import jakarta.persistence.*;
 
@@ -35,6 +35,11 @@ public class User {
 
     @Column(nullable = false, length = 20)
     private String lastName;
+
+    public User(String email, String password) {
+        this.email = email;
+        this.password = password;
+    }
 
    /* @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Plant> plant= new ArrayList<>();*/
