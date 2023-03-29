@@ -1,7 +1,7 @@
 package com.example.demo.controller;
 
 
-import com.example.demo.LoginService;
+import com.example.demo.service.LoginService;
 import com.example.demo.model.User;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,18 +30,15 @@ public class LoginController {
     }
 
     @PostMapping("/")
-    public RedirectView postLogin(Model model, HttpSession session, @RequestParam String username,
+    public String postLogin(Model model, HttpSession session, @RequestParam String username,
                                   @RequestParam String password, RedirectAttributes ra) {
-        RedirectView rvHome = new RedirectView("/home", true);
-        RedirectView rvLogin = new RedirectView("/", true);
-        for (var user : loginService.getUsers()) {
+       for (var user : loginService.getUsers()) {
             if (username.equals(user.getEmail()) && password.equals(user.getPassword())) {
                 session.setAttribute("user", user);
-                return rvHome;
+                return "redirect:/home";
             }
         }
-        ra.addFlashAttribute("messageLoginFailed", "Login failed, please try again.");
-        return rvLogin;
+                return "login";
 
     }
 

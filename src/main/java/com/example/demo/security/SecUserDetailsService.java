@@ -1,6 +1,5 @@
-package com.example.demo.service;
+package com.example.demo.security;
 
-import com.example.demo.SecurityUserPrincipal;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
