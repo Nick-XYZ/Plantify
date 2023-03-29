@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:padding-top="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:padding-top="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -20,13 +20,16 @@
 </head>
 <body>
 
+
+
+
 <div class="container" style="padding-top:102px">
     <div class="row">
 
 <!--        Left side-->
         <div class="col-sm">
     <div class="d-flex justify-content-center">
-        <img src="images/download.jpg" class="">
+        <img th:src="@{/images/download.jpg}" class="">
     </div>
             <div class="container d-flex justify-content-center" style="padding-top:50px">
                 <button type="button" class="btn btn-success">Read more</button>
@@ -37,19 +40,22 @@
         <div class="col-sm">
             <div style="display: flex; justify-content: space-between;">
                 <a href="#" class="">
-                    <img src="images/Vatten.jpg" width=100px height=100px>
+                    <img th:src="@{/images/Vatten.jpg}" width=100px height=100px>
                 </a>
                 <a href="#" class="btn btn-outline-secondary border-0">
-                    <img src="images/näring.jpg" width=100px height=100px>
+                    <img th:src="@{/images/näring.jpg}" width=100px height=100px>
                 </a>
                 <a href="#" class="btn btn-outline-secondary border-0">
-                    <img src="images/Jord.jpg" width=100px height=100px>
+                    <img th:src="@{/images/Jord.jpg}" width=100px height=100px>
                 </a>
             </div>
         <div class="w-100" style="border: 3px solid rgba(0, 0, 0, 0.2);">
             <p class="mx-auto text-center">
-                BLABLABLALLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL
-                LLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLLL
+            <th th:text="${plant.plantName}"></th>
+
+            <th th:text="${plant.species.shortInfo}"></th>
+
+
 
             </p>
         </div>

@@ -1,6 +1,9 @@
 package com.example.demo.controller;
 
 
+import com.example.demo.model.Plant;
+import com.example.demo.repository.PlantRepository;
+import com.example.demo.repository.SpeciesRepository;
 import com.example.demo.service.LoginService;
 import com.example.demo.model.Admin;
 import jakarta.servlet.http.HttpSession;
@@ -8,16 +11,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class LoginController {
     @Autowired
     LoginService loginService;
-
+    @Autowired
+    PlantRepository plantRepository;
+    @Autowired
+    SpeciesRepository speciesRepository;
     @Autowired
     PasswordEncoder encoder;
 
@@ -27,12 +30,6 @@ public class LoginController {
         model.addAttribute("admin", new Admin());
         return "login";
     }
-
-   /* @GetMapping("/registration")
-    public String LoadRegistration(Model model){
-        model.addAttribute("admin", new Admin());
-        return "registration";
-    }*/
 
     @PostMapping("/createUser")
     public String postRegistration(@ModelAttribute Admin admin){
@@ -48,9 +45,16 @@ public class LoginController {
         return "home";
     }
 
-
-
     @GetMapping("/home")
     public String LoadHomePage(){return "home";}
+
+
+    //Home to Plantdescription
+      @GetMapping("/plant/{id}")
+    public String PlantDescription(Model model, @PathVariable Long id) {
+        Plant plant = plantRepository.findById(id).get();
+        model.addAttribute("plant", plant);
+        return "plantdescription";
+    }
 
 }

@@ -39,7 +39,7 @@ public class SecSecurityConfig {
 
         http
                 .authorizeHttpRequests()
-                .requestMatchers("/", "/registration", "/createUser", "/images/**").permitAll()
+                .requestMatchers("/", "/createUser", "/images/**").permitAll()
                 .requestMatchers("/home").hasRole("USER")
                 .anyRequest().authenticated();
 
@@ -63,6 +63,8 @@ public class SecSecurityConfig {
         return authenticationConfiguration.getAuthenticationManager();
     }
 
+
+    //Can we comment out this?
     @Bean
     public UserDetailsService userDetailsService() {
         InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
