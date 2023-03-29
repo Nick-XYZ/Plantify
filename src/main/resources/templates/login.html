@@ -45,12 +45,13 @@
             <h3 class="py-3">Login</h3>
 
 
-            <form class="px-4 py-3" th:action >
+            <form class="px-4 py-3" th:action="@{/}" method="post">
 
                 <div class="form-group">
                     <label for="formEmail">Email address</label>
                     <input
                             type="email"
+                            name="username"
                             class="form-control"
                             id="formEmail"
                             placeholder="email@example.com"
@@ -59,6 +60,7 @@
                 <div class="form-group">
                     <label for="formPassword">Password</label>
                     <input
+                            name="password"
                             type="password"
                             class="form-control"
                             id="formPassword"
@@ -88,6 +90,7 @@
                         data-toggle="modal"
                 >Sign up</a
                 >
+
 
                 <script>
         $('a[href$="#Modal"]').on("click", function () {
@@ -122,7 +125,7 @@
 
                         <div class="modal-body">
                             <div class="border rounded">
-                                <form class="px-4 py-3" th:action="/createUser" method="post" th:object="${user}">
+                                <form class="px-4 py-3" method="post" th:object="${admin}" action="/createUser">
                                     <div class="form-group">
                                         <label for="createEmail">Email:</label>
                                         <input
@@ -165,7 +168,7 @@
                                     </div>
 
                                     <div class="modal-footer">
-                                        <button type="submit" class="btn btn-primary">Sign up</button>
+                                        <input type="submit" class="btn btn-primary"/>
                                     </div>
                                 </form>
                             </div>

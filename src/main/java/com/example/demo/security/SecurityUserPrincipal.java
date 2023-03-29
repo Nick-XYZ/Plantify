@@ -1,6 +1,6 @@
 package com.example.demo.security;
 
-import com.example.demo.model.User;
+import com.example.demo.model.Admin;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -11,10 +11,10 @@ import java.util.List;
 
 public class SecurityUserPrincipal implements UserDetails {
 
-    private User user;
+    private Admin admin;
 
-    public SecurityUserPrincipal(User user) {
-        this.user = user;
+    public SecurityUserPrincipal(Admin admin) {
+        this.admin = admin;
     }
 
     @Override
@@ -25,12 +25,12 @@ public class SecurityUserPrincipal implements UserDetails {
 
     @Override
     public String getPassword() {
-        return user.getPassword();
+        return admin.getPassword();
     }
 
     @Override
     public String getUsername() {
-        return user.getEmail();
+        return admin.getEmail();
     }
 
     @Override

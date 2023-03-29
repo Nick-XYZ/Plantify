@@ -1,14 +1,12 @@
 package com.example.demo.security;
 
 import com.example.demo.repository.UserRepository;
-import com.example.demo.model.User;
+import com.example.demo.model.Admin;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class SecUserDetailsService implements UserDetailsService {
@@ -18,11 +16,11 @@ public class SecUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String email)  {
-        User user = userRepository.findByEmail(email);
-        if (user == null) {
+        Admin admin = userRepository.findByEmail(email);
+        if (admin == null) {
             throw new UsernameNotFoundException(email);
         }
-        return new SecurityUserPrincipal(user);
+        return new SecurityUserPrincipal(admin);
     }
 }
 

@@ -2,7 +2,7 @@ package com.example.demo.controller;
 
 
 import com.example.demo.service.LoginService;
-import com.example.demo.model.User;
+import com.example.demo.model.Admin;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -11,8 +11,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.web.servlet.view.RedirectView;
 
 @Controller
 public class LoginController {
@@ -25,26 +23,24 @@ public class LoginController {
 
     @GetMapping("/")
     public String LoadLandingPage(Model model) {
-        model.addAttribute("user", new User());
+        model.addAttribute("admin", new Admin());
         return "login";
     }
 
     @PostMapping("/")
-    public String postLogin(Model model, HttpSession session, @RequestParam String username,
+    public String postLogin(Model model, HttpSession session, @RequestParam String email,
                                   @RequestParam String password) {
-                     return "/home";
-            }
-        }
-                return "login";
-
+        return "home";
     }
 
-   /* @PostMapping("/createUser")
-    public String postRegistration(HttpSession session, @RequestParam String email, @RequestParam String password){
-        User user = new User(email, encoder.encode(password));
+   @PostMapping("/createUser")
+    public String postRegistration(HttpSession session, @RequestParam String email, @RequestParam String password,
+                                   @RequestParam String firstName, @RequestParam String lastName){
+        Admin user = new Admin(null, email, encoder.encode(password), firstName, lastName);
         loginService.addUser(user);
-        return "login";
-    }*/
+       System.out.println("Funkar detta??");
+        return "login2";
+    }
 
     @GetMapping("/home")
     public String LoadHomePage(){return "home";}

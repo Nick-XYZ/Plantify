@@ -1,6 +1,6 @@
 package com.example.demo.service;
 
-import com.example.demo.model.User;
+import com.example.demo.model.Admin;
 import com.example.demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,12 +13,12 @@ public class LoginService {
    @Autowired
    UserRepository userRepository;
 
-    public List<User> getUsers() {
-        return (List<User>) userRepository.findAll();
+    public List<Admin> getUsers() {
+        return (List<Admin>) userRepository.findAll();
     }
 
-    public User addUser(User user) {
-        return userRepository.save(user);
+    public Admin addUser(Admin admin) {
+        return userRepository.save(admin);
     }
 
 

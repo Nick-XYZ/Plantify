@@ -9,8 +9,6 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-import java.util.ArrayList;
-
 
 @Getter
 @Setter
@@ -18,28 +16,25 @@ import java.util.ArrayList;
 @NoArgsConstructor
 @ToString
 @Entity
-public class User {
+public class Admin {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false, unique = true, length = 45)
+    //@Column(nullable = false, unique = true, length = 45)
     private String email;
 
-    @Column(nullable = false, length = 64) //This number because it is encrypted.
+    //@Column(nullable = false, length = 64) //This number because it is encrypted.
     private String password;
 
-    @Column(nullable = false, length = 20)
+    //@Column(nullable = false, length = 20)
     private String firstName;
 
-    @Column(nullable = false, length = 20)
+    //@Column(nullable = false, length = 20)
     private String lastName;
 
-    public User(String email, String password) {
-        this.email = email;
-        this.password = password;
-    }
+
 
    /* @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
     private List<Plant> plant= new ArrayList<>();*/
