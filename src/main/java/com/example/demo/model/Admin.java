@@ -22,16 +22,16 @@ public class Admin {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    //@Column(nullable = false, unique = true, length = 45)
+    @Column(nullable = false, unique = true, length = 45)
     private String email;
 
-    //@Column(nullable = false, length = 64) //This number because it is encrypted.
+    @Column(nullable = false, length = 64) //This number because it is encrypted.
     private String password;
 
-    //@Column(nullable = false, length = 20)
+    @Column(nullable = false, length = 20)
     private String firstName;
 
-    //@Column(nullable = false, length = 20)
+    @Column(nullable = false, length = 20)
     private String lastName;
 
 

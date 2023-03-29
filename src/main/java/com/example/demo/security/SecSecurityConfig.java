@@ -39,13 +39,13 @@ public class SecSecurityConfig {
 
         http
                 .authorizeHttpRequests()
-                .requestMatchers("/", "/registration").permitAll()
+                .requestMatchers("/", "/registration", "/createUser", "/images/**").permitAll()
                 .requestMatchers("/home").hasRole("USER")
                 .anyRequest().authenticated();
 
         http.formLogin()
                 .loginPage("/") //URL GETMAPPING
-                .defaultSuccessUrl("/home", false)
+                .defaultSuccessUrl("/home", true)
                 .permitAll();
 
         http.logout().logoutSuccessUrl("/");
