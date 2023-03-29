@@ -31,11 +31,8 @@ public class LoginController {
 
     @PostMapping("/")
     public String postLogin(Model model, HttpSession session, @RequestParam String username,
-                                  @RequestParam String password, RedirectAttributes ra) {
-       for (var user : loginService.getUsers()) {
-            if (username.equals(user.getEmail()) && password.equals(user.getPassword())) {
-                session.setAttribute("user", user);
-                return "redirect:/home";
+                                  @RequestParam String password) {
+                     return "/home";
             }
         }
                 return "login";

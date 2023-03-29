@@ -37,15 +37,14 @@ public class SecSecurityConfig {
         http
                 .authorizeHttpRequests()
                 .requestMatchers("/").permitAll()
-                .requestMatchers("/admin").hasRole("USER")
                 .anyRequest().authenticated();
 
         http.formLogin()
-                .loginPage("/login")
+                .loginPage("/") //URL GETMAPPING
                 .defaultSuccessUrl("/home", false)
                 .permitAll();
 
-        http.logout().logoutSuccessUrl("/login");
+        http.logout().logoutSuccessUrl("/");
 
         return http.build();
     }

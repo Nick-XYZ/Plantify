@@ -18,11 +18,11 @@ public class SecUserDetailsService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String email)  {
-        List<User> users = userRepository.findByEmail(email);
-        if (users.size() == 0) {
+        User user = userRepository.findByEmail(email);
+        if (user == null) {
             throw new UsernameNotFoundException(email);
         }
-        return new SecurityUserPrincipal(users.get(0));
+        return new SecurityUserPrincipal(user);
     }
 }
 
