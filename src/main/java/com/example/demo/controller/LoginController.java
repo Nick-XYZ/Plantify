@@ -23,15 +23,16 @@ public class LoginController {
 
 
     @GetMapping("/")
-    public String LoadLandingPage() {
+    public String LoadLandingPage(Model model) {
+        model.addAttribute("admin", new Admin());
         return "login";
     }
 
-    @GetMapping("/registration")
+   /* @GetMapping("/registration")
     public String LoadRegistration(Model model){
         model.addAttribute("admin", new Admin());
         return "registration";
-    }
+    }*/
 
     @PostMapping("/createUser")
     public String postRegistration(@ModelAttribute Admin admin){

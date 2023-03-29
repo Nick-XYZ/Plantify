@@ -84,30 +84,81 @@
 
             <div class="signup px-4">
                 Don't have an account?
-                <a href="/registration"><u>Sign up</u></a>
+                <!--<a href="/registration"><u>Sign up</u></a>-->
 
-                <a class="dropdown-item px-4" href="#">Forgot password?</a>
+                <a
+                        href="#modalRegisterForm"
+                        data-target="#modalRegisterForm"
+                        data-toggle="modal"
+                >Sign up</a
+                >
+                <script>
+        $('a[href$="#Modal"]').on("click", function () {
+          $("#Modal").modal("show");
+        });
+
+                </script>
             </div>
+            <div
+                    class="modal fade"
+                    id="modalRegisterForm"
+                    tabindex="-1"
+                    role="dialog"
+                    aria-labelledby="myModalLabel"
+                    aria-hidden="true"
+            >
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header text-center">
+                            <h3 class="modal-title w-100 font-weight-bold">
+                                Create your account here!
+                            </h3>
+                            <button
+                                    type="button"
+                                    class="close"
+                                    data-dismiss="modal"
+                                    aria-label="Close"
+                            >
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+
+                        <div class="modal-body">
+                            <div class="border rounded">
+                                <form action="/createUser" method="POST" th:object="${admin}">
+                                    <div><label> Email : <input type="email" name="username" th:field="*{email}"/> </label></div>
+                                    <div><label> Password: <input type="password" name="password" th:field="*{password}"/> </label></div>
+                                    <div><label> First name: <input type="text" name="firstName" th:field="*{firstName}"/> </label></div>
+                                    <div><label> Last name: <input type="text" name="lastName" th:field="*{lastName}"> </label></div>
+                                    <div><input type="submit" value="Register"/></div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <a class="dropdown-item px-4" href="#">Forgot password?</a>
         </div>
     </div>
 </div>
+</div>
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script
-            src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-            crossorigin="anonymous"
-    ></script>
-    <script
-            src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
-            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-            crossorigin="anonymous"
-    ></script>
-    <script
-            src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
-            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-            crossorigin="anonymous"
-    ></script>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script
+        src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"
+></script>
+<script
+        src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"
+></script>
+<script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"
+></script>
 </body>
 </html>
