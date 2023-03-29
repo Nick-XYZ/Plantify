@@ -39,7 +39,7 @@ public class SecSecurityConfig {
 
         http
                 .authorizeHttpRequests()
-                .requestMatchers("/").permitAll()
+                .requestMatchers("/", "/registration").permitAll()
                 .requestMatchers("/home").hasRole("USER")
                 .anyRequest().authenticated();
 

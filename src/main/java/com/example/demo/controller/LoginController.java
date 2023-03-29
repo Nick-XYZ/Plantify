@@ -22,8 +22,21 @@ public class LoginController {
 
 
     @GetMapping("/")
-    public String LoadLandingPage(Model model) {
+    public String LoadLandingPage() {
+        return "login";
+    }
+
+    @GetMapping("/registration")
+    public String LoadRegistration(Model model){
         model.addAttribute("admin", new Admin());
+        return "registration";
+    }
+
+    @PostMapping("/createUser")
+    public String postRegistration(HttpSession session, Admin admin){
+        admin.setPassword(encoder.encode(admin.getPassword()));
+        loginService.addUser(admin);
+        System.out.println("Funkar detta??");
         return "login";
     }
 
@@ -33,14 +46,7 @@ public class LoginController {
         return "home";
     }
 
-   @PostMapping("/createUser")
-    public String postRegistration(HttpSession session, @RequestParam String email, @RequestParam String password,
-                                   @RequestParam String firstName, @RequestParam String lastName){
-        Admin user = new Admin(null, email, encoder.encode(password), firstName, lastName);
-        loginService.addUser(user);
-       System.out.println("Funkar detta??");
-        return "login2";
-    }
+
 
     @GetMapping("/home")
     public String LoadHomePage(){return "home";}
