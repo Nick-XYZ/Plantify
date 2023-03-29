@@ -8,13 +8,15 @@
 
 <h1>Plantify your plant</h1>
 
-<form th:object="${plant}" action="/save" method="POST">
+<a th:href="@{/plant/1}">Plant</a>
+
+<!--<form th:object="${plant}" action="/save" method="POST">
     Title: <input type="text" th:field="*{name}"/>
     Author: <input type="text" th:field="*{species}"/>
     Price: <input type="text" th:field="*{price}"/>
     <input type="hidden" th:if="${book.id != null}" th:field="*{id}"/>
     <input type="submit" value="Save item">
-</form>
+</form>-->
 
 </body>
 </html>

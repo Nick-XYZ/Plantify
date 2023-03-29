@@ -8,8 +8,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class PlantController {
 
 
-    @GetMapping("/home")
-    public String login() {
+   /* @GetMapping("/home")
+    public String home() {
         return "home";
-    }
+    }*/
 }
+
+
+//Sätta upp home
+//Från home trycka på knapp eller bild och ta sig till plantdescription
