@@ -2,6 +2,9 @@ package com.example.demo;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 public class Species {
     @Id
@@ -15,15 +18,15 @@ public class Species {
     private String shortInfo;
     private String fullInfo;
 
-    @ManyToOne
-    private Plant plant;
+    @OneToMany(mappedBy = "species", cascade = CascadeType.ALL)
+    private List<Plant> plants = new ArrayList<>();
 
-    public Plant getPlant() {
-        return plant;
+    public List<Plant> getPlants() {
+        return plants;
     }
 
-    public void setPlant(Plant plant) {
-        this.plant = plant;
+    public void setPlants(List<Plant> plants) {
+        this.plants = plants;
     }
 
     public Long getId() {

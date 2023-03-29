@@ -13,25 +13,23 @@ public class Plant {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String plantName;
-    private Integer speciesId;
     @CreationTimestamp
     private Timestamp created;
 
     /*@ManyToOne
     private User user;*/
 
-    @OneToMany(mappedBy = "plant", cascade = CascadeType.ALL)
-    private List<Species> species = new ArrayList<>();
+    @ManyToOne
+    private Species species;
 
     public Plant() {
     }
 
-
-    public List<Species> getSpecies() {
+    public Species getSpecies() {
         return species;
     }
 
-    public void setSpecies(List<Species> species) {
+    public void setSpecies(Species species) {
         this.species = species;
     }
 
@@ -51,13 +49,6 @@ public class Plant {
         this.plantName = plantName;
     }
 
-    public Integer getSpeciesId() {
-        return speciesId;
-    }
-
-    public void setSpeciesId(Integer speciesId) {
-        this.speciesId = speciesId;
-    }
 
     public Timestamp getCreated() {
         return created;

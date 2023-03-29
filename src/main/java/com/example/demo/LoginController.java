@@ -7,6 +7,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.List;
+
 @Controller
 public class LoginController {
 
@@ -28,9 +30,7 @@ public class LoginController {
     @GetMapping("/plant/{id}")
     public String plantID(Model model, @PathVariable Long id) {
         Plant plant = plantRepository.findById(id).get();
-        Species species = speciesRepository.getClass();
         model.addAttribute("plant", plant);
-        model.addAttribute("species", species);
         return "plantdescription";
     }
 
@@ -38,6 +38,4 @@ public class LoginController {
     public String home() {
         return "home";
     }
-
-
 }
