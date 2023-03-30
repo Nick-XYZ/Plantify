@@ -22,7 +22,7 @@ public class Plant {
 
     /*@Column(updatable = false)*/
     @CreationTimestamp
-    private LocalDateTime created;
+    private LocalDate created;
 
     @ManyToOne
     private Admin admin;

@@ -16,6 +16,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Controller
@@ -59,8 +60,10 @@ public class LoginController {
 
     @GetMapping("/home")
     public String LoadHomePage(Model model) {
+
        Admin admin = getLoggedInAdmin();
        List<Plant> userPlants = plantRepository.findAllByAdminId(admin.getId());
+
        model.addAttribute("admin", admin);
        model.addAttribute("plants", userPlants);
         return "home";}

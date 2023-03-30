@@ -1,0 +1,35 @@
+
+body{
+background-color: blanchedalmond;
+margin-top: 0;
+margin-left: 0;
+margin-right: 0;
+}
+
+.tasks{
+display: flex;
+justify-content: space-evenly;
+}
+
+.task{
+display: flex;
+flex-direction: column;
+border: 10px;
+margin-right: 25px;
+margin-top: 25px;
+color: #b6cdbd;
+
+}
+
+img {
+    border: 1px solid;
+    border-radius: 4px;
+    padding: 5px;
+    width: 100px;
+    height: 100px;
+}
+.img head{
+color: black
+  display: flex;
+    justify-content: center;
+}
