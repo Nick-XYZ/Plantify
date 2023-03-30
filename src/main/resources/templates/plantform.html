@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<h1>New plant</h1>
+
+<form th:object="${plant}" action="/save" method="POST">
+  Name: <input type="text" th:field="*{plantName}"/>
+  <label>Choose a plant:</label>
+  <select  th:field="*{species}">
+    <option th:value="1">strawberries</option>
+    <option th:value="2">Pappers</option>
+  </select>
+
+  <input type="submit" value="Save item">
+</form>
+
+
+</body>
+</html>

@@ -6,17 +6,27 @@
 </head>
 <body>
 
-<h1>Plantify your plant</h1>
 
-<a th:href="@{/plant/1}">Plant</a>
+<h1>The Garden</h1>
 
-<!--<form th:object="${plant}" action="/save" method="POST">
-    Title: <input type="text" th:field="*{name}"/>
-    Author: <input type="text" th:field="*{species}"/>
-    Price: <input type="text" th:field="*{price}"/>
-    <input type="hidden" th:if="${book.id != null}" th:field="*{id}"/>
-    <input type="submit" value="Save item">
-</form>-->
+        <a th:href="@{/plant/1}">One specific plant</a>
+        <br> <br>
+        <a th:href="@{/add}">New Plant</a>
+
+<div class="tasks">
+    <article th:each="plant : ${plants}" class="">
+
+        <tr>
+            <th th:text="${plant.plantName}"></th>
+            <a> <img src="images/t1.png" width=100px height=100px></a>
+        </tr>
+    </article>
+
+</div>
+
+
+
+
 
 </body>
 </html>

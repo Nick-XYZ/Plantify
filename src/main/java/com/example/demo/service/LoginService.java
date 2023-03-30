@@ -3,7 +3,6 @@ package com.example.demo.service;
 import com.example.demo.model.Admin;
 import com.example.demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,7 +14,7 @@ public class LoginService {
    UserRepository userRepository;
 
 
-    public List<Admin> getUsers() {
+    public List<Admin> getUsers(Long id) {
         return (List<Admin>) userRepository.findAll();
     }
 

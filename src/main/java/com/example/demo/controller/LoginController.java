@@ -7,11 +7,14 @@ import com.example.demo.repository.SpeciesRepository;
 import com.example.demo.service.LoginService;
 import com.example.demo.model.Admin;
 import jakarta.servlet.http.HttpSession;
+import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @Controller
 public class LoginController {
@@ -23,6 +26,8 @@ public class LoginController {
     SpeciesRepository speciesRepository;
     @Autowired
     PasswordEncoder encoder;
+    @Autowired
+    Admin admin;
 
 
     @GetMapping("/")
@@ -46,7 +51,11 @@ public class LoginController {
     }
 
     @GetMapping("/home")
-    public String LoadHomePage(){return "home";}
+    public String LoadHomePage(Model model, Admin admin){
+       List<Plant> plants = (List<Plant>) plantRepository.findAll();
+       model.addAttribute("plants", plants);
+       model.addAttribute("admin", admin);
+        return "home";}
 
 
     //Home to Plantdescription
@@ -56,5 +65,22 @@ public class LoginController {
         model.addAttribute("plant", plant);
         return "plantdescription";
     }
+
+    @GetMapping("/add")
+    public String addPlant(Model model){
+
+        model.addAttribute("plant", new Plant());
+        return "plantform";
+    }
+
+    @PostMapping("/save")
+    public String savePlant(@ModelAttribute Plant plant){
+        plantRepository.save(plant);
+
+
+        return "redirect:/home";
+    }
+
+
 
 }
