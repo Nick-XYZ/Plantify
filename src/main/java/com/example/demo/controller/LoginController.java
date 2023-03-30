@@ -98,10 +98,16 @@ public class LoginController {
         return "redirect:/home";
     }
 
+
+    @GetMapping("/logout")
+    public String logout() {
+        return "login";}
+
     private Admin getLoggedInAdmin() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentPrincipalName = authentication.getName();
         Admin admin = userRepository.findByEmail(currentPrincipalName);
         return admin;
     }
+
 }
