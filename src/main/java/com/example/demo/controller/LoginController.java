@@ -4,17 +4,20 @@ package com.example.demo.controller;
 import com.example.demo.model.Plant;
 import com.example.demo.repository.PlantRepository;
 import com.example.demo.repository.SpeciesRepository;
+import com.example.demo.repository.UserRepository;
 import com.example.demo.service.LoginService;
 import com.example.demo.model.Admin;
 import jakarta.servlet.http.HttpSession;
-import org.apache.tomcat.util.net.openssl.ciphers.Authentication;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 public class LoginController {
@@ -27,7 +30,11 @@ public class LoginController {
     @Autowired
     PasswordEncoder encoder;
     @Autowired
-    Admin admin;
+    UserRepository userRepository;
+
+
+
+
 
 
     @GetMapping("/")
@@ -51,9 +58,12 @@ public class LoginController {
     }
 
     @GetMapping("/home")
-    public String LoadHomePage(Model model, Admin admin){
-       List<Plant> plants = (List<Plant>) plantRepository.findAll();
-       model.addAttribute("plants", plants);
+    public String LoadHomePage(Model model){
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentPrincipalName = authentication.getName();
+        //id current
+        Admin admin = userRepository.findByEmail(currentPrincipalName);
+
        model.addAttribute("admin", admin);
         return "home";}
 
@@ -66,10 +76,13 @@ public class LoginController {
         return "plantdescription";
     }
 
+
     @GetMapping("/add")
     public String addPlant(Model model){
-
         model.addAttribute("plant", new Plant());
+
+
+
         return "plantform";
     }
 
@@ -81,6 +94,12 @@ public class LoginController {
         return "redirect:/home";
     }
 
+  /*  private Long getLoggedInUserId() {
+        org.springframework.security.core.Authentication authentication =
+                SecurityContextHolder.getContext().getAuthentication();
+        Admin loggedInUser = (Admin) authentication.getPrincipal();
+        return loggedInUser.getUserId();
 
+    }*/
 
 }

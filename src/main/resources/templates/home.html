@@ -8,17 +8,19 @@
 
 
 <h1>The Garden</h1>
+<h3 th:text="${admin.firstName}"></h3>
+
 
         <a th:href="@{/plant/1}">One specific plant</a>
         <br> <br>
         <a th:href="@{/add}">New Plant</a>
 
 <div class="tasks">
-    <article th:each="plant : ${plants}" class="">
+    <article th:each="plant : ${admin.plant}" class="">
 
         <tr>
             <th th:text="${plant.plantName}"></th>
-            <a> <img src="images/t1.png" width=100px height=100px></a>
+            <a th:href="@{/plant/1}"> <img src="images/t1.png" width=100px height=100px></a>
         </tr>
     </article>
 
