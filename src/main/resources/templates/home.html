@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -8,11 +8,16 @@
 
 
 <h1>The Garden</h1>
-<h3 th:text="${admin.firstName}"></h3>
+
+<div>
+    <p th:text="'Hi ' + ${admin.firstName} + ' ' + ${admin.lastName} + '!'"></p>
+    <form th:action="@{/logout}" method="post">
+        <input type="submit" value="Logout"/>
+    </form>
+    </div>
 
 
-        <a th:href="@{/plant/1}">One specific plant</a>
-        <br> <br>
+
         <a th:href="@{/add}">New Plant</a>
 
 <div class="tasks">

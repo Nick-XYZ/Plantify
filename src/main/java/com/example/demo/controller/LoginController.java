@@ -94,4 +94,7 @@ public class LoginController {
         return "redirect:/home";
     }
 
+    @GetMapping("/logout")
+    public String logout() {
+        return "login";}
 }
