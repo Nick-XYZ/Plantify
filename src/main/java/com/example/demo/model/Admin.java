@@ -40,4 +40,8 @@ public class Admin {
    @OneToMany(mappedBy = "admin", cascade = CascadeType.ALL)
     private List<Plant> plant= new ArrayList<>();
 
+    public Long getUserId() {
+        return id;
+    }
+
 }
