@@ -3,6 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+
+
 </head>
 <body>
 
@@ -20,10 +22,12 @@
 </head>
 <body>
 
-
-
-
-<div class="container" style="padding-top:102px">
+<div class="fixed-top text-right" style="padding-right: 300px; padding-top: 50px;">
+<a href="http://localhost:8080/home" class="btn btn-outline-secondary border-0">
+    <img th:src="@{/images/back.png}" width=70px height=70px>
+</a>
+</div>
+<div class="container" style="padding-top:152px">
     <div class="row">
 
 <!--        Left side-->
@@ -38,15 +42,15 @@
 
         <!--        Right side-->
         <div class="col-sm">
-            <div style="display: flex; justify-content: space-between;">
+            <div style="display: flex; justify-content: space-between; padding-bottom: 25px">
                 <a href="#" class="btn btn-outline-secondary border-0">
-                    <img th:src="@{/images/Vatten.jpg}" width=100px height=100px>
+                    <img th:src="@{/images/Vatten.jpg}" width="100px" height="100px">
                 </a>
                 <a href="#" class="btn btn-outline-secondary border-0">
-                    <img th:src="@{/images/näring.jpg}" width=100px height=100px>
+                    <img th:src="@{/images/näring.jpg}" width="100px" height="100px">
                 </a>
                 <a href="#" class="btn btn-outline-secondary border-0">
-                    <img th:src="@{/images/Jord.jpg}" width=100px height=100px>
+                    <img th:src="@{/images/Jord.jpg}" width="100px" height="100px">
                 </a>
             </div>
         <div class="w-100" style="border: 3px solid rgba(0, 0, 0, 0.2);">
