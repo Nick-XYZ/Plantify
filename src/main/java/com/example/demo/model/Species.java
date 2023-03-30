@@ -22,6 +22,8 @@ public class Species {
     @OneToMany(mappedBy = "species", cascade = CascadeType.ALL)
     private List<Plant> plants = new ArrayList<>();
 
+
+
     public List<Plant> getPlants() {
         return plants;
     }

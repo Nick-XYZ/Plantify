@@ -51,11 +51,13 @@
             </div>
         <div class="w-100" style="border: 3px solid rgba(0, 0, 0, 0.2);">
             <p class="mx-auto text-center">
-            <th th:text="${plant.plantName}"></th>
+            <h2 class="text-center" th:text="${plant.plantName}"></h2>
 
-            <th th:text="${plant.species.shortInfo}"></th>
-
-
+            <strong>Plant Species</strong> <th th:text="${plant.species.name}"></th><br>
+            <strong>Water</strong> <th th:text="${plant.species.water}"></th><br>
+            <strong>Nutrition</strong> <th th:text="${plant.species.nutrition}"></th><br>
+            <strong>Ready to eat</strong> <th th:text="${plant.species.readyToEat}"></th><br>
+            <strong>Short info</strong> <th th:text="${plant.species.shortInfo}"></th>
 
             </p>
         </div>
