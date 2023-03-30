@@ -11,7 +11,6 @@ import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,7 +18,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Objects;
 
 @Controller
 public class LoginController {
@@ -62,27 +60,31 @@ public class LoginController {
 
     @GetMapping("/home")
     public String LoadHomePage(Model model) {
-       Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-       String currentPrincipalName = authentication.getName();
-       Admin admin = userRepository.findByEmail(currentPrincipalName);
-        model.addAttribute("now", LocalDate.now());
+
+       Admin admin = getLoggedInAdmin();
+       List<Plant> userPlants = plantRepository.findAllByAdminId(admin.getId());
+
        model.addAttribute("admin", admin);
+       model.addAttribute("plants", userPlants);
         return "home";}
 
 
     //Home to Plantdescription
       @GetMapping("/plant/{id}")
     public String PlantDescription(Model model, @PathVariable Long id) {
+        Admin admin = getLoggedInAdmin();
+        List<Plant> userPlants = plantRepository.findAllByAdminId(admin.getId());
         Plant plant = plantRepository.findById(id).get();
-        model.addAttribute("plant", plant);
-        return "plantdescription";
+        if (userPlants.contains(plant)) {
+            model.addAttribute("plant", plant);
+            return "plantdescription";
+        }
+        else return "redirect:/home";
     }
 
     @GetMapping("/add")
     public String addPlant(Model model){
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String currentPrincipalName = authentication.getName();
-        Admin admin = userRepository.findByEmail(currentPrincipalName);
+        Admin admin = getLoggedInAdmin();
         model.addAttribute("userId", admin.getId());
         model.addAttribute("plant", new Plant());
         return "plantform";
@@ -96,4 +98,10 @@ public class LoginController {
         return "redirect:/home";
     }
 
+    private Admin getLoggedInAdmin() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentPrincipalName = authentication.getName();
+        Admin admin = userRepository.findByEmail(currentPrincipalName);
+        return admin;
+    }
 }
