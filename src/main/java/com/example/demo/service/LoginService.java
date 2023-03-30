@@ -14,7 +14,7 @@ public class LoginService {
    UserRepository userRepository;
 
 
-    public List<Admin> getUsers(Long id) {
+    public List<Admin> getUsers() {
         return (List<Admin>) userRepository.findAll();
     }
 

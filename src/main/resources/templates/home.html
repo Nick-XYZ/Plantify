@@ -14,7 +14,7 @@
         <a th:href="@{/add}">New Plant</a>
 
 <div class="tasks">
-    <article th:each="plant : ${plants}" class="">
+    <article th:each="plant : ${admin.plant}" class="">
 
         <tr>
             <th th:text="${plant.plantName}"></th>
