@@ -44,7 +44,7 @@ public class LoginController {
         plantService.plantNutritionTimeline(1L);
         plantService.sortedTimeline(1L);
         plantService.harvesting(1L);
-        plantService.nextFiveTimeline(1L);
+        plantService.nextFiveTimeline(2L);
         plantService.isWateringDay(1L);
         plantService.isWateringDay(2L);
         plantService.isWateringDay(3L);

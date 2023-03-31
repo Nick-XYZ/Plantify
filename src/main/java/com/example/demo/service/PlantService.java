@@ -24,10 +24,15 @@ public class PlantService {
         Plant plant = plantRepository.findById(plantId).get();
         Species species = plant.getSpecies();
         LocalDate now = LocalDate.now();
+
         List<LocalDate> waterSchedule = new ArrayList<>();
+
         Long dif = ChronoUnit.DAYS.between(plant.getCreated(), now);
         System.out.println(dif);
         dif = dif % species.getWater();
+        if (dif == 0) {
+            waterSchedule.add(now);
+        }
         for (int i = 0; i < 5; i++) {
             waterSchedule.add(now.plusDays(species.getWater() * (i + 1L) - dif));
         }
@@ -44,6 +49,9 @@ public class PlantService {
         List<LocalDate> nutritionSchedule = new ArrayList<>();
         Long dif = ChronoUnit.DAYS.between(plant.getCreated(), now);
         dif = dif % species.getNutrition();
+        if (dif == 0) {
+            nutritionSchedule.add(now);
+        }
         for (int i = 0; i < 5; i++) {
             nutritionSchedule.add(now.plusDays(species.getNutrition() * (i + 1L) - dif));
         }
