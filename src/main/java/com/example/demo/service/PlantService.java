@@ -34,7 +34,7 @@ public class PlantService {
             waterSchedule.add(now);
         }
         for (int i = 0; i < 5; i++) {
-            waterSchedule.add(now.plusDays(species.getWater() * (i + 1L) - dif));
+            waterSchedule.add(now.plusDays((species.getWater() * i) - dif));
         }
         System.out.println("DAYS SINCE LAST WATER" + dif);
         System.out.println("NEXT 5 WATERINGS" + waterSchedule);
@@ -53,7 +53,7 @@ public class PlantService {
             nutritionSchedule.add(now);
         }
         for (int i = 0; i < 5; i++) {
-            nutritionSchedule.add(now.plusDays(species.getNutrition() * (i + 1L) - dif));
+            nutritionSchedule.add(now.plusDays((species.getNutrition() * i) - dif));
         }
         System.out.println("DAYS SINCE LAST NUTRITION" + dif);
         System.out.println("NEXT 5 NUTRITION" + nutritionSchedule);
