@@ -6,12 +6,12 @@
 
 
     INSERT INTO SPECIES (NAME, SUNLIGHT, WATER, NUTRITION, READY_TO_EAT, SHORT_INFO, FULL_INFO) VALUES
-    ('Capsicum annuum', 'Direct Sunlight', 5, 14, 45, 'Biff tomat is one of the most popular tomato species enjoyed in the world', 'LOOOOOng list of all the specific info there is about BIFF TOMAT'),
+    ('Tomat', 'Direct Sunlight', 5, 14, 45, 'Biff tomat is one of the most popular tomato species enjoyed in the world', 'LOOOOOng list of all the specific info there is about BIFF TOMAT'),
     ('Fragaria', 'Moderate Sunlight', 2, 240, 75, 'Wild Strawberries are the parent species of Strawberries Wild Strawberries are the parent species of Strawberries Wild Strawberries are the parent species of Strawberries', 'OOOOOOOO LOOOOOng JOOOOHNSON list of all the specific info there is about STRAWBERRIES');
 
     INSERT INTO PLANT (PLANT_NAME, CREATED, SPECIES_ID, ADMIN_ID) VALUES
         ('Tomat', '2023-02-22', 1, 3),
-        ('Davids Tomat', '2023-03-22', 1, 3),
+        ('Davids Tomat', '2023-03-26', 1, 3),
         ('Inte Tomat', '2023-03-13', 1, 1),
         ('Jordgubbe', '2023-03-12',2, 1);
 

@@ -24,11 +24,17 @@ public class PlantService {
         Plant plant = plantRepository.findById(plantId).get();
         Species species = plant.getSpecies();
         LocalDate now = LocalDate.now();
+
         List<LocalDate> waterSchedule = new ArrayList<>();
+
         Long dif = ChronoUnit.DAYS.between(plant.getCreated(), now);
+        System.out.println(dif);
         dif = dif % species.getWater();
+        if (dif == 0) {
+            waterSchedule.add(now);
+        }
         for (int i = 0; i < 5; i++) {
-            waterSchedule.add(now.plusDays(species.getWater() * (i + 1L) - dif));
+            waterSchedule.add(now.plusDays((species.getWater() * i) - dif));
         }
         System.out.println("DAYS SINCE LAST WATER" + dif);
         System.out.println("NEXT 5 WATERINGS" + waterSchedule);
@@ -43,8 +49,11 @@ public class PlantService {
         List<LocalDate> nutritionSchedule = new ArrayList<>();
         Long dif = ChronoUnit.DAYS.between(plant.getCreated(), now);
         dif = dif % species.getNutrition();
+        if (dif == 0) {
+            nutritionSchedule.add(now);
+        }
         for (int i = 0; i < 5; i++) {
-            nutritionSchedule.add(now.plusDays(species.getNutrition() * (i + 1L) - dif));
+            nutritionSchedule.add(now.plusDays((species.getNutrition() * i) - dif));
         }
         System.out.println("DAYS SINCE LAST NUTRITION" + dif);
         System.out.println("NEXT 5 NUTRITION" + nutritionSchedule);
@@ -64,7 +73,15 @@ public class PlantService {
         Map<LocalDate, String> sortedTimeline = new TreeMap<>(timeline);
         //sortedTimeline.keySet() to get the dates only
         System.out.println("SORTED TIMELINES" + sortedTimeline);
-        return timeline;
+        return sortedTimeline;
+    }
+     public Map<LocalDate, String> nextFiveTimeline(Long plantId) {
+         Map<LocalDate, String> sortedTimeline = sortedTimeline(plantId);
+         TreeMap<LocalDate, String> firstFiveDates = sortedTimeline.entrySet().stream()
+                 .limit(5)
+                 .collect(TreeMap::new, (m, e) -> m.put(e.getKey(), e.getValue()), Map::putAll);
+         System.out.println("ONLY FIRST 5 DATES " + firstFiveDates);
+         return firstFiveDates;
     }
 
     public void harvesting(Long plantId) {
@@ -81,10 +98,16 @@ public class PlantService {
         }
     }
 
-   /* public Map<LocalDate, String> nextFiveTimeline(Long plantId) {
-        Map<LocalDate, String> fullList = sortedTimeline(plantId);
-        Map<LocalDate, String> sortedTimeline = fullList.stream().limit(5).collect(TreeMap::new, (m, e) -> m.put(e.getKey(), e.getValue()), Map::putAll);
-
-    }*/
+    public boolean isWateringDay(Long plantId) {
+        List<LocalDate> waterList = plantWaterTimeline(plantId);
+        LocalDate now = LocalDate.now();
+        if (now.equals(waterList.get(0))) {
+            System.out.println("TRUE");
+            return true;
+        } else {
+            System.out.println("FALSE");
+            return false;
+        }
+    }
 
 }
