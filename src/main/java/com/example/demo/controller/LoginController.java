@@ -15,6 +15,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -40,7 +41,7 @@ public class LoginController {
     }
 
     @PostMapping("/createUser")
-    public String postRegistration(@ModelAttribute Admin admin){
+    public String postRegistration(@ModelAttribute Admin admin) {
         admin.setPassword(encoder.encode(admin.getPassword()));
         loginService.addUser(admin);
         System.out.println("Funkar detta??");
@@ -49,7 +50,7 @@ public class LoginController {
 
     @PostMapping("/")
     public String postLogin(Model model, HttpSession session, @RequestParam String email,
-                                  @RequestParam String password) {
+                            @RequestParam String password) {
         for (Admin admin : loginService.getUsers()) {
             if (email.equals(admin.getEmail())) {
                 session.setAttribute("userId", admin.getId());
@@ -61,16 +62,19 @@ public class LoginController {
     @GetMapping("/home")
     public String LoadHomePage(Model model) {
 
-       Admin admin = getLoggedInAdmin();
-       List<Plant> userPlants = plantRepository.findAllByAdminId(admin.getId());
+        Admin admin = getLoggedInAdmin();
+        List<Plant> userPlants = plantRepository.findAllByAdminId(admin.getId());
 
-       model.addAttribute("admin", admin);
-       model.addAttribute("plants", userPlants);
-        return "home";}
+        model.addAttribute("admin", admin);
+        model.addAttribute("plants", userPlants);
+        model.addAttribute("userId", admin.getId());
+        model.addAttribute("plant", new Plant());
+        return "home";
+    }
 
 
     //Home to Plantdescription
-      @GetMapping("/plant/{id}")
+    @GetMapping("/plant/{id}")
     public String PlantDescription(Model model, @PathVariable Long id) {
         Admin admin = getLoggedInAdmin();
         List<Plant> userPlants = plantRepository.findAllByAdminId(admin.getId());
@@ -79,29 +83,33 @@ public class LoginController {
             model.addAttribute("plant", plant);
             return "plantdescription";
         }
-        else return "redirect:/home";
+        else {
+            return "redirect:/home";
+        }
     }
 
-    @GetMapping("/add")
-    public String addPlant(Model model){
+ /*   @GetMapping("/add")
+    public String addPlant(Model model) {
         Admin admin = getLoggedInAdmin();
         model.addAttribute("userId", admin.getId());
         model.addAttribute("plant", new Plant());
         return "plantform";
-    }
+    }*/
 
     @PostMapping("/save")
-    public String savePlant(@ModelAttribute Plant plant, HttpSession session, Model model){
-        Long userId = (Long)session.getAttribute("userId");
+    public String savePlant(@ModelAttribute Plant plant, HttpSession session, Model model, RedirectAttributes ra) {
+        Long userId = (Long) session.getAttribute("userId");
         model.addAttribute("userId", 3L);
         plantRepository.save(plant);
+        ra.addFlashAttribute("SuccesPlantCreation", "Your plant has been added to your collection.");
         return "redirect:/home";
     }
 
 
     @GetMapping("/logout")
     public String logout() {
-        return "login";}
+        return "login";
+    }
 
     private Admin getLoggedInAdmin() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
