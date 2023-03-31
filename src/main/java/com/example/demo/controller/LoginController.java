@@ -7,6 +7,7 @@ import com.example.demo.repository.SpeciesRepository;
 import com.example.demo.repository.UserRepository;
 import com.example.demo.service.LoginService;
 import com.example.demo.model.Admin;
+import com.example.demo.service.PlantService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -32,11 +33,17 @@ public class LoginController {
     PasswordEncoder encoder;
     @Autowired
     UserRepository userRepository;
+    @Autowired
+    PlantService plantService;
 
 
     @GetMapping("/")
     public String LoadLandingPage(Model model, HttpSession session) {
         model.addAttribute("admin", new Admin());
+        plantService.plantWaterTimeline(1L);
+        plantService.plantNutritionTimeline(1L);
+        plantService.sortedTimeline(1L);
+        plantService.harvesting(1L);
         return "login";
     }
 

@@ -9,10 +9,10 @@
     ('Capsicum annuum', 'Direct Sunlight', 5, 14, 45, 'Biff tomat is one of the most popular tomato species enjoyed in the world', 'LOOOOOng list of all the specific info there is about BIFF TOMAT'),
     ('Fragaria', 'Moderate Sunlight', 2, 240, 75, 'Wild Strawberries are the parent species of Strawberries Wild Strawberries are the parent species of Strawberries Wild Strawberries are the parent species of Strawberries', 'OOOOOOOO LOOOOOng JOOOOHNSON list of all the specific info there is about STRAWBERRIES');
 
-    INSERT INTO PLANT (PLANT_NAME, SPECIES_ID, ADMIN_ID) VALUES
-        ('Tomat', 1, 3),
-        ('Davids Tomat', 1, 3),
-        ('Inte Tomat', 1, 1),
-        ('Jordgubbe', 2, 1);
+    INSERT INTO PLANT (PLANT_NAME, CREATED, SPECIES_ID, ADMIN_ID) VALUES
+        ('Tomat', '2023-02-22', 1, 3),
+        ('Davids Tomat', '2023-03-22', 1, 3),
+        ('Inte Tomat', '2023-03-13', 1, 1),
+        ('Jordgubbe', '2023-03-12',2, 1);
 
 
