@@ -1,7 +1,7 @@
 
 package com.example.demo.security;
 
-import com.example.demo.security.SecUserDetailsService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
