@@ -63,36 +63,8 @@ public class SecSecurityConfig {
         return authenticationConfiguration.getAuthenticationManager();
     }
 
-
-    //Can we comment out this?
-    @Bean
-    public UserDetailsService userDetailsService() {
-        InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
-        manager.createUser(User.withDefaultPasswordEncoder()
-                .username("Michelle@gmail.com").password("123").roles("USER").build());
-        manager.createUser(User.withDefaultPasswordEncoder()
-                .username("David@gmail.com").password("123").roles("USER").build());
-        manager.createUser(User.withDefaultPasswordEncoder()
-                .username("Sebastian@gmail.com").password("123").roles("USER").build());
-        return manager;
-    }
 }
 
 
 
-/*
-    @Bean
-    public SecurityFilterChain SecurityFilterChain(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests().anyRequest().authenticated().and().formLogin().loginPage("/").loginProcessingUrl("/perform_login").defaultSuccessUrl("/home.html", true).failureUrl("/login.html?error=true").failureHandler(authenticationFailureHandler())
-                .and()
-                .logout()
-                .logoutUrl("/perform_logout")
-                .deleteCookies("JSESSIONID")
-                .logoutSuccessHandler(logoutSuccessHandler()); //httpBasic
-        return http.build();
-    }
-*//*
 
-
-
-}*/

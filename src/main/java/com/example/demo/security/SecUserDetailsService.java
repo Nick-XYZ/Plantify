@@ -27,10 +27,3 @@ public class SecUserDetailsService implements UserDetailsService {
     }
 
 }
-
-
-  /*  User user = userRepository.findByEmail(email);
-        if (user == null){
-                throw new UsernameNotFoundException("User not found");
-                }
-                return new UserDetails(user);*/
