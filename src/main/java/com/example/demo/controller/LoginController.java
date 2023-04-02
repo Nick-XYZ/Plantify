@@ -41,14 +41,14 @@ public class LoginController {
     @GetMapping("/")
     public String LoadLandingPage(Model model, HttpSession session) {
         model.addAttribute("admin", new Admin());
-        plantService.plantWaterTimeline(1L);
-        plantService.plantNutritionTimeline(1L);
-        plantService.sortedTimeline(1L);
-        plantService.harvesting(1L);
-        plantService.nextFiveTimeline(2L);
-        plantService.isWateringDay(1L);
-        plantService.isWateringDay(2L);
-        plantService.isWateringDay(3L);
+     plantService.plantWaterTimeline(1L);
+      plantService.plantNutritionTimeline(1L);
+      plantService.sortedTimeline(1L);
+      // plantService.harvesting(1L);
+      // plantService.nextFiveTimeline(2L);
+       plantService.isWateringDay(1L);
+       plantService.isWateringDay(2L);
+       plantService.isWateringDay(3L);
 
         return "login";
     }

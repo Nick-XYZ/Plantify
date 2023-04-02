@@ -58,8 +58,11 @@
                 <p class="mx-auto text-center">
                 <h2 class="text-center" th:text="${plant.plantName}"></h2>
 
-                <strong>Plant Species</strong>
+                <strong>Plant sort</strong>
                 <th th:text="${plant.species.name}"></th>
+                <br>
+                <strong>Latin name</strong>
+                <th th:text="${plant.species.latinName}"></th>
                 <br>
                 <strong>Water</strong>
                 <th th:text="${plant.species.water}"></th>
