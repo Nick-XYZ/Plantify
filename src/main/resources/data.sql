@@ -6,8 +6,11 @@
 
 
     INSERT INTO SPECIES (NAME, SUNLIGHT, WATER, NUTRITION, READY_TO_EAT, SHORT_INFO, FULL_INFO) VALUES
-    ('Tomat', 'Direct Sunlight', 5, 14, 45, 'Biff tomat is one of the most popular tomato species enjoyed in the world', 'LOOOOOng list of all the specific info there is about BIFF TOMAT'),
-    ('Fragaria', 'Moderate Sunlight', 2, 240, 75, 'Wild Strawberries are the parent species of Strawberries Wild Strawberries are the parent species of Strawberries Wild Strawberries are the parent species of Strawberries', 'OOOOOOOO LOOOOOng JOOOOHNSON list of all the specific info there is about STRAWBERRIES');
+    ('Redskin Peppers','Capsicum annuum var. annuum', 'Direct sunlight', 1, 0, 155, 'Redskin peppers is round and compact and is optimal for pots. pre-cultivate in March. It needs to be repotted. It loves warm places and sunlight and needs protection from heavy wind.', 'Long desc'),
+    ('Carrots','Daucus', 'Moderate Sunlight', 2, 240, 75, 'Wild Strawberries are the parent species of Strawberries Wild Strawberries are the parent species of Strawberries Wild Strawberries are the parent species of Strawberries', 'Long desc');
+    ('Chili', 'Capsicum annuum', 'Direct sunlight', 1, 0, 186, 'Chili can be planted all year around, but needs extra light in the winter. The optimal pre-cultivate is in March. It needs to be repotted. It loves warm places and sunlight and needs protection from heavy wind.', 'Long desc'),
+
+Fragaria
 
     INSERT INTO PLANT (PLANT_NAME, CREATED, SPECIES_ID, ADMIN_ID) VALUES
         ('Tomat', '2023-02-22', 1, 3),

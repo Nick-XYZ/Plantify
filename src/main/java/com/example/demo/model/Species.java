@@ -12,6 +12,8 @@ public class Species {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
+    private String latinName;
+  /*  Private String plantingMonth;*/
     private String sunlight;
     private Integer water;
     private Integer nutrition;
