@@ -16,6 +16,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -44,10 +45,12 @@ public class Controller {
     }
 
     @PostMapping("/createUser")
-    public String postRegistration(@ModelAttribute Admin admin) {
+    public RedirectView postRegistration(@ModelAttribute Admin admin, RedirectAttributes redir) {
+        RedirectView rvLogin = new RedirectView("/", true);
         admin.setPassword(encoder.encode(admin.getPassword()));
         loginService.addUser(admin);
-        return "redirect:/login";
+        redir.addFlashAttribute("NewAccountSuccess", "Your registration is confirmed.");
+             return rvLogin;
     }
 
     @PostMapping("/")
@@ -66,7 +69,6 @@ public class Controller {
 
         Admin admin = getLoggedInAdmin();
         List<Plant> userPlants = plantRepository.findAllByAdminId(admin.getId());
-
         model.addAttribute("admin", admin);
         model.addAttribute("plants", userPlants);
         model.addAttribute("userId", admin.getId());

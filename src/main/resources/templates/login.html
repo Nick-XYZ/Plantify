@@ -44,6 +44,19 @@
         <div class="col border rounded" style="height:80%; margin-top:10px;">
             <h3 class="py-3 text-center ">Login</h3>
 
+            <div class="alert alert-danger text-center" th:if="${param.error}">
+                Login failed, please try again.
+            </div>
+
+            <div class="alert alert-success text-center" th:if="${param.logout}">
+               You have been logged out.
+            </div>
+
+            <div class="alert alert-success text-center" th:if="${NewAccountSuccess}">
+                [[${NewAccountSuccess}]]
+
+            </div>
+
 
             <form class="px-4 py-3" th:action="@{/}" method="post">
 
