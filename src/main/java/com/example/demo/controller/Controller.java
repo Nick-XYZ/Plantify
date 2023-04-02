@@ -13,7 +13,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -22,8 +21,8 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
-@Controller
-public class LoginController {
+@org.springframework.stereotype.Controller
+public class Controller {
     @Autowired
     LoginService loginService;
     @Autowired
@@ -41,15 +40,6 @@ public class LoginController {
     @GetMapping("/")
     public String LoadLandingPage(Model model, HttpSession session) {
         model.addAttribute("admin", new Admin());
-        plantService.plantWaterTimeline(1L);
-        plantService.plantNutritionTimeline(1L);
-        plantService.sortedTimeline(1L);
-        plantService.harvesting(1L);
-        plantService.nextFiveTimeline(2L);
-        plantService.isWateringDay(1L);
-        plantService.isWateringDay(2L);
-        plantService.isWateringDay(3L);
-
         return "login";
     }
 
