@@ -20,9 +20,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.time.LocalDate;
 import java.util.List;
-import java.util.Map;
 
 @Controller
 public class LoginController {
@@ -45,7 +43,6 @@ public class LoginController {
     @GetMapping("/")
     public String LoadLandingPage(Model model, HttpSession session) {
         model.addAttribute("admin", new Admin());
-        System.out.println(plantService.eventDayValue(1L));
         return "login";
     }
 
@@ -70,7 +67,6 @@ public class LoginController {
 
     @GetMapping("/home")
     public String LoadHomePage(Model model) {
-
         Admin admin = getLoggedInAdmin();
         List<Plant> userPlants = plantRepository.findAllByAdminId(admin.getId());
 
@@ -105,6 +101,7 @@ public class LoginController {
         plantLog.setPlant(plantRepository.findById(id).get());
         plantLog.setEvent(event);
         plantLogRepository.save(plantLog);
+        System.out.println(plantService.todaysTimeline(1L));
         return "redirect:/plant/" + id;
     }
 
@@ -119,7 +116,7 @@ public class LoginController {
     @PostMapping("/save")
     public String savePlant(@ModelAttribute Plant plant, HttpSession session, Model model, RedirectAttributes ra) {
         Long userId = (Long) session.getAttribute("userId");
-        model.addAttribute("userId", 3L);
+        model.addAttribute("userId", userId);
         plantRepository.save(plant);
         ra.addFlashAttribute("SuccesPlantCreation", "Your plant has been added to your collection.");
         return "redirect:/home";

@@ -9,7 +9,6 @@
 <body>
 
 <!doctype html>
-<html lang="en">
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -66,8 +65,10 @@
             <div class="w-100" style="border: 3px solid rgba(0, 0, 0, 0.2);">
                 <article th:each="item: ${timeline}">
                     <tr>
-                        <img th:src="${item.value}" width="40px" height="40px">
-                        <th class="image head" th:text="${item.key}"></th>
+                        <span th:each="img : ${item.value}">
+                        <img th:src="${img}" width="40px" height="40px">
+                        </span>
+                        <div class="image head" th:text="${item.key}"></div>
 
                     </tr>
                 </article>
