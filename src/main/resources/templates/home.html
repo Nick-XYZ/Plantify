@@ -2,6 +2,8 @@
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <link rel="stylesheet" href="/css/home.css">
+    <link rel="stylesheet" href="/css/navbar.css">
+
     <meta charset="UTF-8">
     <meta
             name="viewport"
@@ -23,20 +25,41 @@
 </head>
 <body>
 <!-- Header -->
-<nav class="navbar navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">
-        <img src="/images/download.jpg" height="30" alt="">
-    </a>
+
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#"></a>
+        <img src="/images/plantify_navbar.png" class="navbar-logo" height="" alt="Logo">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="http://localhost:8080/home">Home</a>
+                </li>
+                <!--<li class="nav-item">
+                    <a class="nav-link" href="#">mer?</a>
+                </li>-->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Plants
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li th:each="plant : ${admin.plant}">
+                            <a class="dropdown-item" th:href="@{/plant/{id}(id=${plant.id})}" th:text="${plant.plantName}"></a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <span class="navbar-text" href="#" th:text="'Hi ' + ${admin.firstName} + ' ' + ${admin.lastName} + '!'"></span>
+            <form class="d-flex" th:action="@{/logout}" method="post">
+                <input type="submit" class="btn btn-outline-danger" value="Logout"/>
+            </form>
+        </div>
+    </div>
 </nav>
 
-<h1>The Garden</h1>
+<h1>Plantify!</h1>
 
-<div>
-    <p th:text="'Hi ' + ${admin.firstName} + ' ' + ${admin.lastName} + '!'"></p>
-    <form th:action="@{/logout}" method="post">
-        <input type="submit" class="btn btn-primary" value="Logout"/>
-    </form>
-</div>
+
 
 
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalCreatePlant">
@@ -59,9 +82,9 @@
     <article th:each="plant : ${admin.plant}" class="task">
         <tr>
             <th class="image head" th:text="${plant.plantName}"></th>
+            <a th:href="@{'/plant/' + ${plant.id}}"> <img class="img-head" src="images/t1.png" width=100px height=100px></a>
             <a th:href="@{'/plant/' + ${plant.id}}"> <img th:src="${plant.getPlantStageImg}" width=100px height=100px></a>
             <th class="image head" th:text="${plant.species.name}"></th>
-
         </tr>
     </article>
 
@@ -117,10 +140,10 @@
     <footer class="bg-light text-center text-lg-start">
         <!-- Copyright -->
         <div class="text-center p-3" style="background-color: hsla(0, 0%, 0%, 0.2);">
-            © 2025 Copyright:
-            <a class="text-dark" href="https://plantify.com/">plantify.com</a>
+            <a class="text-dark link-underline-opacity-50" style="padding-right: 10px;" href="#">Contact us!</a>
+            ©2023 Copyright:
+            <a class="text-dark link-underline-opacity-50" href="https://plantify.com/">plantify.com</a>
         </div>
-        <!-- Copyright -->
     </footer>
 </div>
 

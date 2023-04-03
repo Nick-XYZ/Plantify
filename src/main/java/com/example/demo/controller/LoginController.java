@@ -94,6 +94,7 @@ public class LoginController {
         Map<LocalDate, String> timeline = plantService.nextFiveTimeline(plant.getId());
         if (userPlants.contains(plant)) {
             model.addAttribute("plant", plant);
+            model.addAttribute("admin", admin);
             model.addAttribute("timeline", timeline);
             return "plantdescription";
         }
