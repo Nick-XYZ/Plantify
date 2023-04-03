@@ -45,7 +45,13 @@ public class SecSecurityConfig {
                 .defaultSuccessUrl("/home", true)
                 .permitAll();
 
-        http.logout().logoutSuccessUrl("/");
+        http.logout()
+                .logoutUrl("/logout")
+                .logoutSuccessUrl("/?logout")
+                .invalidateHttpSession(true)
+                .deleteCookies("JSESSIONID")
+                .permitAll(); //not sure about this one.
+
 
         return http.build();
     }
