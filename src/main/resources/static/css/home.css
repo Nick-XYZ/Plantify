@@ -4,40 +4,46 @@ background-color: blanchedalmond;
 margin-top: 0;
 margin-left: 0;
 margin-right: 0;
+
 }
 
 .tasks{
-
 display: flex;
-  justify-content: center;
-   margin-top: 9%;
+justify-content: space-evenly;
 
 }
 
 .task{
+border: 1px solid;
+    border-radius: 4px;
+    padding: 5px;
 display: flex;
 flex-direction: column;
 border: 10px;
-border: 1px solid;
-border-radius: 4px;
-padding: 5px;
 margin-right: 25px;
 margin-top: 25px;
 
 
 }
 
-.img pots {
-display: flex;
-justify-content:space-evenly;
-
-}
-
-.imagetext{
+.text-head{
 font-family: 'Times New Roman', Times, serif;
 color: black;
-display: flex;
- justify-content:space-evenly;
+font-weight: bold;
+text-align: center;
+
 }
+.text-foot{
+font-family: 'Times New Roman', Times, serif;
+color: black;
+text-align: center;
+
+}
+
+img pots {
+    width: 160px;
+    height: 160px;
+}
+
 
 

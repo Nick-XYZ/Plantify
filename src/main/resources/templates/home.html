@@ -41,6 +41,7 @@ body {
 
 <h1>The Garden</h1>
 
+
 <div>
     <p th:text="'Hi ' + ${admin.firstName} + ' ' + ${admin.lastName} + '!'"></p>
     <form th:action="@{/logout}" method="post">
@@ -67,9 +68,9 @@ body {
 <div class="tasks">
     <article th:each="plant : ${admin.plant}" class="task">
         <tr>
-            <th class="imagetex" th:text="${plant.plantName}"></th>
+            <th class="text-head" th:text="${plant.plantName}"></th>
             <a th:href="@{'/plant/' + ${plant.id}}"> <img class="img pots" th:src="${plant.getPlantStageImg}" width="150px" height="150px"></a>
-            <th class="imagetext" th:text="${plant.species.name}"></th>
+            <th class="text-foot" th:text="${plant.species.name}"></th>
         </tr>
     </article>
 </div>
@@ -107,7 +108,7 @@ body {
                         <label>Choose a plant:</label>
                         <select th:field="*{species}">
                             <option th:value="1">Strawberries</option>
-                            <option th:value="2">Cherry Tomatoes - Primagold</option>
+                            <option th:value="2">Cherry Tomatoes</option>
                         </select>
 
 
