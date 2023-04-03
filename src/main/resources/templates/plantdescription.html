@@ -37,7 +37,8 @@
                 <img th:src="${plant.getPlantStageImg}" class="">
             </div>
             <div class="container d-flex justify-content-center" style="padding-top:50px">
-                <button type="button" class="btn btn-success">Read more</button>
+                <a type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalDeletePlant">
+                    Remove Plant</a>
             </div>
         </div>
 
@@ -94,7 +95,21 @@
                 </tbody>
             </table>
         </div>
-
+        <!-- Delete Plant Modal -->
+        <div class="modal fade" id="modalDeletePlant" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <h6 th:text="'Are you sure about deleting' + ${plant.plantName}"></h6>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Oh god no</button>
+                        <a class="btn btn-primary" th:href="@{'/delete/' + ${plant.id}}" role="button">Yes, I'm sure!</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ^^Delete Plant Modal^^ -->
 
     </div>
 </div>

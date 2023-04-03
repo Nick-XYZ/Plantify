@@ -142,7 +142,7 @@ public class LoginController {
             ra.addFlashAttribute("SuccesPlantCreation", "Your plant has been removed");
             return "redirect:/home";
         } else {
-            ra.addFlashAttribute("ErrorPlantRemoval", "No such plant, Master");
+            ra.addFlashAttribute("ErrorPlantRemoval", "No such plant");
             return "redirect:/home";
         }
 
