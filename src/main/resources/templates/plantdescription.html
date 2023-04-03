@@ -70,7 +70,8 @@
                 <img class="" th:src="${plant.getPlantStageImg}">
             </div>
             <div class="container d-flex justify-content-center" style="padding-top:50px">
-                <button class="btn btn-success" type="button">Read more</button>
+                <a type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalDeletePlant">
+                    Remove Plant</a>
             </div>
         </div>
 
@@ -112,38 +113,36 @@
                 <img th:src="@{/images/timeline.png}" width="100%">
             </div>
 
-
-            <div class="container d-flex justify-content-center">
-                <table style="border: 3px solid rgba(0, 0, 0, 0.2);">
-                    <thead>
-                    <tr>
-                        <th>Date</th>
-                        <th>Event</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr th:each="item: ${timeline}">
-                        <td th:text="${item.key}"/>
-                        <td th:text="${item.value}"/>
-                    </tr>
-                    </tbody>
-                </table>
+            <table style="border: solid 1px black;">
+                <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Event</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="item: ${timeline}">
+                    <td th:text="${item.key}" />
+                    <td th:text="${item.value}" />
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- Delete Plant Modal -->
+        <div class="modal fade" id="modalDeletePlant" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <h6 th:text="'Are you sure about deleting' + ${plant.plantName}"></h6>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Oh god no</button>
+                        <a class="btn btn-primary" th:href="@{'/delete/' + ${plant.id}}" role="button">Yes, I'm sure!</a>
+                    </div>
+                </div>
             </div>
-
-            <!--Modal-->
-            <div
-                    aria-hidden="true"
-                    aria-labelledby="myModalLabel"
-                    class="modal fade"
-                    id="readMore"
-                    role="dialog"
-                    tabindex="-1"
-            >
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header text-center">
-                            <!--Section heading-->
-                            <h2 class="h1-responsive font-weight-bold text-center my-4">Contact us</h2>
+        </div>
+        <!-- ^^Delete Plant Modal^^ -->
 
                             <button
                                     aria-label="Close"
