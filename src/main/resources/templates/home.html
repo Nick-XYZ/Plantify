@@ -62,7 +62,7 @@
 
 
 
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalCreatePlant">
+<button type="button" class="btn btn btn-success" data-toggle="modal" data-target="#modalCreatePlant">
     Create Plant
 </button>
 
@@ -105,7 +105,7 @@
         <div class="modal-content">
             <div class="modal-header text-center">
                 <h3 class="modal-title w-100 font-weight-bold">
-                    Add a new plant:
+                    Add a new plant
                 </h3>
                 <button
                         type="button"
@@ -118,18 +118,26 @@
             </div>
 
             <div class="modal-body">
-                <div class="border rounded">
-                    <form th:object="${plant}" action="/save" method="POST">
+                <div class="border rounded" style="height:80%; margin-top:10px;">
+                    <form class="px-4 py-3" action="/save" method="POST" th:object="${plant}">
+                        <div class="row row-cols-lg-auto g-3 align-items-center ">
                         <input type="text" th:name="admin" th:value="${userId}" hidden>
-                        Name: <input type="text" th:field="*{plantName}"/>
-                        <label>Choose a plant:</label>
-                        <select th:field="*{species}">
-                            <option th:value="1">strawberries</option>
-                            <option th:value="2">Pappers</option>
-                        </select>
-
-
-                        <input type="submit" value="Save item">
+                        <div class="col-12"><label> Name <input class="form-control" type="text" name="plantName" th:field="*{plantName}" placeholder="Name your plant" required/> </label></div>
+                        <div class="col-12">
+                            <label>Choose a plant species</label>
+                            <select class="form-select" id="specificSizeSelect" th:field="*{species}">
+                                <option th:value="1">Bell pepper</option>
+                                <option th:value="2">Carrot</option>
+                                <option th:value="3">Chili</option>
+                                <option th:value="4">Strawberry</option>
+                                <option th:value="5">Sweetpeas</option>
+                                <option th:value="6">Tomat</option>
+                                <option th:value="7">Zucchini</option>
+                            </select>
+                        </div>
+                        </div>
+                        <br>
+                        <div class="submit text-end"> <input type="submit" class="btn btn-outline-success" value="Save plant"/></div>
                     </form>
                 </div>
             </div>

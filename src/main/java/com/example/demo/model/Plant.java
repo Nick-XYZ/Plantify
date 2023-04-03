@@ -9,7 +9,6 @@ import java.time.temporal.ChronoUnit;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
 @ToString
 @Entity
