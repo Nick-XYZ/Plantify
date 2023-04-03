@@ -32,7 +32,7 @@ public class Plant {
 
     public String getPlantStageImg() {
         LocalDate now = LocalDate.now();
-
+//ready to eat delat på 5 in i en phase som sedan används nedan.
         Long dif = ChronoUnit.DAYS.between(this.getCreated(), now);
         if (dif < 10) {
             // /1/images/t1.png
