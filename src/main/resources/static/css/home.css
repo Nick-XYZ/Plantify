@@ -21,6 +21,7 @@ color: #b6cdbd;
 
 }
 
+/*
 img {
     border: 1px solid;
     border-radius: 4px;
@@ -28,8 +29,17 @@ img {
     width: 100px;
     height: 100px;
 }
-.img head{
+*/
+
+
+
+.img-head{
 color: black
   display: flex;
     justify-content: center;
+    border: 1px solid;
+        border-radius: 4px;
+        padding: 5px;
+        width: 100px;
+        height: 100px;
 }

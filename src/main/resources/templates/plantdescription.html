@@ -1,57 +1,91 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:padding-top="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-
-
-</head>
-<body>
-
 <!doctype html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+
+    <link href="/css/navbar.css" rel="stylesheet">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" rel="stylesheet">
 
-    <title>Hello, world!</title>
+    <!-- Bootstrap CSS -->
+    <link
+            crossorigin="anonymous"
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css"
+            integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp"
+            rel="stylesheet"
+    />
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css"
+          integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" rel="stylesheet">
+
+    <title>Plant Description</title>
 </head>
 <body>
+<!-- Header -->
 
-<div class="fixed-top text-right" style="padding-right: 300px; padding-top: 50px;">
-    <a href="http://localhost:8080/home" class="btn btn-outline-secondary border-0">
-        <img th:src="@{/images/back.png}" width=70px height=70px>
-    </a>
-</div>
-<div class="container" style="padding-top:152px">
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#"></a>
+        <img alt="Logo" class="navbar-logo" height="" src="/images/plantify_navbar.png">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a aria-current="page" class="nav-link active" href="http://localhost:8080/home">Home</a>
+                </li>
+                <!--<li class="nav-item">
+                    <a class="nav-link" href="#">mer?</a>
+                </li>-->
+                <li class="nav-item dropdown">
+                    <a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"
+                       role="button">
+                        Plants
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li th:each="plant : ${admin.plant}">
+                            <a class="dropdown-item" th:href="@{/plant/{id}(id=${plant.id})}"
+                               th:text="${plant.plantName}"></a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <span class="navbar-text" href="#"
+                  th:text="'Hi ' + ${admin.firstName} + ' ' + ${admin.lastName} + '!'"></span>
+            <form class="d-flex" method="post" th:action="@{/logout}">
+                <input class="btn btn-outline-danger" type="submit" value="Logout"/>
+            </form>
+        </div>
+    </div>
+</nav>
+
+
+<div class="container" style="padding-top:32px">
     <div class="row">
 
         <!--        Left side-->
         <div class="col-sm">
             <div class="d-flex justify-content-center">
-                <img th:src="${plant.getPlantStageImg}" class="">
+                <img class="" th:src="${plant.getPlantStageImg}">
             </div>
             <div class="container d-flex justify-content-center" style="padding-top:50px">
-                <button type="button" class="btn btn-success">Read more</button>
+                <a type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalDeletePlant">
+                    Remove Plant</a>
             </div>
         </div>
 
         <!--        Right side-->
         <div class="col-sm">
             <div style="display: flex; justify-content: space-between; padding-bottom: 25px">
-                <a href="#" class="btn btn-outline-secondary border-0">
-                    <img th:src="@{/images/Vatten.jpg}" width="100px" height="100px">
+                <a class="btn btn-outline-secondary border-0" href="#">
+                    <img height="100px" th:src="@{/images/Vatten.jpg}" width="100px">
                 </a>
-                <a href="#" class="btn btn-outline-secondary border-0">
-                    <img th:src="@{/images/näring.jpg}" width="100px" height="100px">
+                <a class="btn btn-outline-secondary border-0" href="#">
+                    <img height="100px" th:src="@{/images/näring.jpg}" width="100px">
                 </a>
-                <a href="#" class="btn btn-outline-secondary border-0">
-                    <img th:src="@{/images/Jord.jpg}" width="100px" height="100px">
+                <a class="btn btn-outline-secondary border-0" href="#">
+                    <img height="100px" th:src="@{/images/Jord.jpg}" width="100px">
                 </a>
             </div>
             <div class="w-100" style="border: 3px solid rgba(0, 0, 0, 0.2);">
@@ -94,25 +128,153 @@
                 </tbody>
             </table>
         </div>
+        <!-- Delete Plant Modal -->
+        <div class="modal fade" id="modalDeletePlant" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <h6 th:text="'Are you sure about deleting' + ${plant.plantName}"></h6>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Oh god no</button>
+                        <a class="btn btn-primary" th:href="@{'/delete/' + ${plant.id}}" role="button">Yes, I'm sure!</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ^^Delete Plant Modal^^ -->
+
+                            <button
+                                    aria-label="Close"
+                                    class="close"
+                                    data-dismiss="modal"
+                                    type="button"
+                            >
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+
+                        <div class="modal-body">
+                            <section class="mb-4">
+                                <!--Section description-->
+                                <p class="text-center w-responsive mx-auto mb-5">Do you have any questions? Please do
+                                    not hesitate to contact us directly. Our team will come back to you within
+                                    a matter of hours to help you.</p>
 
 
+                                <div class="row">
+
+                                    <!--Grid column-->
+                                    <div class="col-md-9 mb-md-0 mb-5">
+                                        <form action="mail.php" id="contact-form" method="POST" name="contact-form">
+
+                                            <!--Grid row-->
+                                            <div class="row">
+
+                                                <!--Grid column-->
+                                                <div class="col-md-6">
+                                                    <div class="md-form mb-0">
+                                                        <input class="form-control" id="name" name="name" type="text">
+                                                        <label class="" for="name">Your name</label>
+                                                    </div>
+                                                </div>
+                                                <!--Grid column-->
+
+                                                <!--Grid column-->
+                                                <div class="col-md-6">
+                                                    <div class="md-form mb-0">
+                                                        <input class="form-control" id="email" name="email" type="text">
+                                                        <label class="" for="email">Your email</label>
+                                                    </div>
+                                                </div>
+                                                <!--Grid column-->
+
+                                            </div>
+                                            <!--Grid row-->
+
+                                            <!--Grid row-->
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <div class="md-form mb-0">
+                                                        <input class="form-control" id="subject" name="subject"
+                                                               type="text">
+                                                        <label class="" for="subject">Subject</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <!--Grid row-->
+
+                                            <!--Grid row-->
+                                            <div class="row">
+
+                                                <!--Grid column-->
+                                                <div class="col-md-12">
+
+                                                    <div class="md-form">
+                                                        <textarea class="form-control md-textarea" id="message" name="message" rows="2"
+                                                                  type="text"></textarea>
+                                                        <label for="message">Your message</label>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <!--Grid row-->
+
+                                        </form>
+
+                                        <div class="text-center text-md-left">
+                                            <a class="btn btn-outline-success"
+                                               onclick="document.getElementById('contact-form').submit();">Send</a>
+                                        </div>
+                                        <div class="status"></div>
+                                    </div>
+                                    <!--Grid column-->
+                                </div>
+
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
     </div>
 </div>
+    <!-- Footer -->
+    <div class="fixed-bottom" style="padding-top: 10px;">
+        <footer class="bg-light text-center text-lg-start">
+            <!-- Copyright -->
+            <div class="text-center p-3" style="background-color: hsla(0, 0%, 0%, 0.2);">
+                <a class="text-dark link-underline-opacity-50" href="#" style="padding-right: 10px;">Contact us!</a>
+                ©2023 Copyright:
+                <a class="text-dark link-underline-opacity-50" href="https://plantify.com/">plantify.com</a>
+            </div>
+        </footer>
+    </div>
 
 
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script
+            crossorigin="anonymous"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    ></script>
+    <script
+            crossorigin="anonymous"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+    ></script>
+    <script
+            crossorigin="anonymous"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+    ></script>
 
-<!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
-
+    <script crossorigin="anonymous"
+            integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>

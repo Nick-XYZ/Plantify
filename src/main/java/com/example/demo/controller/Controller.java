@@ -13,17 +13,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.view.RedirectView;
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
-@Controller
-public class LoginController {
+@org.springframework.stereotype.Controller
+public class Controller {
     @Autowired
     LoginService loginService;
     @Autowired
@@ -41,23 +41,17 @@ public class LoginController {
     @GetMapping("/")
     public String LoadLandingPage(Model model, HttpSession session) {
         model.addAttribute("admin", new Admin());
-        plantService.plantWaterTimeline(1L);
-        plantService.plantNutritionTimeline(1L);
-        plantService.sortedTimeline(1L);
-        plantService.harvesting(1L);
-        plantService.nextFiveTimeline(2L);
-        plantService.isWateringDay(1L);
-        plantService.isWateringDay(2L);
-        plantService.isWateringDay(3L);
-
         return "login";
     }
 
     @PostMapping("/createUser")
-    public String postRegistration(@ModelAttribute Admin admin) {
+    public RedirectView postRegistration(@ModelAttribute Admin admin, RedirectAttributes redir) {
+        RedirectView rvLogin = new RedirectView("/", true);
+        //If user already exists.. Model.addAttribute (first Validation exercise)
         admin.setPassword(encoder.encode(admin.getPassword()));
         loginService.addUser(admin);
-        return "redirect:/login";
+        redir.addFlashAttribute("NewAccountSuccess", "Your registration is confirmed.");
+             return rvLogin;
     }
 
     @PostMapping("/")
@@ -76,7 +70,6 @@ public class LoginController {
 
         Admin admin = getLoggedInAdmin();
         List<Plant> userPlants = plantRepository.findAllByAdminId(admin.getId());
-
         model.addAttribute("admin", admin);
         model.addAttribute("plants", userPlants);
         model.addAttribute("userId", admin.getId());
@@ -94,6 +87,7 @@ public class LoginController {
         Map<LocalDate, String> timeline = plantService.nextFiveTimeline(plant.getId());
         if (userPlants.contains(plant)) {
             model.addAttribute("plant", plant);
+            model.addAttribute("admin", admin);
             model.addAttribute("timeline", timeline);
             return "plantdescription";
         }
@@ -130,6 +124,22 @@ public class LoginController {
         String currentPrincipalName = authentication.getName();
         Admin admin = userRepository.findByEmail(currentPrincipalName);
         return admin;
+    }
+    //Delete Plant
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable("id") Long id,RedirectAttributes ra) throws Exception {
+        Admin admin = getLoggedInAdmin();
+        List<Plant> userPlants = plantRepository.findAllByAdminId(admin.getId());
+        Plant plant = plantRepository.findById(id).get();
+        if (userPlants.contains(plant)) {
+            plantService.deletePlant(id);
+            ra.addFlashAttribute("SuccesPlantCreation", "Your plant has been removed");
+            return "redirect:/home";
+        } else {
+            ra.addFlashAttribute("ErrorPlantRemoval", "No such plant");
+            return "redirect:/home";
+        }
+
     }
 
 }

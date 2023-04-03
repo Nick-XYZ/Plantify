@@ -109,5 +109,11 @@ public class PlantService {
             return false;
         }
     }
+    //Delete Plant
+    public void deletePlant(Long id) throws Exception {
+        plantRepository.delete(plantRepository.findById(id).orElseThrow(()-> {
+            return new Exception("No Plant with that ID");
+        }));
+    }
 
 }
