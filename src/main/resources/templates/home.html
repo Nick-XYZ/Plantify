@@ -83,6 +83,7 @@
         <tr>
             <th class="image head" th:text="${plant.plantName}"></th>
             <a th:href="@{'/plant/' + ${plant.id}}"> <img class="img-head" src="images/t1.png" width=100px height=100px></a>
+            <a th:href="@{'/plant/' + ${plant.id}}"> <img th:src="${plant.getPlantStageImg}" width=100px height=100px></a>
             <th class="image head" th:text="${plant.species.name}"></th>
         </tr>
     </article>

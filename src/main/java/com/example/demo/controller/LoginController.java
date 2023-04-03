@@ -20,6 +20,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class LoginController {
@@ -44,6 +45,11 @@ public class LoginController {
         plantService.plantNutritionTimeline(1L);
         plantService.sortedTimeline(1L);
         plantService.harvesting(1L);
+        plantService.nextFiveTimeline(2L);
+        plantService.isWateringDay(1L);
+        plantService.isWateringDay(2L);
+        plantService.isWateringDay(3L);
+
         return "login";
     }
 
@@ -51,7 +57,6 @@ public class LoginController {
     public String postRegistration(@ModelAttribute Admin admin) {
         admin.setPassword(encoder.encode(admin.getPassword()));
         loginService.addUser(admin);
-        System.out.println("Funkar detta??");
         return "redirect:/login";
     }
 
@@ -86,9 +91,11 @@ public class LoginController {
         Admin admin = getLoggedInAdmin();
         List<Plant> userPlants = plantRepository.findAllByAdminId(admin.getId());
         Plant plant = plantRepository.findById(id).get();
+        Map<LocalDate, String> timeline = plantService.nextFiveTimeline(plant.getId());
         if (userPlants.contains(plant)) {
             model.addAttribute("plant", plant);
             model.addAttribute("admin", admin);
+            model.addAttribute("timeline", timeline);
             return "plantdescription";
         }
         else {
