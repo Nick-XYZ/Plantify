@@ -37,22 +37,27 @@
         <input type="submit" class="btn btn-primary" value="Logout"/>
     </form>
 </div>
-
-
 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalCreatePlant">
     Create Plant
 </button>
-
 <script>
         $('a[href$="#Modal"]').on("click", function () {
           $("#Modal").modal("show");
         });
 </script>
 
+<!--  Alerts and such -->
+
 <div th:if="${SuccesPlantCreation}" class="alert alert-success" role="success" text-center>
     [[${SuccesPlantCreation}]]
 
 </div>
+<div th:if="${ErrorPlantRemoval}" class="alert alert-danger" role="alert" text-center>
+    [[${ErrorPlantRemoval}]]
+
+</div>
+
+<!-- Plants -->
 
 <div class="tasks">
 
@@ -61,8 +66,28 @@
             <th class="image head" th:text="${plant.plantName}"></th>
             <a th:href="@{'/plant/' + ${plant.id}}"> <img th:src="${plant.getPlantStageImg}" width=100px height=100px></a>
             <th class="image head" th:text="${plant.species.name}"></th>
-
         </tr>
+
+        <!-- Delete Plant Button -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalDeletePlant">
+            Remove Plant
+        </button>
+
+        <!-- Delete Plant Modal -->
+        <div class="modal fade" id="modalDeletePlant" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <h6 th:text="'Are you sure about deleting' + ${plant.plantName}"></h6>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Oh god no</button>
+                        <a class="btn btn-primary" th:href="@{'/delete/' + ${plant.id}}" role="button">Yes, I'm sure!</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ^^Delete Plant Modal^^ -->
     </article>
 
 </div>
@@ -111,7 +136,6 @@
         </div>
     </div>
 </div>
-
 <!-- Footer -->
 <div class="fixed-bottom">
     <footer class="bg-light text-center text-lg-start">

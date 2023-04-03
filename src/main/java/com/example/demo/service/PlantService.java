@@ -110,8 +110,8 @@ public class PlantService {
         }
     }
     //Delete Plant
-    public void deletePlant(String id) throws Exception {
-        plantRepository.delete(plantRepository.findById(Long.valueOf(id)).orElseThrow(()-> {
+    public void deletePlant(Long id) throws Exception {
+        plantRepository.delete(plantRepository.findById(id).orElseThrow(()-> {
             return new Exception("No Plant with that ID");
         }));
     }
