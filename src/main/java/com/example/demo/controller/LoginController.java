@@ -88,6 +88,7 @@ public class LoginController {
         Plant plant = plantRepository.findById(id).get();
         if (userPlants.contains(plant)) {
             model.addAttribute("plant", plant);
+            model.addAttribute("admin", admin);
             return "plantdescription";
         }
         else {
