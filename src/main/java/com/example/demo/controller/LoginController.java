@@ -44,8 +44,8 @@ public class LoginController {
      plantService.plantWaterTimeline(1L);
       plantService.plantNutritionTimeline(1L);
       plantService.sortedTimeline(1L);
-      // plantService.harvesting(1L);
-      // plantService.nextFiveTimeline(2L);
+      plantService.harvesting(1L);
+      //plantService.nextFiveTimeline(2L);
        plantService.isWateringDay(1L);
        plantService.isWateringDay(2L);
        plantService.isWateringDay(3L);
@@ -91,10 +91,10 @@ public class LoginController {
         Admin admin = getLoggedInAdmin();
         List<Plant> userPlants = plantRepository.findAllByAdminId(admin.getId());
         Plant plant = plantRepository.findById(id).get();
-        Map<LocalDate, String> timeline = plantService.nextFiveTimeline(plant.getId());
+       /* Map<LocalDate, String> timeline = plantService.nextFiveTimeline(plant.getId());*/
         if (userPlants.contains(plant)) {
             model.addAttribute("plant", plant);
-            model.addAttribute("timeline", timeline);
+           /* model.addAttribute("timeline", timeline);*/
             return "plantdescription";
         }
         else {

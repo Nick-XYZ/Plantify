@@ -22,7 +22,17 @@
 
 </head>
 <body>
-<!-- Header -->
+
+<!--<style>
+body {
+  background-image: url('/images/livingroom.jpg');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+}
+</style>-->
+
+<!--Header-->
 <nav class="navbar navbar-dark bg-dark">
     <a class="navbar-brand" href="#">
         <img src="/images/download.jpg" height="30" alt="">
@@ -55,16 +65,13 @@
 </div>
 
 <div class="tasks">
-
     <article th:each="plant : ${admin.plant}" class="task">
         <tr>
             <th class="image head" th:text="${plant.plantName}"></th>
-            <a th:href="@{'/plant/' + ${plant.id}}"> <img th:src="${plant.getPlantStageImg}" width=100px height=100px></a>
+            <a th:href="@{'/plant/' + ${plant.id}}"> <img class="img pots" th:src="${plant.getPlantStageImg}" width="150px" height="150px"></a>
             <th class="image head" th:text="${plant.species.name}"></th>
-
         </tr>
     </article>
-
 </div>
 
 
@@ -100,7 +107,7 @@
                         <label>Choose a plant:</label>
                         <select th:field="*{species}">
                             <option th:value="1">Redskin peppers   <img th:src="@{/images/Vatten.jpg}"></option>
-                            <option th:value="2">Carrots</option>
+                            <option th:value="2">Carrots - Early</option>
                             <option th:value="3">Chili</option>
                             <option th:value="4">Strawberries</option>
                             <option th:value="5">Sweet Peas</option>
@@ -117,16 +124,20 @@
     </div>
 </div>
 
-<!-- Footer -->
+<!--&lt;!&ndash; Footer &ndash;&gt;
 <div class="fixed-bottom">
     <footer class="bg-light text-center text-lg-start">
-        <!-- Copyright -->
+        &lt;!&ndash; Copyright &ndash;&gt;
         <div class="text-center p-3" style="background-color: hsla(0, 0%, 0%, 0.2);">
             © 2025 Copyright:
             <a class="text-dark" href="https://plantify.com/">plantify.com</a>
         </div>
-        <!-- Copyright -->
+        &lt;!&ndash; Copyright &ndash;&gt;
     </footer>
+</div>-->
+
+
+
 </div>
 
 <!-- Optional JavaScript -->

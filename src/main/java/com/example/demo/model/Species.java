@@ -1,6 +1,5 @@
 package com.example.demo.model;
 
-import com.example.demo.model.Plant;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -24,7 +23,13 @@ public class Species {
     @OneToMany(mappedBy = "species", cascade = CascadeType.ALL)
     private List<Plant> plants = new ArrayList<>();
 
+    public String getLatinName() {
+        return latinName;
+    }
 
+    public void setLatinName(String latinName) {
+        this.latinName = latinName;
+    }
 
     public List<Plant> getPlants() {
         return plants;

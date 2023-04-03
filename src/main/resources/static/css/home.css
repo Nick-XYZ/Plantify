@@ -8,7 +8,9 @@ margin-right: 0;
 
 .tasks{
 display: flex;
-justify-content: space-evenly;
+  justify-content: left;
+   margin-top: 9%;
+
 }
 
 .task{
@@ -21,15 +23,20 @@ color: #b6cdbd;
 
 }
 
-img {
-    border: 1px solid;
-    border-radius: 4px;
-    padding: 5px;
-    width: 100px;
-    height: 100px;
+.img pots {
+border: 1px solid;
+border-radius: 4px;
+padding: 5px;
+
+
+
+
+
 }
 .img head{
 color: black
-  display: flex;
-    justify-content: center;
+ display: flex;
+  justify-content: center;
 }
+
+
