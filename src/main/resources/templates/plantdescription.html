@@ -36,9 +36,9 @@
             <div class="d-flex justify-content-center">
                 <img th:src="${plant.getPlantStageImg}" class="">
             </div>
-            <div class="container d-flex justify-content-center" style="padding-top:50px">
+          <!--  <div class="container d-flex justify-content-center" style="padding-top:50px">
                 <button type="button" class="btn btn-success">Read more</button>
-            </div>
+            </div>-->
         </div>
 
         <!--        Right side-->
@@ -58,22 +58,25 @@
                 <p class="mx-auto text-center">
                 <h2 class="text-center" th:text="${plant.plantName}"></h2>
 
-                <strong>Plant sort</strong>
+                <strong>Plant sort:</strong>
                 <th th:text="${plant.species.name}"></th>
                 <br>
-                <strong>Latin name</strong>
+                <strong>Latin name:</strong>
                 <th th:text="${plant.species.latinName}"></th>
                 <br>
-                <strong>Water</strong>
-                <th th:text="${plant.species.water} + ' days until i need water.' "></th>
+                <strong>Water:</strong>
+                <th th:text="${plant.species.water} + ' days' "></th>
                 <br>
-                <strong>Nutrition</strong>
-                <th th:text="${plant.species.nutrition}  + ' days until i need nutrition.'"></th>
+                <strong>Nutrition:</strong>
+                <th th:text="${plant.species.nutrition}  + ' days '"></th>
                 <br>
-                <strong>Ready to eat</strong>
-                <th th:text="${plant.species.readyToEat} + ' days until i am done.'"></th>
+                <strong>Repot:</strong>
+                <th th:text="${plant.species.nutrition}  + ' days'"></th>
                 <br>
-                <strong>Short info</strong>
+                <strong>Ready to eat:</strong>
+                <th th:text="${plant.species.readyToEat} + ' days'"></th>
+                <br>
+                <strong>Short info:</strong>
                 <th th:text="${plant.species.shortInfo}"></th>
 
                 </p>
