@@ -57,13 +57,7 @@
 </nav>
 
 
-
-<div class="fixed-top text-right" style="padding-right: 300px; padding-top: 50px;">
-    <a href="http://localhost:8080/home" class="btn btn-outline-secondary border-0">
-        <img th:src="@{/images/back.png}" width=70px height=70px>
-    </a>
-</div>
-<div class="container" style="padding-top:152px">
+<div class="container" style="padding-top:32px">
     <div class="row">
 
         <!--        Left side-->
@@ -114,9 +108,9 @@
                 <img th:src="@{/images/timeline.png}" width="100%">
             </div>
 
-</div>
-    </div>
-            <table style="border: solid 1px black;">
+
+            <div class="container d-flex justify-content-center">
+            <table style="border: 3px solid rgba(0, 0, 0, 0.2);">
                 <thead>
                 <tr>
                     <th>Date</th>
@@ -135,7 +129,7 @@
 </div>
 
 <!-- Footer -->
-<div class="fixed-bottom">
+<div class="fixed-bottom" style="padding-top: 10px;">
     <footer class="bg-light text-center text-lg-start">
         <!-- Copyright -->
         <div class="text-center p-3" style="background-color: hsla(0, 0%, 0%, 0.2);">
