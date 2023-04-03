@@ -2,6 +2,8 @@ package com.example.demo.controller;
 
 
 import com.example.demo.model.Plant;
+import com.example.demo.model.PlantLog;
+import com.example.demo.repository.PlantLogRepository;
 import com.example.demo.repository.PlantRepository;
 import com.example.demo.repository.SpeciesRepository;
 import com.example.demo.repository.UserRepository;
@@ -20,6 +22,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 @Controller
 public class LoginController {
@@ -35,20 +38,14 @@ public class LoginController {
     UserRepository userRepository;
     @Autowired
     PlantService plantService;
+    @Autowired
+    PlantLogRepository plantLogRepository;
 
 
     @GetMapping("/")
     public String LoadLandingPage(Model model, HttpSession session) {
         model.addAttribute("admin", new Admin());
-        plantService.plantWaterTimeline(1L);
-        plantService.plantNutritionTimeline(1L);
-        plantService.sortedTimeline(1L);
-        plantService.harvesting(1L);
-        plantService.nextFiveTimeline(2L);
-        plantService.isWateringDay(1L);
-        plantService.isWateringDay(2L);
-        plantService.isWateringDay(3L);
-
+        System.out.println(plantService.eventDayValue(1L));
         return "login";
     }
 
@@ -92,12 +89,23 @@ public class LoginController {
         List<Plant> userPlants = plantRepository.findAllByAdminId(admin.getId());
         Plant plant = plantRepository.findById(id).get();
         if (userPlants.contains(plant)) {
+            model.addAttribute("eventDayValue", plantService.eventDayValue(id));
             model.addAttribute("plant", plant);
+            model.addAttribute("timeline", plantService.nextFiveTimeline(id));
             return "plantdescription";
         }
         else {
             return "redirect:/home";
         }
+    }
+
+    @GetMapping("/createPlantLog/{event}/{id}")
+    public String plantLog(@PathVariable String event, @PathVariable Long id) {
+        PlantLog plantLog = new PlantLog();
+        plantLog.setPlant(plantRepository.findById(id).get());
+        plantLog.setEvent(event);
+        plantLogRepository.save(plantLog);
+        return "redirect:/plant/" + id;
     }
 
  /*   @GetMapping("/add")

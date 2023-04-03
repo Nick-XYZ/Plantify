@@ -40,6 +40,13 @@ public class Admin {
    @OneToMany(mappedBy = "admin", cascade = CascadeType.ALL)
     private List<Plant> plant= new ArrayList<>();
 
+    public Admin(String email, String password, String firstName, String lastName) {
+        this.email = email;
+        this.password = password;
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
     public Long getUserId() {
         return id;
     }

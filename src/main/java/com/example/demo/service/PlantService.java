@@ -1,12 +1,15 @@
 package com.example.demo.service;
 
 import com.example.demo.model.Plant;
+import com.example.demo.model.PlantLog;
 import com.example.demo.model.Species;
+import com.example.demo.repository.PlantLogRepository;
 import com.example.demo.repository.PlantRepository;
 import com.example.demo.repository.SpeciesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
@@ -18,6 +21,8 @@ public class PlantService {
     PlantRepository plantRepository;
     @Autowired
     SpeciesRepository speciesRepository;
+    @Autowired
+    PlantLogRepository plantLogRepository;
 
     //Creates a list of the next 5 dates a plant needs water
     public List<LocalDate> plantWaterTimeline(Long plantId) {
@@ -65,15 +70,31 @@ public class PlantService {
         List<LocalDate> nutrition = plantNutritionTimeline(plantId);
         Map<LocalDate, String> timeline = new HashMap<>();
         for (LocalDate date : water) {
-            timeline.put(date, "WATER");
+            if (!isEventDone(date)) {
+                timeline.put(date, "/images/water-button.png");
+                System.out.println(date);
+            }
         }
         for (LocalDate date : nutrition) {
-            timeline.put(date, "NUTRITION");
+            timeline.put(date, "/images/näring.jpg");
         }
         Map<LocalDate, String> sortedTimeline = new TreeMap<>(timeline);
         //sortedTimeline.keySet() to get the dates only
         System.out.println("SORTED TIMELINES" + sortedTimeline);
         return sortedTimeline;
+    }
+
+    public boolean isEventDone(LocalDate list) {
+        List<PlantLog> log = (List<PlantLog>) plantLogRepository.findAll();
+        boolean value = false;
+        for (PlantLog event : log) {
+            if (event.getEvent().equals("water") && event.getEventDate().equals(list)) {
+                value = true;
+            } else {
+                value = false;
+            }
+        }
+        return value;
     }
      public Map<LocalDate, String> nextFiveTimeline(Long plantId) {
          Map<LocalDate, String> sortedTimeline = sortedTimeline(plantId);
@@ -84,7 +105,7 @@ public class PlantService {
          return firstFiveDates;
     }
 
-    public void harvesting(Long plantId) {
+  /*  public void harvesting(Long plantId) {
         Plant plant = plantRepository.findById(plantId).get();
         Species species = plant.getSpecies();
         LocalDate now = LocalDate.now();
@@ -96,18 +117,50 @@ public class PlantService {
         } else {
             System.out.println("READY TO EAT");
         }
+    }*/
+
+
+    public Map<LocalDate, String> todaysTimeline(Long plantId) {
+        List<LocalDate> water = plantWaterTimeline(plantId);
+        List<LocalDate> nutrition = plantNutritionTimeline(plantId);
+        Map<LocalDate, String> timeline = new HashMap<>();
+        LocalDate today = LocalDate.now();
+        for (LocalDate date : water) {
+            if (date.equals(today) && !isEventDone(today)) {
+                timeline.put(date, "/images/water-button.png");
+            }
+        }
+        for (LocalDate date : nutrition) {
+            if (date.equals(today) && !isEventDone(today)) {
+                timeline.put(date, "/images/näring.jpg");
+            }
+        }
+        Map<LocalDate, String> sortedTodaysTimeline = new TreeMap<>(timeline);
+        //sortedTimeline.keySet() to get the dates only
+        System.out.println("SORTED TIMELINES" + sortedTodaysTimeline);
+        return sortedTodaysTimeline;
+    }
+    public List<String> eventDayValue(Long plantId) {
+        Map<LocalDate, String> eventList = todaysTimeline(plantId);
+        LocalDate now = LocalDate.now();
+        List<String> eventString = new ArrayList<>();
+        if (eventList.containsKey(now) && eventList.containsValue("/images/water-button.png")) {
+            eventString.add("water");
+        } else {
+            eventString.add("notwater");
+        }
+        if (eventList.containsKey(now) && eventList.containsValue("/images/näring.jpg")) {
+            eventString.add("nutrition");
+        } else {
+            eventString.add("notnutrition");
+        }
+        if (eventList.containsKey(now) && eventList.containsValue("REPOT")) {
+            eventString.add("repot");
+        } else {
+            eventString.add("notrepot");
+        }
+        return eventString;
     }
 
-    public boolean isWateringDay(Long plantId) {
-        List<LocalDate> waterList = plantWaterTimeline(plantId);
-        LocalDate now = LocalDate.now();
-        if (now.equals(waterList.get(0))) {
-            System.out.println("TRUE");
-            return true;
-        } else {
-            System.out.println("FALSE");
-            return false;
-        }
-    }
 
 }
