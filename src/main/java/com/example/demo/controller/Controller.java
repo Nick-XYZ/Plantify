@@ -47,6 +47,7 @@ public class Controller {
     @PostMapping("/createUser")
     public RedirectView postRegistration(@ModelAttribute Admin admin, RedirectAttributes redir) {
         RedirectView rvLogin = new RedirectView("/", true);
+        //If user already exists.. Model.addAttribute (first Validation exercise)
         admin.setPassword(encoder.encode(admin.getPassword()));
         loginService.addUser(admin);
         redir.addFlashAttribute("NewAccountSuccess", "Your registration is confirmed.");
