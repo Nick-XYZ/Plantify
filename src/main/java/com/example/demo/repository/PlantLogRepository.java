@@ -8,5 +8,5 @@ import java.util.List;
 
 @Repository
 public interface PlantLogRepository extends CrudRepository<PlantLog, Long> {
-
+    List<PlantLog> findAllByPlantId(Long id);
 }

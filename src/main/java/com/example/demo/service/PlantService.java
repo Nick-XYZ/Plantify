@@ -1,15 +1,15 @@
 package com.example.demo.service;
 
+import com.example.demo.model.Admin;
 import com.example.demo.model.Plant;
 import com.example.demo.model.PlantLog;
 import com.example.demo.model.Species;
 import com.example.demo.repository.PlantLogRepository;
 import com.example.demo.repository.PlantRepository;
 import com.example.demo.repository.SpeciesRepository;
+import com.example.demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.lang.reflect.Array;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.*;
@@ -23,15 +23,15 @@ public class PlantService {
     SpeciesRepository speciesRepository;
     @Autowired
     PlantLogRepository plantLogRepository;
+    @Autowired
+    UserRepository userRepository;
 
     //Creates a list of the next 5 dates a plant needs water
     public List<LocalDate> plantWaterTimeline(Long plantId) {
         Plant plant = plantRepository.findById(plantId).get();
         Species species = plant.getSpecies();
         LocalDate now = LocalDate.now();
-
         List<LocalDate> waterSchedule = new ArrayList<>();
-
         Long dif = ChronoUnit.DAYS.between(plant.getCreated(), now);
         System.out.println(dif);
         dif = dif % species.getWater();
@@ -70,7 +70,7 @@ public class PlantService {
         List<LocalDate> nutrition = plantNutritionTimeline(plantId);
         Map<LocalDate, String> timeline = new HashMap<>();
         for (LocalDate date : water) {
-            if (!isEventDone(date)) {
+            if (!isEventDone(plantId, date)) {
                 timeline.put(date, "/images/water-button.png");
                 System.out.println(date);
             }
@@ -84,11 +84,11 @@ public class PlantService {
         return sortedTimeline;
     }
 
-    public boolean isEventDone(LocalDate list) {
-        List<PlantLog> log = (List<PlantLog>) plantLogRepository.findAll();
+    public boolean isEventDone(Long plantId, LocalDate date) {
+        List<PlantLog> log = (List<PlantLog>) plantLogRepository.findAllByPlantId(plantId);
         boolean value = false;
         for (PlantLog event : log) {
-            if (event.getEvent().equals("water") && event.getEventDate().equals(list)) {
+            if (event.getEvent().equals("water") && event.getEventDate().equals(date)) {
                 value = true;
             } else {
                 value = false;
@@ -126,12 +126,12 @@ public class PlantService {
         Map<LocalDate, String> timeline = new HashMap<>();
         LocalDate today = LocalDate.now();
         for (LocalDate date : water) {
-            if (date.equals(today) && !isEventDone(today)) {
+            if (date.equals(today) && !isEventDone(plantId, date)) {
                 timeline.put(date, "/images/water-button.png");
             }
         }
         for (LocalDate date : nutrition) {
-            if (date.equals(today) && !isEventDone(today)) {
+            if (date.equals(today) && !isEventDone(plantId, date)) {
                 timeline.put(date, "/images/näring.jpg");
             }
         }
