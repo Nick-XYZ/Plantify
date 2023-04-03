@@ -131,5 +131,11 @@ public class LoginController {
         Admin admin = userRepository.findByEmail(currentPrincipalName);
         return admin;
     }
+    //Delete Plant
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable("id") String id) throws Exception {
+        plantService.deletePlant(id);
+        return "redirect:/home";
+    }
 
 }
