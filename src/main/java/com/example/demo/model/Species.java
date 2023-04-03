@@ -12,16 +12,34 @@ public class Species {
     private Long id;
     private String name;
     private String latinName;
-  /*  Private String plantingMonth;*/
     private String sunlight;
+    private String soil;
     private Integer water;
+    private Integer repot;
     private Integer nutrition;
     private Integer readyToEat;
     private String shortInfo;
-    private String fullInfo;
+  /*  private String fullInfo;*/
 
     @OneToMany(mappedBy = "species", cascade = CascadeType.ALL)
     private List<Plant> plants = new ArrayList<>();
+
+
+    public String getSoil() {
+        return soil;
+    }
+
+    public void setSoil(String soil) {
+        this.soil = soil;
+    }
+
+    public Integer getRepot() {
+        return repot;
+    }
+
+    public void setRepot(Integer repot) {
+        this.repot = repot;
+    }
 
     public String getLatinName() {
         return latinName;
@@ -95,11 +113,7 @@ public class Species {
         this.shortInfo = shortInfo;
     }
 
-    public String getFullInfo() {
-        return fullInfo;
-    }
 
-    public void setFullInfo(String fullInfo) {
-        this.fullInfo = fullInfo;
-    }
+
 }
+

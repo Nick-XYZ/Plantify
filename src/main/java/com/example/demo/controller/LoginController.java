@@ -91,10 +91,10 @@ public class LoginController {
         Admin admin = getLoggedInAdmin();
         List<Plant> userPlants = plantRepository.findAllByAdminId(admin.getId());
         Plant plant = plantRepository.findById(id).get();
-       /* Map<LocalDate, String> timeline = plantService.nextFiveTimeline(plant.getId());*/
+        Map<LocalDate, String> timeline = plantService.nextFiveTimeline(plant.getId());
         if (userPlants.contains(plant)) {
             model.addAttribute("plant", plant);
-           /* model.addAttribute("timeline", timeline);*/
+            model.addAttribute("timeline", timeline);
             return "plantdescription";
         }
         else {

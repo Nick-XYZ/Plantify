@@ -65,13 +65,13 @@
                 <th th:text="${plant.species.latinName}"></th>
                 <br>
                 <strong>Water</strong>
-                <th th:text="${plant.species.water}"></th>
+                <th th:text="${plant.species.water} + ' days until i need water.' "></th>
                 <br>
                 <strong>Nutrition</strong>
-                <th th:text="${plant.species.nutrition}"></th>
+                <th th:text="${plant.species.nutrition}  + ' days until i need nutrition.'"></th>
                 <br>
                 <strong>Ready to eat</strong>
-                <th th:text="${plant.species.readyToEat}"></th>
+                <th th:text="${plant.species.readyToEat} + ' days until i am done.'"></th>
                 <br>
                 <strong>Short info</strong>
                 <th th:text="${plant.species.shortInfo}"></th>
