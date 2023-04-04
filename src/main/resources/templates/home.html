@@ -94,11 +94,12 @@
     <article class="task" th:each="plant : ${admin.plant}">
         <tr>
             <th class="image head" th:text="${plant.plantName}"></th>
-            <!--
-                        <a th:href="@{'/plant/' + ${plant.id}}"> <img class="img-head" src="images/t1.png" width=100px height=100px></a>
-            -->
-            <a th:href="@{'/plant/' + ${plant.id}}"> <img height=100px th:src="${plant.getPlantStageImg}"
-                                                          width=100px></a>
+
+<!--
+            <a th:href="@{'/plant/' + ${plant.id}}"> <img class="img-head" src="images/t1.png" width=100px height=100px></a>
+-->
+            <a th:href="@{'/plant/' + ${plant.id}}"> <img th:src="${plant.getPlantStageImgResponsive}" width=100px height=100px></a>
+
             <div class="dropdown">
                 <button class="btn btn-default dropdown-toggle" data-toggle="dropdown" style="background:url('/images/spade2.jpg');background-size:cover;"
                         type="button">
@@ -110,6 +111,7 @@
                     <li><a href="#">Duplicate plant</a></li>
                 </ul>
             </div>
+
             <th class="image head" th:text="${plant.species.name}"></th>
         </tr>
 
