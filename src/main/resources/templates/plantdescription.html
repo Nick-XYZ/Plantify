@@ -32,7 +32,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="http://localhost:8080/home">Home</a>
+                    <a class="nav-link active" aria-current="page" href="/home">Home</a>
                 </li>
                 <!--<li class="nav-item">
                     <a class="nav-link" href="#">mer?</a>
@@ -67,7 +67,7 @@
             <div class="container d-flex justify-content-center" style="padding-top:50px">
 
 
-                <a class="btn btn-primary" data-target="#modalDeletePlant" data-toggle="modal" type="button">
+                <a class="btn btn-success" data-target="#modalDeletePlant" data-toggle="modal" type="button">
 
                     Remove Plant</a>
 
@@ -150,7 +150,7 @@
                     </button>
 
 
-                    <div class="modal-body">
+                    <div class="modal-body" text-center>
                         <h6 th:text="'Are you sure about deleting your ' + ${plant.plantName}"></h6>
                     </div>
                     <div class="modal-footer">
@@ -170,7 +170,7 @@
 
 
 <!-- Footer -->
-<div class="fixed-bottom" style="padding-top: 10px;">
+<div class="sticky-bottom" style="padding-top: 10px;">
     <footer class="bg-light text-center text-lg-start">
         <!-- Copyright -->
         <div class="text-center p-3" style="background-color: hsla(0, 0%, 0%, 0.2);">

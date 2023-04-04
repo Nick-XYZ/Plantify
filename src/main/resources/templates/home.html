@@ -18,54 +18,48 @@
             rel="stylesheet"
     />
 
-    <title>Title</title>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <title>Homepage</title>
 
 </head>
 <body class="body">
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
     <div class="container-fluid">
         <a class="navbar-brand" href="#"></a>
-        <img alt="Logo" class="navbar-logo" height="" src="/images/plantify_navbar.png">
+        <img src="/images/plantify_navbar.png" class="navbar-logo" height="" alt="Logo">
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item">
-                    <a aria-current="page" class="nav-link active" href="http://localhost:8080/home">Home</a>
+                    <a class="nav-link active" aria-current="page" href="http://localhost:8080/home">Home</a>
                 </li>
                 <!--<li class="nav-item">
                     <a class="nav-link" href="#">mer?</a>
                 </li>-->
                 <li class="nav-item dropdown">
-                    <a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"
-                       role="button">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Plants
                     </a>
                     <ul class="dropdown-menu">
                         <li th:each="plant : ${admin.plant}">
-                            <a class="dropdown-item" th:href="@{/plant/{id}(id=${plant.id})}"
-                               th:text="${plant.plantName}"></a>
+                            <a class="dropdown-item" th:href="@{/plant/{id}(id=${plant.id})}" th:text="${plant.plantName}"></a>
                         </li>
                     </ul>
                 </li>
             </ul>
-            <span class="navbar-text" href="#"
-                  th:text="'Hi ' + ${admin.firstName} + ' ' + ${admin.lastName} + '!'"></span>
-            <form class="d-flex" method="post" th:action="@{/logout}">
-                <input class="btn btn-outline-danger" type="submit" value="Logout"/>
+            <span class="navbar-text" href="#" th:text="'Hi ' + ${admin.firstName} + ' ' + ${admin.lastName} + '!'"></span>
+            <form class="d-flex" th:action="@{/logout}" method="post">
+                <input type="submit" class="btn btn-outline-danger" value="Logout"/>
             </form>
         </div>
     </div>
 </nav>
 
-<button class="btn btn btn-success" data-target="#modalCreatePlant" data-toggle="modal" type="button">
+<br>
+<div class="text-center">
+<br>
+<button class="btn btn btn-success text-center" data-target="#modalCreatePlant" data-toggle="modal" type="button">
     Create Plant
 </button>
-
+</div>
 <script>
         $('a[href$="#Modal"]').on("click", function () {
           $("#Modal").modal("show");
@@ -108,11 +102,14 @@
                             type="button">
                         <!-- <span class="caret"></span>-->
                     </button>
-                    <ul aria-labelledby="dropdownMenu1" class="dropdown-menu">
-                        <li><a class="btn btn-primary" data-target="#modalDeletePlant" data-toggle="modal"
+                    <ul aria-labelledby="dropdownMenu1" class="dropdown-menu text-center">
+                        <br>
+                        <li><a class="btn btn-success" data-target="#modalDeletePlant" data-toggle="modal"
                                type="button">
                             Remove Plant</a></li>
-                        <li><a href="#">Duplicate plant</a></li>
+                        <br>
+                        <li><a class="btn btn-success" type="button" href="#">Duplicate plant</a></li>
+                        <br>
                     </ul>
                 </div>
 
@@ -181,8 +178,9 @@
                                 <div class="col-12">
                                     <label>Choose a plant species</label>
                                     <select class="form-select" id="specificSizeSelect" th:field="*{species}">
-                                        <option th:value="1">Strawberry</option>
-                                        <option th:value="2">Tomato</option>
+                                        <option th:value="1">Tomato</option>
+                                        <option th:value="2">Strawberry</option>
+
 
                                     </select>
                                 </div>

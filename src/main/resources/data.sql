@@ -7,8 +7,8 @@
 
 
     INSERT INTO SPECIES (NAME, LATIN_NAME, SUNLIGHT, SOIL, WATER, REPOT, NUTRITION, READY_TO_EAT, SHORT_INFO) VALUES
-    ('Strawberries', 'Fragaria', 'Direct sunlight', 'Vegetable soil with cow manure', 14, 30, 14, 120, 'Strawberries can get planted early in the spring and can be harvested between June and August.'),
-    ('Cherry Tomatoes', 'Solanum lycopersicum var. cerasiforme', 'Direct sunlight', 'Vegetable soil', 1, 30, 7, 120, 'A bountiful, compact cherry tomato that does not need to be plucked or tied up. Produces sweet little tomatoes all summer long. Perfect for the balcony, terrace or in the kitchen window. Grow indoors.');
+    ('Cherry Tomatoes', 'Solanum lycopersicum var. cerasiforme', 'Direct sunlight', 'Vegetable soil', 1, 30, 7, 120, 'A bountiful, compact cherry tomato that does not need to be plucked or tied up. Produces sweet little tomatoes all summer long. Perfect for the balcony, terrace or in the kitchen window. Grow indoors.'),
+    ('Strawberries', 'Fragaria', 'Direct sunlight', 'Vegetable soil with cow manure', 14, 30, 14, 120, 'Strawberries can get planted early in the spring and can be harvested between June and August.');
 
 
 
