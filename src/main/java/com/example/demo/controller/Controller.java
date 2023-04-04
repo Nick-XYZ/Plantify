@@ -125,5 +125,21 @@ public class Controller {
         Admin admin = userRepository.findByEmail(currentPrincipalName);
         return admin;
     }
+    //Delete Plant
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable("id") Long id,RedirectAttributes ra) throws Exception {
+        Admin admin = getLoggedInAdmin();
+        List<Plant> userPlants = plantRepository.findAllByAdminId(admin.getId());
+        Plant plant = plantRepository.findById(id).get();
+        if (userPlants.contains(plant)) {
+            plantService.deletePlant(id);
+            ra.addFlashAttribute("SuccesPlantCreation", "Your plant has been removed");
+            return "redirect:/home";
+        } else {
+            ra.addFlashAttribute("ErrorPlantRemoval", "No such plant");
+            return "redirect:/home";
+        }
+
+    }
 
 }
