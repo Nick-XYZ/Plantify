@@ -9,6 +9,8 @@ public interface UserRepository extends CrudRepository<Admin, Long> {
 
     Admin findByEmail(String email);
 
+    //existByEmail
+
   /*  @Query("SELECT u FROM User u WHERE u.email = ?1") //custom query, because email is unique, so you want one value not a list.
     User findByEmail(String email);*/
 

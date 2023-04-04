@@ -1,0 +1,9 @@
+img.navbar-logo {
+    border: none; /* overrides the border styling for the navbar logo */
+    padding: 5px;
+    /*width: 100px;*/
+    height: 100px;
+}
+.navbar-text {
+padding-right: 1rem;
+}
