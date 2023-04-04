@@ -2,6 +2,8 @@ package com.example.demo.controller;
 
 
 import com.example.demo.model.Plant;
+import com.example.demo.model.PlantLog;
+import com.example.demo.repository.PlantLogRepository;
 import com.example.demo.repository.PlantRepository;
 import com.example.demo.repository.SpeciesRepository;
 import com.example.demo.repository.UserRepository;
@@ -13,17 +15,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
-import java.time.LocalDate;
 import java.util.List;
-import java.util.Map;
 
-@org.springframework.stereotype.Controller
-public class Controller {
+@Controller
+public class LoginController {
     @Autowired
     LoginService loginService;
     @Autowired
@@ -36,6 +37,8 @@ public class Controller {
     UserRepository userRepository;
     @Autowired
     PlantService plantService;
+    @Autowired
+    PlantLogRepository plantLogRepository;
 
 
     @GetMapping("/")
@@ -67,7 +70,6 @@ public class Controller {
 
     @GetMapping("/home")
     public String LoadHomePage(Model model) {
-
         Admin admin = getLoggedInAdmin();
         List<Plant> userPlants = plantRepository.findAllByAdminId(admin.getId());
         model.addAttribute("admin", admin);
@@ -84,11 +86,11 @@ public class Controller {
         Admin admin = getLoggedInAdmin();
         List<Plant> userPlants = plantRepository.findAllByAdminId(admin.getId());
         Plant plant = plantRepository.findById(id).get();
-        Map<LocalDate, String> timeline = plantService.nextFiveTimeline(plant.getId());
         if (userPlants.contains(plant)) {
+            model.addAttribute("eventDayValue", plantService.eventDayValue(id));
             model.addAttribute("plant", plant);
             model.addAttribute("admin", admin);
-            model.addAttribute("timeline", timeline);
+            model.addAttribute("timeline", plantService.nextFiveTimeline(id));
             return "plantdescription";
         }
         else {
@@ -96,18 +98,20 @@ public class Controller {
         }
     }
 
- /*   @GetMapping("/add")
-    public String addPlant(Model model) {
-        Admin admin = getLoggedInAdmin();
-        model.addAttribute("userId", admin.getId());
-        model.addAttribute("plant", new Plant());
-        return "plantform";
-    }*/
+    @GetMapping("/createPlantLog/{event}/{id}")
+    public String plantLog(@PathVariable String event, @PathVariable Long id) {
+        PlantLog plantLog = new PlantLog();
+        plantLog.setPlant(plantRepository.findById(id).get());
+        plantLog.setEvent(event);
+        plantLogRepository.save(plantLog);
+        System.out.println(plantService.todaysTimeline(1L));
+        return "redirect:/plant/" + id;
+    }
 
     @PostMapping("/save")
     public String savePlant(@ModelAttribute Plant plant, HttpSession session, Model model, RedirectAttributes ra) {
         Long userId = (Long) session.getAttribute("userId");
-        model.addAttribute("userId", 3L);
+        model.addAttribute("userId", userId);
         plantRepository.save(plant);
         ra.addFlashAttribute("SuccesPlantCreation", "Your plant has been added to your collection.");
         return "redirect:/home";

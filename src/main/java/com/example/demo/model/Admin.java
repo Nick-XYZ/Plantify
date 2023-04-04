@@ -15,6 +15,7 @@ import java.util.List;
 
 @Getter
 @Setter
+@AllArgsConstructor
 @NoArgsConstructor
 @ToString
 @Entity
@@ -47,8 +48,8 @@ public class Admin {
         this.lastName = lastName;
           }
 
-   /*public Long getUserId() {
+   public Long getUserId() {
         return id;
-    }*/
+    }
 
 }
