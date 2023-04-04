@@ -1,13 +1,11 @@
 
 .body {
-/* background-color: hwb(298 77% 12%);*/
 
 }
 
 .tasks{
 display: flex;
 justify-content: space-evenly;
-
 }
 
 .task{
@@ -19,9 +17,6 @@ flex-direction: column;
 border: 10px;
 margin-right: 25px;
 margin-top: 25px;
-/*color: #b6cdbd;*/
-}
-
 }
 
 .image-head{
@@ -29,27 +24,62 @@ font-family: 'Times New Roman', Times, serif;
 color: black;
 font-weight: bold;
 text-align: center;
-
 }
-
-
 
 img pots {
     width: 160px;
     height: 160px;
 }
 
-
-
-
-
 .img-head{
 color: black
-  display: flex;
-    justify-content: center;
-    border: 1px solid;
-        border-radius: 4px;
-        padding: 5px;
-        width: 100px;
-        height: 100px;
+display: flex;
+justify-content: center;
+border: 1px solid;
+border-radius: 4px;
+padding: 5px;
+width: 100px;
+height: 100px;
 }
+
+figure{
+position: relative;
+top: 0;
+left: 0;
+font-family: 'Mynerve', cursive;
+font-size: small;
+font-weight: bolder;
+}
+
+figcaption{
+ position: absolute;
+ top:0px;
+ left: 0;
+
+
+}
+.pot-image{
+ position: absolute;
+ top:0px;
+ left: 0;
+}
+
+.name-tag{
+position: absolute;
+top:0px;
+left: 50px;
+transform: rotate(15deg);
+}
+
+.tag-text{
+transform: rotate(15deg);
+position: absolute;
+top:0px;
+left: 60px;
+}
+
+.tag-text-fot{
+ position: absolute;
+  top:110px;
+  left: 15px;
+ }

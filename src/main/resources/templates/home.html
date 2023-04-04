@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:figcaptionth="http://www.w3.org/1999/XSL/Transform">
 <head>
     <link href="/css/home.css" rel="stylesheet">
     <link href="/css/navbar.css" rel="stylesheet">
@@ -17,6 +17,10 @@
             integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp"
             rel="stylesheet"
     />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Mynerve&display=swap" rel="stylesheet">
 
     <title>Homepage</title>
 
@@ -82,26 +86,16 @@
 
 <!-- Plants -->
 
-
 <div class="text-center">
     <div class="tasks">
 
         <article class="task" th:each="plant : ${admin.plant}">
             <tr>
-                <th class="image head" th:text="${plant.plantName}"></th>
-
-                <!--
-                            <a th:href="@{'/plant/' + ${plant.id}}"> <img class="img-head" src="images/t1.png" width=100px height=100px></a>
-                -->
-                <a th:href="@{'/plant/' + ${plant.id}}"> <img height=100px th:src="${plant.getPlantStageImgResponsive}"
-                                                              width=100px></a>
-
-                <div class="dropdown">
+                <!--Spade-->
+                <div class="spade-dropdown">
                     <button class="btn btn-default dropdown-toggle" data-toggle="dropdown"
-                            style="background:url('/images/spade2.jpg');background-size:cover;"
-                            type="button">
-                        <!-- <span class="caret"></span>-->
-                    </button>
+                            style="background:url('/images/spade2.png');background-size:cover;" width=2px height=2px
+                            type="button"></button>
                     <ul aria-labelledby="dropdownMenu1" class="dropdown-menu text-center">
                         <br>
                         <li><a class="btn btn-success" data-target="#modalDeletePlant" data-toggle="modal"
@@ -113,8 +107,26 @@
                     </ul>
                 </div>
 
-                <th class="image head" th:text="${plant.species.name}"></th>
+
+                <figure>
+
+                    <!--Name-tag-->
+                    <img class="name-tag" src="images/nameTag3.png"width=40px height=80px alt="">
+
+                    <!--Name-tag-text-->
+                    <figcaption class="tag-text"> <span th:text="${plant.plantName}"></span></figcaption>
+
+                    <!--Pot Image-->
+                    <a th:href="@{'/plant/' + ${plant.id}}"> <img class="pot-image" height=100px th:src="${plant.getPlantStageImgResponsive}" width=100px></a>
+
+                    <!--Plantname-->
+                    <figcaption class="tag-text-fot">  <span class="species-name" th:text="${plant.species.name}"></span></figcaption>
+                </figure>
             </tr>
+
+            </article>
+
+
 
             <!-- Delete Plant Modal -->
 
