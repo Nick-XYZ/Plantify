@@ -53,15 +53,15 @@ public class Plant {
         Long phase= readyToEat/5;
 
         if (dif < phase) {
-            return "/images/" + this.species.getId().toString() + "/t1.png";
+            return "/images/" + this.species.getId().toString() + "/t1.svg";
         } else if (dif > phase && dif <= phase * 2) {
-            return "/images/" + this.species.getId().toString() + "/t2.png";
+            return "/images/" + this.species.getId().toString() + "/t2.svg";
         } else if (dif > phase * 2 && dif <= phase * 3) {
-            return "/images/" + this.species.getId().toString() + "/t3.png";
+            return "/images/" + this.species.getId().toString() + "/t3.svg";
         } else if (dif > phase * 3 && dif <= phase * 4) {
-            return "/images/" + this.species.getId().toString() + "/t4.png";
+            return "/images/" + this.species.getId().toString() + "/t4.svg";
         } else {
-            return "/images/" + this.species.getId().toString() + "/t5.png";
+            return "/images/" + this.species.getId().toString() + "/t5.svg";
         }
     }
 }
