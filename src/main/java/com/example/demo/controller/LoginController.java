@@ -135,7 +135,11 @@ public class LoginController {
         Admin admin = getLoggedInAdmin();
         List<Plant> userPlants = plantRepository.findAllByAdminId(admin.getId());
         Plant plant = plantRepository.findById(id).get();
+        List<PlantLog> plantlLog = plantLogRepository.findAllByPlantId(plant.getId());
         if (userPlants.contains(plant)) {
+            for (PlantLog pl : plantlLog) {
+                plantLogRepository.delete(pl);
+            }
             plantService.deletePlant(id);
             ra.addFlashAttribute("SuccesPlantCreation", "Your plant has been removed");
             return "redirect:/home";
