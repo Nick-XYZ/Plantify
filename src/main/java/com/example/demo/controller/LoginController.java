@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Controller
@@ -84,7 +85,6 @@ public class LoginController {
         return "home";
     }
 
-
     //Home to Plantdescription
     @GetMapping("/plant/{id}")
     public String PlantDescription(Model model, @PathVariable Long id) {
@@ -92,6 +92,7 @@ public class LoginController {
         List<Plant> userPlants = plantRepository.findAllByAdminId(admin.getId());
         Plant plant = plantRepository.findById(id).get();
         if (userPlants.contains(plant)) {
+            model.addAttribute("today", LocalDate.now());
             model.addAttribute("eventDayValue", plantService.eventDayValue(id));
             model.addAttribute("plant", plant);
             model.addAttribute("admin", admin);
