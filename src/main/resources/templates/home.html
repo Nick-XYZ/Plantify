@@ -119,6 +119,11 @@
                     <!--Pot Image-->
                     <a th:href="@{'/plant/' + ${plant.id}}"> <img class="pot-image" height=100px th:src="${plant.getPlantStageImgResponsive}" width=100px></a>
 
+
+                    <img th:if="${plant.doTask.get(0) == 'water'}" th:src="@{/images/Vatten.jpg}" width="100px" height="100px">
+                    <img th:if="${plant.doTask.get(1) == 'nutrition'}" th:src="@{/images/näring.jpg}" width="100px" height="100px">
+                    <img th:if="${plant.doTask.get(2) == 'repot'}" th:src="@{/images/Jord.jpg}" width="100px" height="100px">
+
                     <!--Plantname-->
                     <figcaption class="tag-text-fot">  <span class="species-name" th:text="${plant.species.name}"></span></figcaption>
                 </figure>
@@ -126,9 +131,17 @@
 
             </article>
 
+        <!-- För varje planta så ska det visas med symbol om plantan ska vattnas, byta kruka eller få nutrition.
+
+        Print planta
+        kolla om planta behöver saker
+        printa ut det den behöver.
+
+         -->
 
 
-            <!-- Delete Plant Modal -->
+
+        <!-- Delete Plant Modal -->
 
             <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="modalDeletePlant"
                  role="dialog"
