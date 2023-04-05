@@ -121,8 +121,8 @@
 
 
                     <img th:if="${plant.doTask.get(0) == 'water'}" th:src="@{/images/Vatten.jpg}" width="100px" height="100px">
-                    <img th:if="${plant.doTask.get(0) == 'nutrition'}" th:src="@{/images/näring.jpg}" width="100px" height="100px">
-                    <img th:if="${plant.doTask.get(0) == 'repot'}" th:src="@{/images/Jord.jpg}" width="100px" height="100px">
+                    <img th:if="${plant.doTask.get(1) == 'nutrition'}" th:src="@{/images/näring.jpg}" width="100px" height="100px">
+                    <img th:if="${plant.doTask.get(2) == 'repot'}" th:src="@{/images/Jord.jpg}" width="100px" height="100px">
 
                     <!--Plantname-->
                     <figcaption class="tag-text-fot">  <span class="species-name" th:text="${plant.species.name}"></span></figcaption>
