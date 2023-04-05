@@ -5,6 +5,14 @@ img.navbar-logo {
     height: 100px;
 }
 
+.dropdown-item{
+white-space: nowrap;
+}
+
+.nav-link{
+left: 20px;}
+
+
 .navbar-text {
 padding-right: 1rem;
 
