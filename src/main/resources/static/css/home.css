@@ -1,22 +1,17 @@
 
-.body {
-
-}
-
 .tasks{
 display: flex;
-justify-content: space-evenly;
+flex-wrap: wrap;
+justify-content: center;
+margin-right: 3%;
 }
 
-.task{
-border: 1px solid;
-border-radius: 4px;
-padding: 5px;
+.plantItem{
+padding: 2%;
 display: flex;
 flex-direction: column;
 border: 10px;
-margin-right: 25px;
-margin-top: 25px;
+margin: 120px 75px 75px 75px;
 }
 
 .image-head{
@@ -82,4 +77,8 @@ left: 60px;
  position: absolute;
   top:110px;
   left: 15px;
+ }
+
+ .footer {
+ margin-top = 5%
  }
