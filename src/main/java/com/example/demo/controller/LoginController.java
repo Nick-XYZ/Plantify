@@ -72,10 +72,15 @@ public class LoginController {
     public String LoadHomePage(Model model) {
         Admin admin = getLoggedInAdmin();
         List<Plant> userPlants = plantRepository.findAllByAdminId(admin.getId());
+        // for loop av userplants för att få med in i plants
+        for (Plant plant : userPlants) {
+            plant.setDoTask(plantService.eventDayValue(plant.getId()));}
+        System.out.println(userPlants.get(1).getDoTask());
         model.addAttribute("admin", admin);
         model.addAttribute("plants", userPlants);
         model.addAttribute("userId", admin.getId());
         model.addAttribute("plant", new Plant());
+
         return "home";
     }
 
