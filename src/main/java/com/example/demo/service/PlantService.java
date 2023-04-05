@@ -56,10 +56,26 @@ public class PlantService {
         }
         return nutritionSchedule;
     }
+    public List<LocalDate> plantRepotTimeline(Long plantId) {
+        Plant plant = plantRepository.findById(plantId).get();
+        Species species = plant.getSpecies();
+        LocalDate now = LocalDate.now();
+        List<LocalDate> repotSchedule = new ArrayList<>();
+        Long dif = ChronoUnit.DAYS.between(plant.getCreated(), now);
+        dif = dif % species.getRepot();
+        if (dif == 0 && !plant.getCreated().equals(now)) {
+            repotSchedule.add(now);
+        }
+        for (int i = 0; i < 5; i++) {
+            repotSchedule.add(now.plusDays(species.getRepot() * (i + 1L) - dif));
+        }
+        return repotSchedule;
+    }
 
     public Map<LocalDate, List<String>> sortedTimeline(Long plantId) {
         List<LocalDate> water = plantWaterTimeline(plantId);
         List<LocalDate> nutrition = plantNutritionTimeline(plantId);
+        List<LocalDate> repot = plantRepotTimeline(plantId);
         Map<LocalDate, List<String>> timeline = new HashMap<>();
         for (LocalDate date : water) {
             if (!isWaterEventDone(plantId, date)) {
@@ -69,6 +85,11 @@ public class PlantService {
         for (LocalDate date : nutrition) {
             if (!isNutritionEventDone(plantId, date)) {
                 timeline.computeIfAbsent(date, k -> new ArrayList<>()).add("/images/näring.jpg");
+            }
+        }
+        for (LocalDate date : repot) {
+            if (!isRepotEventDone(plantId, date)) {
+                timeline.computeIfAbsent(date, k -> new ArrayList<>()).add("/images/Jord.jpg");
             }
         }
         Map<LocalDate, List<String>> sortedTimeline = new TreeMap<>(timeline);
@@ -88,6 +109,15 @@ public class PlantService {
         List<PlantLog> log = plantLogRepository.findAllByPlantId(plantId);
         for (PlantLog event : log) {
             if (event.getEvent().equals("nutrition") && event.getEventDate().equals(date)) {
+                return true;
+            }
+        }
+        return false;
+    }
+    public boolean isRepotEventDone(Long plantId, LocalDate date) {
+        List<PlantLog> log = plantLogRepository.findAllByPlantId(plantId);
+        for (PlantLog event : log) {
+            if (event.getEvent().equals("repot") && event.getEventDate().equals(date)) {
                 return true;
             }
         }
@@ -119,6 +149,7 @@ public class PlantService {
     public List<String> todaysTimeline(Long plantId) {
         List<LocalDate> water = plantWaterTimeline(plantId);
         List<LocalDate> nutrition = plantNutritionTimeline(plantId);
+        List<LocalDate> repot = plantRepotTimeline(plantId);
         List<String> timLin = new ArrayList<>();
         LocalDate today = LocalDate.now();
 
@@ -130,6 +161,11 @@ public class PlantService {
         for (LocalDate date : nutrition) {
             if (date.equals(today) && !isNutritionEventDone(plantId, date)) {
                 timLin.add("/images/näring.jpg");
+            }
+        }
+        for (LocalDate date : repot) {
+            if (date.equals(today) && !isRepotEventDone(plantId, date)) {
+                timLin.add("/images/Jord.jpg");
             }
         }
         return timLin;
@@ -151,7 +187,7 @@ public class PlantService {
         } else {
             eventString.add("notnutrition");
         }
-        if (eventList.contains("REPOT")) {
+        if (eventList.contains("/images/Jord.jpg")) {
             eventString.add("repot");
         } else {
             eventString.add("notrepot");
