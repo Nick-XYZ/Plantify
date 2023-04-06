@@ -25,7 +25,7 @@ font-weight: bolder;
 .name-tag{
 position: absolute;
 top:0px;
-left:100px;
+left:75px;
 transform: rotate(15deg);
 }
 
@@ -33,8 +33,8 @@ transform: rotate(15deg);
 transform: rotate(15deg);
 position: absolute;
 white-space: nowrap;
-top:5px;
-left: 130px;
+top:3.75px;
+left: 98.5px;
 }
 
 .pot-image{
@@ -45,23 +45,23 @@ left: 130px;
 
 .book-shelf{
 position: absolute;
-top:200px;
+top:150px;
 left: 0px;
-width:200px;
-height:10px;
+width:150px;
+height:7.5px;
 border:3px solid #c09f81;
-border-radius:8px;
+border-radius:6px;
 background-color:#e0b289;
 }
 
 .tag-text-fot{
  position: absolute;
-  top:220px;
+  top:165px;
   white-space: nowrap;
   display:flex;
   flex-direction: column;
   align-items: stretch;
-  left: 40px;
+  left: 25px;
 }
 
 .event{
