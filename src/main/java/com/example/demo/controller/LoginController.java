@@ -88,7 +88,11 @@ public class LoginController {
         List<Plant> userPlants = plantRepository.findAllByAdminId(admin.getId());
         // for loop av userplants för att få med in i plants
         for (Plant plant : userPlants) {
-            plant.setDoTask(plantService.eventDayValue(plant.getId()));}
+            plant.setDoTask(plantService.eventDayValue(plant.getId()));
+        }
+        model.addAttribute("watercount", plantService.counter(admin, "water"));
+        model.addAttribute("nutritioncount", plantService.counter(admin, "nutrition"));
+        model.addAttribute("repotcount", plantService.counter(admin, "repot"));
         model.addAttribute("admin", admin);
         model.addAttribute("plants", userPlants);
         model.addAttribute("userId", admin.getId());
@@ -121,8 +125,23 @@ public class LoginController {
         plantLog.setPlant(plantRepository.findById(id).get());
         plantLog.setEvent(event);
         plantLogRepository.save(plantLog);
-        System.out.println(plantService.todaysTimeline(1L));
         return "redirect:/plant/" + id;
+    }
+
+    @GetMapping("/doAll/{event}")
+    public String waterAll2(@PathVariable String event) {
+        Admin admin = getLoggedInAdmin();
+        List<Plant> userPlants = plantRepository.findAllByAdminId(admin.getId());
+        for (Plant plant : userPlants) {
+            plant.setDoTask(plantService.eventDayValue(plant.getId()));
+            if (plant.getDoTask().contains(event)) {
+                PlantLog plantLog = new PlantLog();
+                plantLog.setPlant(plant);
+                plantLog.setEvent(event);
+                plantLogRepository.save(plantLog);
+            }
+        }
+        return "redirect:/home";
     }
 
     @PostMapping("/save")
