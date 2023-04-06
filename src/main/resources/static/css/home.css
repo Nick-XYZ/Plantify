@@ -1,45 +1,16 @@
-
-.body {
-
-}
-
-.tasks{
+.overview{
 display: flex;
-justify-content: space-evenly;
+flex-wrap: wrap;
+justify-content: center;
+margin-right: 3%;
 }
 
-.task{
-border: 1px solid;
-border-radius: 4px;
-padding: 5px;
+.plantItem{
+padding: 2%;
 display: flex;
 flex-direction: column;
 border: 10px;
-margin-right: 25px;
-margin-top: 25px;
-}
-
-.image-head{
-font-family: 'Times New Roman', Times, serif;
-color: black;
-font-weight: bold;
-text-align: center;
-}
-
-img pots {
-    width: 160px;
-    height: 160px;
-}
-
-.img-head{
-color: black
-display: flex;
-justify-content: center;
-border: 1px solid;
-border-radius: 4px;
-padding: 5px;
-width: 100px;
-height: 100px;
+margin: 120px 130px 130px 130px;
 }
 
 figure{
@@ -47,39 +18,53 @@ position: relative;
 top: 0;
 left: 0;
 font-family: 'Mynerve', cursive;
-font-size: small;
+font-size: medium;
 font-weight: bolder;
-}
-
-figcaption{
- position: absolute;
- top:0px;
- left: 0;
-
-
-}
-.pot-image{
- position: absolute;
- top:0px;
- left: 0;
 }
 
 .name-tag{
 position: absolute;
 top:0px;
-left: 50px;
+left:100px;
 transform: rotate(15deg);
 }
 
 .tag-text{
 transform: rotate(15deg);
 position: absolute;
-top:0px;
-left: 60px;
+white-space: nowrap;
+top:5px;
+left: 130px;
+}
+
+.pot-image{
+ position: absolute;
+ top:0px;
+ left: 0;
+}
+
+.book-shelf{
+position: absolute;
+top:200px;
+left: 0px;
+width:200px;
+height:10px;
+border:3px solid #c09f81;
+border-radius:8px;
+background-color:#e0b289;
 }
 
 .tag-text-fot{
  position: absolute;
-  top:110px;
-  left: 15px;
- }
+  top:220px;
+  white-space: nowrap;
+  display:flex;
+  flex-direction: column;
+  align-items: stretch;
+  left: 40px;
+}
+
+.event{
+padding-top: 2%;
+}
+
