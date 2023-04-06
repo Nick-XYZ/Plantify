@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
 
-    <link href="/css/navbar.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/navbar.css">
+    <link rel="stylesheet" href="/css/plantdescription.css">
+
 
     <!-- Bootstrap CSS -->
     <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
@@ -18,13 +20,10 @@
             integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp"
             rel="stylesheet"
     />
-    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css"
-          integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" rel="stylesheet">
 
-    <title>Plant Description</title>
+   <title>Plant Description</title>
 </head>
-<body>
-<!-- Header -->
+<body class="bg-image">
 
 <!-- Header -->
 <header>
@@ -72,11 +71,12 @@
 
 <div class="container" style="padding-top:32px">
     <div class="row">
-
+        
         <!--        Left side-->
         <div class="col-sm">
-            <div class="d-flex justify-content-center">
-                <img class="" th:src="${plant.getPlantStageImgResponsive}">
+
+            <div class="d-flex justify-content-center" >
+                <img th:src="${plant.getPlantStageImgResponsive}" class="plant">
             </div>
             <div class="container d-flex justify-content-center" style="padding-top:50px">
 
@@ -84,12 +84,14 @@
                 <a class="btn btn-success" data-target="#modalDeletePlant" data-toggle="modal" type="button">
 
                     Remove Plant</a>
-
+                    
             </div>
+            <div class="bg-image-bottomShelf"></div>
         </div>
 
         <!--Right side-->
         <!--Event buttons-->
+
         <div class="col-sm">
             <div style="display: flex; justify-content: space-between; padding-bottom: 25px">
                 <a class="btn btn-outline-secondary border-0" th:href="'/createPlantLog/water/' + ${plant.id}"
@@ -106,7 +108,8 @@
                 </a>
             </div>
 
-            <!-- Some text on specific plant -->
+            <div class="w-100" style="border: 3px solid rgba(0, 0, 0, 0.2);background: url(/images/shelfDesc/paper.png); background-size: cover;">
+              <!-- Some text on specific plant -->
             <article>
                 <h2 class="text-center"><strong th:text="${plant.plantName}"/></h2>
 
@@ -135,12 +138,19 @@
                             <div class="image head" style="text-align:center;" th:if="${item.key} != ${today}"
                                  th:text="${item.key.getDayOfWeek()}"></div>
                             <div class="image head" style="text-align:center;" th:text="${item.key}"></div>
+
                         </div>
                     </div>
-            </article>
+                    </article>
         </div>
     </div>
+        </div>
+          >
 </div>
+</div>
+               
+
+ </div>
 
 <!-- Delete Plant Modal -->
 <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="modalDeletePlant"
@@ -169,8 +179,8 @@
             </div>
         </div>
     </div>
-
 </div>
+<!-- ^^Delete Plant Modal^^ -->
 
 <!-- Footer -->
 <div style="margin-top: 140px;">
@@ -183,7 +193,6 @@
         </div>
     </footer>
 </div>
-
 
 <!-- Optional JavaScript -->
 <script>
@@ -213,6 +222,6 @@
 <script crossorigin="anonymous"
         integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"></script>
-
-</body>
+    </div>
+    </body>
 </html>
