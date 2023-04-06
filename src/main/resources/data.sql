@@ -11,7 +11,7 @@
     ('Strawberries', 'Fragaria', 'Direct sunlight', 'Vegetable soil with cow manure', 14, 30, 14, 120, 'Strawberries can get planted early in the spring and can be harvested between June and August.'),
     ('Sweetpeas','Pisum sativum','Direct sunlight','soil', 2,30, 5,60,'Sweetpeas are easy to handle.You should plant it with some weeks apart,because the plant have a shortlife and this extends the season.The more you harvest,the more the plant produces.'),
     ('Chili','Capsicum annuum','Direct sunlight', 'soil', 1,20,3,186,'Chili can be planted all year around,but needs extra light in the winter. Chili can be pre-plant in the end of march and needs to be repotted. It loves warm places and sunlight and needs protection from heavywind.'),
-    ('EarlyCarrots','Daucus','Moderate sunlight', 'soil', 1,240, 30 ,100,'These type of carrots get planted in the spring and can be harvested continuously under the summer months.');
+    ('Carrot','Daucus','Moderate sunlight', 'soil', 1,240, 30 ,100,'These type of carrots get planted in the spring and can be harvested continuously under the summer months.');
 
 
 
@@ -23,8 +23,8 @@
         ('Ulf', '2023-03-10', 5, 1),
         ('Avi', '2023-03-02',5, 1),
         ('Eira', '2023-04-03', 4, 1),
-        ('Frederik', '2023-03-20', 1, 1),
-        ('Lucas', '2023-03-10', 1, 1),
+        ('Fredrik', '2023-03-20', 1, 1),
+        ('Lucas', '2023-03-29', 1, 1),
         ('Kalle', '2023-03-02',1, 1),
         ('Björn', '2023-04-03', 3, 1),
         ('Jonathan H', '2023-03-20', 3, 1),
