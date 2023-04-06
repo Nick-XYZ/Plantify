@@ -185,7 +185,6 @@ public class LoginController {
             ra.addFlashAttribute("ErrorPlantRemoval", "No such plant");
             return "redirect:/home";
         }
-
     }
 
 }

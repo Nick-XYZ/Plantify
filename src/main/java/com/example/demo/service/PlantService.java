@@ -6,8 +6,6 @@ import com.example.demo.model.PlantLog;
 import com.example.demo.model.Species;
 import com.example.demo.repository.PlantLogRepository;
 import com.example.demo.repository.PlantRepository;
-import com.example.demo.repository.SpeciesRepository;
-import com.example.demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.time.LocalDate;
@@ -20,11 +18,7 @@ public class PlantService {
     @Autowired
     PlantRepository plantRepository;
     @Autowired
-    SpeciesRepository speciesRepository;
-    @Autowired
     PlantLogRepository plantLogRepository;
-    @Autowired
-    LoginService loginService;
 
     //Creates a list of the next 5 dates a plant needs water
     public List<LocalDate> plantWaterTimeline(Long plantId) {
@@ -133,21 +127,6 @@ public class PlantService {
                  .collect(TreeMap::new, (m, e) -> m.put(e.getKey(), e.getValue()), Map::putAll);
          return firstFiveDates;
     }
-
-  /*  public void harvesting(Long plantId) {
-        Plant plant = plantRepository.findById(plantId).get();
-        Species species = plant.getSpecies();
-        LocalDate now = LocalDate.now();
-        Long dif = ChronoUnit.DAYS.between(plant.getCreated(), now);
-        System.out.println(dif);
-        if (species.getReadyToEat() > dif) {
-            System.out.println("NOT READY TO EAT");
-            System.out.println("READY TO EAT IN" + (species.getReadyToEat() - dif));
-        } else {
-            System.out.println("READY TO EAT");
-        }
-    }*/
-
 
     public List<String> todaysTimeline(Long plantId) {
         List<LocalDate> water = plantWaterTimeline(plantId);
