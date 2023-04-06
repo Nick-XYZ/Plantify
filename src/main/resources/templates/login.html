@@ -57,6 +57,9 @@
 
             </div>
 
+            <div class="alert alert-danger text-center" th:if="${EmailAlreadyTaken}">
+                [[${EmailAlreadyTaken}]]
+            </div>
 
             <form class="px-4 py-3" th:action="@{/}" method="post">
 
@@ -156,7 +159,7 @@
         </div>
     </div>
 </div>
-</div>
+
 
 <!-- Footer -->
 <div class="fixed-bottom">

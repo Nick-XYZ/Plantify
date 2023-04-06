@@ -37,7 +37,7 @@ class DemoApplicationTests {
 
 	@Test
 	public void testFindByEmail(){
-		Admin admin = userRepository.findByEmail("Michelle@gmail.com");
+		Admin admin = userRepository.findByEmail("demo@gmail.com");
 		Assertions.assertEquals(1L,admin.getId());
 	}
 

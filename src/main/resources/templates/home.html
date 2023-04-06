@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:figcaptionth="http://www.w3.org/1999/XSL/Transform">
+<html lang="en" xmlns:figcaptionth="http://www.w3.org/1999/XSL/Transform" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <link href="/css/home.css" rel="stylesheet">
     <link href="/css/navbar.css" rel="stylesheet">
@@ -18,51 +18,62 @@
             rel="stylesheet"
     />
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com" rel="preconnect">
+    <link crossorigin href="https://fonts.gstatic.com" rel="preconnect">
     <link href="https://fonts.googleapis.com/css2?family=Mynerve&display=swap" rel="stylesheet">
 
     <title>Homepage</title>
 
 </head>
 <body class="body">
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#"></a>
-        <img src="/images/plantify_navbar.png" class="navbar-logo" height="" alt="Logo">
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="http://localhost:8080/home">Home</a>
-                </li>
-                <!--<li class="nav-item">
-                    <a class="nav-link" href="#">mer?</a>
-                </li>-->
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Plants
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li th:each="plant : ${admin.plant}">
-                            <a class="dropdown-item" th:href="@{/plant/{id}(id=${plant.id})}" th:text="${plant.plantName}"></a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-            <span class="navbar-text" href="#" th:text="'Hi ' + ${admin.firstName} + ' ' + ${admin.lastName} + '!'"></span>
-            <form class="d-flex" th:action="@{/logout}" method="post">
-                <input type="submit" class="btn btn-outline-danger" value="Logout"/>
-            </form>
+<header>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"></a>
+            <img alt="Logo" class="navbar-logo" height="" src="/images/logoTransparant.png">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a aria-current="page" class="nav-link active" href="/home">Home</a>
+                    </li>
+                    <!--<li class="nav-item">
+                        <a class="nav-link" href="#">mer?</a>
+                    </li>-->
+                    <li class="nav-item dropdown">
+                        <a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"
+                           role="button">
+                            Plants
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li th:each="plant : ${admin.plant}">
+                                <a class="dropdown-item" th:href="@{/plant/{id}(id=${plant.id})}"
+                                   th:text="${plant.plantName}"></a>
+                                <img height="25px" th:if="${plant.doTask.get(0) == 'water'}"
+                                     th:src="@{/images/Vatten.jpg}" width="25px">
+                                <img height="25px" th:if="${plant.doTask.get(1) == 'nutrition'}"
+                                     th:src="@{/images/näring.jpg}" width="25px">
+                                <img height="25px" th:if="${plant.doTask.get(2) == 'repot'}"
+                                     th:src="@{/images/Jord.jpg}"
+                                     width="25px">
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <span class="navbar-text" href="#"
+                      th:text="'Hi ' + ${admin.firstName} + ' ' + ${admin.lastName} + '!'"></span>
+                <form class="d-flex" method="post" th:action="@{/logout}">
+                    <input class="btn btn-outline-danger" type="submit" value="Logout"/>
+                </form>
+            </div>
         </div>
-    </div>
-</nav>
-
+    </nav>
+</header>
 <br>
 <div class="text-center">
-<br>
-<button class="btn btn btn-success text-center" data-target="#modalCreatePlant" data-toggle="modal" type="button">
-    Create Plant
-</button>
+    <br>
+    <button class="btn btn btn-success text-center" data-target="#modalCreatePlant" data-toggle="modal" type="button">
+        Create Plant
+    </button>
 </div>
 <script>
         $('a[href$="#Modal"]').on("click", function () {
@@ -81,167 +92,185 @@
 <div class="alert alert-danger" role="alert" text-center th:if="${ErrorPlantRemoval}">
     [[${ErrorPlantRemoval}]]
 
-    </div>
+</div>
 
 
 <!-- Plants -->
 
-<div class="text-center">
-    <div class="tasks">
 
-        <article class="task" th:each="plant : ${admin.plant}">
-            <tr>
-                <!--Spade-->
-                <div class="spade-dropdown">
-                    <button class="btn btn-default dropdown-toggle" data-toggle="dropdown"
-                            style="background:url('/images/spade2.png');background-size:cover;" width=2px height=2px
-                            type="button"></button>
-                    <ul aria-labelledby="dropdownMenu1" class="dropdown-menu text-center">
-                        <br>
-                        <li><a class="btn btn-success" data-target="#modalDeletePlant" data-toggle="modal"
-                               type="button">
-                            Remove Plant</a></li>
-                        <br>
-                        <li><a class="btn btn-success" type="button" href="#">Duplicate plant</a></li>
-                        <br>
-                    </ul>
-                </div>
+<div class="overview text-center">
+    <article class="plantItem" th:each="plant : ${admin.plant}">
 
+        <!--Spade-->
+        <div class="spade-dropdown">
+            <button class="btn btn-default dropdown-toggle" data-toggle="dropdown"
+                    height=2px style="background:url('/images/spade2.png');background-size:cover;" type="button"
+                    width=2px></button>
+            <ul aria-labelledby="dropdownMenu1" class="dropdown-menu text-center">
+                <br>
+                <li><a class="btn btn-success" data-target="#modalDeletePlant" data-toggle="modal"
+                       type="button">
+                    Remove Plant</a></li>
+                <br>
+                <li><a class="btn btn-success" href="#" type="button">Duplicate plant</a></li>
+                <br>
+            </ul>
+        </div>
+        <figure>
+            <!--Name-tag-->
+            <img alt="" class="name-tag" height=160px src="images/nameTag3.png" width=80px>
 
-                <figure>
+            <!--Name-tag-text-->
+            <figcaption class="tag-text"><span th:text="${plant.plantName}"></span></figcaption>
 
-                    <!--Name-tag-->
-                    <img class="name-tag" src="images/nameTag3.png"width=40px height=80px alt="">
-
-                    <!--Name-tag-text-->
-                    <figcaption class="tag-text"> <span th:text="${plant.plantName}"></span></figcaption>
-
-                    <!--Pot Image-->
-                    <a th:href="@{'/plant/' + ${plant.id}}"> <img class="pot-image" height=100px th:src="${plant.getPlantStageImgResponsive}" width=100px></a>
-
-                    <!--Plantname-->
-                    <figcaption class="tag-text-fot">  <span class="species-name" th:text="${plant.species.name}"></span></figcaption>
-                </figure>
-            </tr>
-
-            </article>
-
-
-
-            <!-- Delete Plant Modal -->
-
-            <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="modalDeletePlant"
-                 role="dialog"
-                 tabindex="-1">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-body">
-                            <h6 th:text="'Are you sure about deleting ' + ${plant.plantName}"></h6>
-                        </div>
-                        <div class="modal-footer">
-                            <button class="btn btn-secondary" data-dismiss="modal" type="button">Oh god no</button>
-                            <a class="btn btn-primary" role="button" th:href="@{'/delete/' + ${plant.id}}">Yes, I'm
-                                sure!</a>
-
-                        </div>
-                    </div>
-                </div>
+            <!--Pot Image-->
+            <a th:href="@{'/plant/' + ${plant.id}}"> <img class="pot-image" height=200px
+                                                          th:src="${plant.getPlantStageImgResponsive}" width=200px></a>
+            <!--Bookshelf-->
+            <div class="book-shelf">
             </div>
-            <!-- ^^Delete Plant Modal^^ -->
-        </article>
 
-</div>
-</div>
+            <!--Plantname & event-->
+            <figcaption class="tag-text-fot">
+                <div class="species-name" th:text="${plant.species.name}"></div>
+                <table class="event">
+                    <tr>
+                        <td><img height="40px" th:if="${plant.doTask.get(0) == 'water'}"
+                                 th:src="@{/images/Vatten.jpg}" width="40px"></td>
+                        <td><img height="40px" th:if="${plant.doTask.get(1) == 'nutrition'}"
+                                 th:src="@{/images/näring.jpg}" width="40px"></td>
+                        <td><img height="40px" th:if="${plant.doTask.get(2) == 'repot'}" th:src="@{/images/Jord.jpg}"
+                                 width="40px"></td>
+                    </tr>
+                </table>
+            </figcaption>
+        </figure>
 
-    <div
-            aria-hidden="true"
-            aria-labelledby="myModalLabel"
-            class="modal fade"
-            id="modalCreatePlant"
-            role="dialog"
-            tabindex="-1"
-    >
+    </article>
+
+    <!-- För varje planta så ska det visas med symbol om plantan ska vattnas, byta kruka eller få nutrition.
+
+    Print planta
+    kolla om planta behöver saker
+    printa ut det den behöver.
+
+     -->
+
+
+    <!-- Delete Plant Modal -->
+
+    <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="modalDeletePlant"
+         role="dialog"
+         tabindex="-1">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
-                <div class="modal-header text-center">
-                    <h3 class="modal-title w-100 font-weight-bold">
-                        Add a new plant
-                    </h3>
-                    <button
-                            aria-label="Close"
-                            class="close"
-                            data-dismiss="modal"
-                            type="button"
-                    >
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-
                 <div class="modal-body">
-                    <div class="border rounded" style="height:80%; margin-top:10px;">
-                        <form action="/save" class="px-4 py-3" method="POST" th:object="${plant}">
-                            <div class="row row-cols-lg-auto g-3 align-items-center ">
-                                <input hidden th:name="admin" th:value="${userId}" type="text">
-                                <div class="col-12"><label> Name <input class="form-control" name="plantName"
-                                                                        placeholder="Name your plant"
-                                                                        required
-                                                                        th:field="*{plantName}" type="text"/> </label>
-                                </div>
-                                <div class="col-12">
-                                    <label>Choose a plant species</label>
-                                    <select class="form-select" id="specificSizeSelect" th:field="*{species}">
-                                        <option th:value="1">Tomato</option>
-                                        <option th:value="2">Strawberry</option>
+                    <h6 th:text="'Are you sure about deleting ' + ${plant.plantName}"></h6>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" data-dismiss="modal" type="button">Oh god no</button>
+                    <a class="btn btn-primary" role="button" th:href="@{'/delete/' + ${plant.id}}">Yes, I'm
+                        sure!</a>
 
-
-                                    </select>
-                                </div>
-                            </div>
-                            <br>
-                            <div class="submit text-end"><input class="btn btn-outline-success" type="submit"
-                                                                value="Save plant"/></div>
-
-                        </form>
-                    </div>
                 </div>
             </div>
         </div>
     </div>
+    <!-- ^^Delete Plant Modal^^ -->
+    </article>
 
-    <!-- Footer -->
-    <div class="fixed-bottom" style="padding-top: 10px;">
-        <footer class="bg-light text-center text-lg-start">
-            <!-- Copyright -->
-            <div class="text-center p-3" style="background-color: hsla(0, 0%, 0%, 0.2);">
+</div>
 
-                <a class="text-dark link-underline-opacity-50" href="#" style="padding-right: 10px;">Contact us!</a>
 
-                ©2023 Copyright:
-                <a class="text-dark link-underline-opacity-50" href="https://plantify.com/">plantify.com</a>
+<div
+        aria-hidden="true"
+        aria-labelledby="myModalLabel"
+        class="modal fade"
+        id="modalCreatePlant"
+        role="dialog"
+        tabindex="-1"
+>
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header text-center">
+                <h3 class="modal-title w-100 font-weight-bold">
+                    Add a new plant
+                </h3>
+                <button
+                        aria-label="Close"
+                        class="close"
+                        data-dismiss="modal"
+                        type="button"
+                >
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
-        </footer>
-    </div>
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script
-            crossorigin="anonymous"
-            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-            src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-    ></script>
-    <script
-            crossorigin="anonymous"
-            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-            src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
-    ></script>
-    <script
-            crossorigin="anonymous"
-            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-            src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
-    ></script>
-    <script crossorigin="anonymous"
-            integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
-            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"></script>
+            <div class="modal-body">
+                <div class="border rounded" style="height:80%; margin-top:10px;">
+                    <form action="/save" class="px-4 py-3" method="POST" th:object="${plant}">
+                        <div class="row row-cols-lg-auto g-3 align-items-center ">
+                            <input hidden th:name="admin" th:value="${userId}" type="text">
+                            <div class="col-12"><label> Name <input class="form-control" name="plantName"
+                                                                    placeholder="Name your plant"
+                                                                    required
+                                                                    th:field="*{plantName}" type="text"/> </label>
+                            </div>
+                            <div class="col-12">
+                                <label>Choose a plant species</label>
+                                <select class="form-select" id="specificSizeSelect" th:field="*{species}">
+                                    <option th:value="1">Tomato</option>
+                                    <option th:value="2">Strawberry</option>
+
+
+                                </select>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="submit text-end"><input class="btn btn-outline-success" type="submit"
+                                                            value="Save plant"/></div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<div style="margin-top: 140px;">
+    <footer class="bg-light text-center text-lg-start">
+        <!-- Copyright -->
+        <div class="text-center p-3" style="background-color: hsla(0, 0%, 0%, 0.2);">
+
+            <a class="text-dark link-underline-opacity-50" href="#" style="padding-right: 10px;">Contact us!</a>
+
+            ©2023 Copyright:
+            <a class="text-dark link-underline-opacity-50" href="https://plantify.com/">plantify.com</a>
+        </div>
+    </footer>
+</div>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script
+        crossorigin="anonymous"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+></script>
+<script
+        crossorigin="anonymous"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+></script>
+<script
+        crossorigin="anonymous"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+></script>
+<script crossorigin="anonymous"
+        integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
+        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 </html>

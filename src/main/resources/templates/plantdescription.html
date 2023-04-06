@@ -116,15 +116,16 @@
             </p>
         </div>
             <div class="w-100" style="border: 3px solid rgba(0, 0, 0, 0.2);">
-                <article th:each="item: ${timeline}">
-                    <tr>
-                        <span th:each="img : ${item.value}">
-                        <img th:src="${img}" width="40px" height="40px">
-                        </span>
-                        <div class="image head" th:text="${item.key}"></div>
-
-                    </tr>
-                </article>
+                <div style="float:left; margin:10px; display:flex; align-self:stretch;" th:each="item: ${timeline}">
+                    <div>
+                        <div style="justify-content:center; margin:0px; display:flex; align-self:stretch;">
+                        <img th:each="img : ${item.value}" th:src="${img}" width="40px" height="40px">
+                        </div>
+                        <div class="image head" style="text-align:center; color:green; font-weight:bold;" th:if="${item.key} == ${today}" th:text="TODAY"></div>
+                        <div class="image head" style="text-align:center;" th:if="${item.key} != ${today}" th:text="${item.key.getDayOfWeek()}"></div>
+                        <div class="image head" style="text-align:center;" th:text="${item.key}"></div>
+                    </div>
+                </div>
 
             </div>
             </div>
@@ -171,7 +172,7 @@
 
 
 <!-- Footer -->
-<div class="sticky-bottom" style="padding-top: 10px;">
+<div class="fixed-bottom" style="padding-top: 10px;">
     <footer class="bg-light text-center text-lg-start">
         <!-- Copyright -->
         <div class="text-center p-3" style="background-color: hsla(0, 0%, 0%, 0.2);">
