@@ -21,6 +21,8 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
+import java.sql.SQLIntegrityConstraintViolationException;
+import java.time.LocalDate;
 import java.util.List;
 
 @Controller
@@ -49,12 +51,24 @@ public class LoginController {
 
     @PostMapping("/createUser")
     public RedirectView postRegistration(@ModelAttribute Admin admin, RedirectAttributes redir) {
-        RedirectView rvLogin = new RedirectView("/", true);
-        //If user already exists.. Model.addAttribute (first Validation exercise)
-        admin.setPassword(encoder.encode(admin.getPassword()));
-        loginService.addUser(admin);
-        redir.addFlashAttribute("NewAccountSuccess", "Your registration is confirmed.");
-             return rvLogin;
+        try {
+            RedirectView rvLogin = new RedirectView("/", true);
+            //If user already exists.. Model.addAttribute (first Validation exercise)
+            admin.setPassword(encoder.encode(admin.getPassword()));
+            if (userRepository.findByEmail(admin.getEmail()) != null) {
+                throw new SQLIntegrityConstraintViolationException("Email allready exists");
+            }
+            loginService.addUser(admin);
+            redir.addFlashAttribute("NewAccountSuccess", "Your registration is confirmed.");
+
+            return rvLogin;
+        } catch (SQLIntegrityConstraintViolationException e) {
+            System.out.println("Email allready taken");
+            RedirectView rvLogin = new RedirectView("/", true);
+            //If user already exists.. Model.addAttribute (first Validation exercise)
+            redir.addFlashAttribute("EmailAlreadyTaken", "There is already an account with that email");
+            return rvLogin;
+        }
     }
 
     @PostMapping("/")
@@ -75,15 +89,12 @@ public class LoginController {
         // for loop av userplants för att få med in i plants
         for (Plant plant : userPlants) {
             plant.setDoTask(plantService.eventDayValue(plant.getId()));}
-        System.out.println(userPlants.get(1).getDoTask());
         model.addAttribute("admin", admin);
         model.addAttribute("plants", userPlants);
         model.addAttribute("userId", admin.getId());
         model.addAttribute("plant", new Plant());
-
         return "home";
     }
-
 
     //Home to Plantdescription
     @GetMapping("/plant/{id}")
@@ -92,6 +103,7 @@ public class LoginController {
         List<Plant> userPlants = plantRepository.findAllByAdminId(admin.getId());
         Plant plant = plantRepository.findById(id).get();
         if (userPlants.contains(plant)) {
+            model.addAttribute("today", LocalDate.now());
             model.addAttribute("eventDayValue", plantService.eventDayValue(id));
             model.addAttribute("plant", plant);
             model.addAttribute("admin", admin);

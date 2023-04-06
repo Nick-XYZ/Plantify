@@ -14,9 +14,6 @@
     ('Carrot','Daucus','Moderate sunlight', 'soil', 1,240, 30 ,100,'These type of carrots get planted in the spring and can be harvested continuously under the summer months.');
 
 
-
-
-
     INSERT INTO PLANT (PLANT_NAME, CREATED, SPECIES_ID, ADMIN_ID) VALUES
         ('Ronak', '2023-04-03', 2, 1),
         ('Robin', '2023-03-20', 5, 1),
