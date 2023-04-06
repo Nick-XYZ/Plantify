@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:figcaptionth="http://www.w3.org/1999/XSL/Transform" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <link href="/css/home.css" rel="stylesheet">
-    <link href="/css/navbar.css" rel="stylesheet">
 
     <meta charset="UTF-8">
     <meta
             content="width=device-width, initial-scale=1, shrink-to-fit=no"
             name="viewport"
     />
+    <link href="/css/home.css" rel="stylesheet">
+<link href="/css/navbar.css" rel="stylesheet">
 
     <!-- Bootstrap CSS -->
     <link
@@ -25,50 +25,52 @@
     <title>Homepage</title>
 
 </head>
-<body class="body">
+<body>
 <header>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
             <a class="navbar-brand" href="#"></a>
-            <img alt="Logo" class="navbar-logo" height="" src="/images/logoTransparant.png">
+            <img alt="Logo" class="navbar-logo" height=""  src="/images/logoTransparant.png">
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a aria-current="page" class="nav-link active" href="/home">Home</a>
                     </li>
-                    <!--<li class="nav-item">
-                        <a class="nav-link" href="#">mer?</a>
-                    </li>-->
+                    <br>
                     <li class="nav-item dropdown">
                         <a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"
                            role="button">
                             Plants
                         </a>
-                        <ul class="dropdown-menu">
-                            <li th:each="plant : ${admin.plant}">
-                                <a class="dropdown-item" th:href="@{/plant/{id}(id=${plant.id})}"
-                                   th:text="${plant.plantName}"></a>
-                                <img height="25px" th:if="${plant.doTask.get(0) == 'water'}"
-                                     th:src="@{/images/Vatten.jpg}" width="25px">
-                                <img height="25px" th:if="${plant.doTask.get(1) == 'nutrition'}"
-                                     th:src="@{/images/näring.jpg}" width="25px">
-                                <img height="25px" th:if="${plant.doTask.get(2) == 'repot'}"
-                                     th:src="@{/images/Jord.jpg}"
-                                     width="25px">
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-                <span class="navbar-text" href="#"
-                      th:text="'Hi ' + ${admin.firstName} + ' ' + ${admin.lastName} + '!'"></span>
-                <form class="d-flex" method="post" th:action="@{/logout}">
-                    <input class="btn btn-outline-danger" type="submit" value="Logout"/>
-                </form>
+                        <div class="dropdown-menu">
+                            <table>
+
+                    <tr  th:each="plant : ${admin.plant}">
+                       <td> <a class="dropdown-item" th:href="@{/plant/{id}(id=${plant.id})}"
+                           th:text="${plant.plantName}"></a></td>
+                        <td><img height="15px" th:if="${plant.doTask.get(0) == 'water'}"
+                             th:src="@{/images/Vatten.jpg}" width="15px"></td>
+                        <td> <img height="15px" th:if="${plant.doTask.get(1) == 'nutrition'}"
+                             th:src="@{/images/näring.jpg}" width="15px"></td>
+                        <td> <img height="15px" th:if="${plant.doTask.get(2) == 'repot'}"
+                             th:src="@{/images/Jord.jpg}"
+                             width="15px"></td>
+                    </tr>
+                    </table>
             </div>
+            </li>
+            </ul>
+            <span class="navbar-text" href="#"
+                  th:text="'Hi ' + ${admin.firstName} + ' ' + ${admin.lastName} + '!'"></span>
+            <form class="d-flex" method="post" th:action="@{/logout}">
+                <input class="btn btn-outline-danger" type="submit" value="Logout"/>
+            </form>
+        </div>
         </div>
     </nav>
 </header>
-<br>
+<main>
+
 <div class="text-center">
     <br>
     <button class="btn btn btn-success text-center" data-target="#modalCreatePlant" data-toggle="modal" type="button">
@@ -79,13 +81,11 @@
         $('a[href$="#Modal"]').on("click", function () {
           $("#Modal").modal("show");
         });
-
-
 </script>
 
 <!--  Alerts and such -->
 
-<div class="alert alert-success" role="success" text-center th:if="${SuccesPlantCreation}">
+<div class="alert alert-success" role="success" text-center th:if="${SuccesPlantCreation}" width="300px">
     [[${SuccesPlantCreation}]]
 
 </div>
@@ -118,14 +118,14 @@
         </div>
         <figure>
             <!--Name-tag-->
-            <img alt="" class="name-tag" height=160px src="images/nameTag3.png" width=80px>
+            <img alt="" class="name-tag" height=120px src="images/nameTag3.png" width=60px>
 
             <!--Name-tag-text-->
             <figcaption class="tag-text"><span th:text="${plant.plantName}"></span></figcaption>
 
             <!--Pot Image-->
-            <a th:href="@{'/plant/' + ${plant.id}}"> <img class="pot-image" height=200px
-                                                          th:src="${plant.getPlantStageImgResponsive}" width=200px></a>
+            <a th:href="@{'/plant/' + ${plant.id}}"> <img class="pot-image" height=150px
+                                                          th:src="${plant.getPlantStageImgResponsive}" width=150px></a>
             <!--Bookshelf-->
             <div class="book-shelf">
             </div>
@@ -135,12 +135,12 @@
                 <div class="species-name" th:text="${plant.species.name}"></div>
                 <table class="event">
                     <tr>
-                        <td><img height="40px" th:if="${plant.doTask.get(0) == 'water'}"
-                                 th:src="@{/images/Vatten.jpg}" width="40px"></td>
-                        <td><img height="40px" th:if="${plant.doTask.get(1) == 'nutrition'}"
-                                 th:src="@{/images/näring.jpg}" width="40px"></td>
-                        <td><img height="40px" th:if="${plant.doTask.get(2) == 'repot'}" th:src="@{/images/Jord.jpg}"
-                                 width="40px"></td>
+                        <td><img height="30px" th:if="${plant.doTask.get(0) == 'water'}"
+                                 th:src="@{/images/Vatten.jpg}" width="30px"></td>
+                        <td><img height="30px" th:if="${plant.doTask.get(1) == 'nutrition'}"
+                                 th:src="@{/images/näring.jpg}" width="30px"></td>
+                        <td><img height="30px" th:if="${plant.doTask.get(2) == 'repot'}" th:src="@{/images/Jord.jpg}"
+                                 width="30px"></td>
                     </tr>
                 </table>
             </figcaption>
@@ -221,6 +221,9 @@
                                 <select class="form-select" id="specificSizeSelect" th:field="*{species}">
                                     <option th:value="1">Tomato</option>
                                     <option th:value="2">Strawberry</option>
+                                    <option th:value="3">Sweetpeas</option>
+                                    <option th:value="4">Carrot</option>
+                                    <option th:value="5">Chili</option>
 
 
                                 </select>
@@ -250,6 +253,7 @@
         </div>
     </footer>
 </div>
+</main>
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
