@@ -5,8 +5,8 @@
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
 
-    <link rel="stylesheet" href="/css/navbar.css">
-    <link rel="stylesheet" href="/css/plantdescription.css">
+    <link href="/css/navbar.css" rel="stylesheet">
+    <link href="/css/plantdescription.css" rel="stylesheet">
 
 
     <!-- Bootstrap CSS -->
@@ -21,7 +21,7 @@
             rel="stylesheet"
     />
 
-   <title>Plant Description</title>
+    <title>Plant Description</title>
 </head>
 <body class="bg-image">
 
@@ -71,27 +71,22 @@
 
 <div class="container" style="padding-top:32px">
     <div class="row">
-        
-        <!--        Left side-->
+
+        <!--Left side-->
         <div class="col-sm">
 
-            <div class="d-flex justify-content-center" >
-                <img th:src="${plant.getPlantStageImgResponsive}" class="plant">
+            <div class="d-flex justify-content-center">
+                <img class="plant" th:src="${plant.getPlantStageImgResponsive}">
             </div>
             <div class="container d-flex justify-content-center" style="padding-top:50px">
-
-
                 <a class="btn btn-success" data-target="#modalDeletePlant" data-toggle="modal" type="button">
-
                     Remove Plant</a>
-                    
             </div>
             <div class="bg-image-bottomShelf"></div>
         </div>
 
         <!--Right side-->
         <!--Event buttons-->
-
         <div class="col-sm">
             <div style="display: flex; justify-content: space-between; padding-bottom: 25px">
                 <a class="btn btn-outline-secondary border-0" th:href="'/createPlantLog/water/' + ${plant.id}"
@@ -108,25 +103,28 @@
                 </a>
             </div>
 
-            <div class="w-100" style="border: 3px solid rgba(0, 0, 0, 0.2);background: url(/images/shelfDesc/paper.png); background-size: cover;">
-              <!-- Some text on specific plant -->
-            <article>
-                <h2 class="text-center"><strong th:text="${plant.plantName}"/></h2>
+            <div class="w-100"
+                 style="border: 3px solid rgba(0, 0, 0, 0.2);background: url(/images/shelfDesc/paper.png); background-size: cover;">
+                <!-- Some text on specific plant -->
+                <article>
+                    <h2 class="text-center"><strong th:text="${plant.plantName}"/></h2>
 
-                <h4 class="text-center"><strong th:text="${plant.species.name} + ' '"/><i
-                        th:text="'(' + ${plant.species.latinName} + ')'"/></h4>
+                    <h4 class="text-center"><strong th:text="${plant.species.name} + ' '"/><i
+                            th:text="'(' + ${plant.species.latinName} + ')'"/></h4>
 
-                <p style="margin-top: 30px"><span th:text="${plant.species.name}"/> can be planted <span
-                        th:text="${plant.species.sowingPeriod}"/> It has a growth period of approximately <span
-                        th:text="${plant.species.readyToEat}"/> days. <span th:text="${plant.species.name}"/> is best
-                    planted in <span th:text="${plant.species.soil}"/> and needs <span
-                            th:text="${plant.species.sunlight}"/></p>
+                    <p style="margin-top: 30px"><span th:text="${plant.species.name}"/> can be planted <span
+                            th:text="${plant.species.sowingPeriod}"/> It has a growth period of approximately <span
+                            th:text="${plant.species.readyToEat}"/> days. <span th:text="${plant.species.name}"/> is
+                        best
+                        planted in <span th:text="${plant.species.soil}"/> and needs <span
+                                th:text="${plant.species.sunlight}"/></p>
 
-                <p> During its growth period it needs some love and attention (water, plant nutrition and re-potting) in
-                    order to produce the most fabulous
-                    fruits. Check the timeline below to see when it needs to be watered, fed or re-potted. </p>
+                    <p> During its growth period it needs some love and attention (water, plant nutrition and
+                        re-potting) in
+                        order to produce the most fabulous
+                        fruits. Check the timeline below to see when it needs to be watered, fed or re-potted. </p>
 
-                <!-- TimeLine -->
+                    <!-- TimeLine -->
 
                     <div style="float:left; margin:10px; display:flex; align-self:stretch;" th:each="item: ${timeline}">
                         <div>
@@ -141,16 +139,12 @@
 
                         </div>
                     </div>
-                    </article>
+                </article>
+            </div>
         </div>
     </div>
-        </div>
-          >
 </div>
-</div>
-               
 
- </div>
 
 <!-- Delete Plant Modal -->
 <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="modalDeletePlant"
@@ -175,7 +169,6 @@
                 <button class="btn btn-secondary" data-dismiss="modal" type="button">Oh god no</button>
                 <a class="btn btn-primary" role="button" th:href="@{'/delete/' + ${plant.id}}">Yes, I'm
                     sure!</a>
-
             </div>
         </div>
     </div>
@@ -199,7 +192,6 @@
         $('a[href$="#Modal"]').on("click", function () {
           $("#Modal").modal("show");
         });
-
 </script>
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script
@@ -222,6 +214,6 @@
 <script crossorigin="anonymous"
         integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
         src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"></script>
-    </div>
-    </body>
+
+</body>
 </html>
