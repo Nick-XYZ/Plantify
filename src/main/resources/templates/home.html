@@ -162,25 +162,24 @@
                     </table>
                 </figcaption>
             </figure>
-        </article>
-
-        <!-- Delete Plant Modal -->
-        <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="modalDeletePlant"
-             role="dialog"
-             tabindex="-1">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-body">
-                        <h6 th:text="'Are you sure about deleting ' + ${plant.plantName}"></h6>
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-secondary" data-dismiss="modal" type="button">Oh god no</button>
-                        <a class="btn btn-primary" role="button" th:href="@{'/delete/' + ${plant.id}}">Yes, I'm
-                            sure!</a>
+            <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="modalDeletePlant"
+                 role="dialog"
+                 tabindex="-1">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <h6 th:text="'Are you sure about deleting ' + ${plant.plantName}"></h6>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" data-dismiss="modal" type="button">Oh god no</button>
+                            <a class="btn btn-primary" role="button" th:href="@{'/delete/' + ${plant.id}}">Yes, I'm
+                                sure!</a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </article>
+
     </div>
 
      <!--Create Plant Modal-->

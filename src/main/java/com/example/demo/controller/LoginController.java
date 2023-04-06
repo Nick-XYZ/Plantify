@@ -169,13 +169,13 @@ public class LoginController {
     }
     //Delete Plant
     @GetMapping("/delete/{id}")
-    public String delete(@PathVariable("id") Long id,RedirectAttributes ra) throws Exception {
+    public String delete(@PathVariable Long id,RedirectAttributes ra) throws Exception {
         Admin admin = getLoggedInAdmin();
         List<Plant> userPlants = plantRepository.findAllByAdminId(admin.getId());
         Plant plant = plantRepository.findById(id).get();
-        List<PlantLog> plantlLog = plantLogRepository.findAllByPlantId(plant.getId());
+        List<PlantLog> plantLog = plantLogRepository.findAllByPlantId(plant.getId());
         if (userPlants.contains(plant)) {
-            for (PlantLog pl : plantlLog) {
+            for (PlantLog pl : plantLog) {
                 plantLogRepository.delete(pl);
             }
             plantService.deletePlant(id);
