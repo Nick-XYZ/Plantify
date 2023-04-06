@@ -25,7 +25,7 @@ public class Species {
     private Integer repot;
     private Integer nutrition;
     private Integer readyToEat;
-    private String shortInfo;
+    private String sowingPeriod;
   /*  private String fullInfo;*/
 
     @OneToMany(mappedBy = "species", cascade = CascadeType.ALL)

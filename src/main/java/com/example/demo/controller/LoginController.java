@@ -108,7 +108,7 @@ public class LoginController {
         Plant plant = plantRepository.findById(id).get();
        if (userPlants.contains(plant)) {
            for (Plant plantEvent : userPlants) {
-               plantEvent.setDoTask(plantService.eventDayValue(plant.getId()));}
+               plantEvent.setDoTask(plantService.eventDayValue(plantEvent.getId()));}
             model.addAttribute("today", LocalDate.now());
             model.addAttribute("eventDayValue", plantService.eventDayValue(id));
             model.addAttribute("plant", plant);
