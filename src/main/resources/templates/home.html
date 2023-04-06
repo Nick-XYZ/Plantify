@@ -74,6 +74,17 @@
     <button class="btn btn btn-success text-center" data-target="#modalCreatePlant" data-toggle="modal" type="button">
         Create Plant
     </button>
+    <a th:if ="${watercount != 0}" class="btn btn btn-success text-center" th:href="@{/doAll/water}" type="button">
+        Water All
+    </a>
+    </button>
+    <a th:if ="${nutritioncount != 0}" class="btn btn btn-success text-center" th:href="@{/doAll/nutrition}" type="button">
+        Nutrition All
+    </a>
+    </button>
+    <a th:if ="${repotcount != 0}" class="btn btn btn-success text-center" th:href="@{/doAll/repot}" type="button">
+        Repot All
+    </a>
 </div>
 <script>
         $('a[href$="#Modal"]').on("click", function () {
