@@ -37,7 +37,7 @@ public class SecSecurityConfig {
         http
                 .authorizeHttpRequests()
                 .requestMatchers("/", "/createUser", "/images/**").permitAll()
-                .requestMatchers("/home").hasRole("USER")
+                .requestMatchers("/home", "/lazy").hasRole("USER")
                 .anyRequest().authenticated();
 
         http.formLogin()

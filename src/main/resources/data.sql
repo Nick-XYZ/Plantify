@@ -6,12 +6,12 @@
     ('jesper@godmail.com', '$2a$11$i1qrYHADEQHaQ6sV2ck8s.CCcIxAHwY6VdW/eMMvukpaDRVXzqWuC', 'Jesper', 'Hallelujah Johnsson');
 
 
-    INSERT INTO SPECIES (NAME, LATIN_NAME, SUNLIGHT, SOIL, WATER, REPOT, NUTRITION, READY_TO_EAT, SHORT_INFO) VALUES
-    ('Cherry Tomatoes', 'Solanum lycopersicum var. cerasiforme', 'Direct sunlight', 'Vegetable soil', 1, 30, 7, 120, 'A bountiful, compact cherry tomato that does not need to be plucked or tied up. Produces sweet little tomatoes all summer long. Perfect for the balcony, terrace or in the kitchen window. Grow indoors.'),
-    ('Strawberries', 'Fragaria', 'Direct sunlight', 'Vegetable soil with cow manure', 14, 30, 14, 120, 'Strawberries can get planted early in the spring and can be harvested between June and August.'),
-    ('Sweetpeas','Pisum sativum','Direct sunlight','soil', 2,30, 5,60,'Sweetpeas are easy to handle.You should plant it with some weeks apart,because the plant have a shortlife and this extends the season.The more you harvest,the more the plant produces.'),
-        ('Carrot','Daucus','Moderate sunlight', 'soil', 1,240, 30 ,100,'These type of carrots get planted in the spring and can be harvested continuously under the summer months.'),
-    ('Chili','Capsicum annuum','Direct sunlight', 'soil', 1,20,3,186,'Chili can be planted all year around,but needs extra light in the winter. Chili can be pre-plant in the end of march and needs to be repotted. It loves warm places and sunlight and needs protection from heavywind.');
+    INSERT INTO SPECIES (NAME, LATIN_NAME, SUNLIGHT, SOIL, WATER, REPOT, NUTRITION, READY_TO_EAT, SOWING_PERIOD) VALUES
+    ('Cherry Tomato', 'Solanum lycopersicum var. cerasiforme', 'direct sunlight', 'vegetable soil', 1, 30, 7, 120, 'from late February to mid-March if you will be growing your crop in a greenhouse, or from late March to early April if they will be outside.'),
+    ('Strawberry', 'Fragaria × ananassa', 'direct sunlight', 'vegetable soil with cow manure', 14, 30, 14, 120, 'from April to early May.'),
+    ('Sweet pea','Pisum sativum','direct sunlight','soil', 2,30, 5,60,'from October and April. For best results aim for late October/November or late February/March as temperatures and light levels are less than ideal in midwinter.'),
+    ('Early Carrot','Daucus  carota','moderate sunlight', 'soil', 1,240, 30 ,100,'from February or March under cloches or covered with fleece. The main outdoor sowing season is from April to early July.'),
+    ('Chili','Capsicum annuum','direct sunlight', 'soil', 1,20,3,186, 'all year around,but needs extra light in the winter.');
 
 
 

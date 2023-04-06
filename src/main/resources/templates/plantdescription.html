@@ -3,62 +3,78 @@
 <head>
     <!-- Required meta tags -->
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
 
     <link rel="stylesheet" href="/css/navbar.css">
     <link rel="stylesheet" href="/css/plantdescription.css">
 
+
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
-          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" rel="stylesheet">
 
     <!-- Bootstrap CSS -->
     <link
-            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css"
-            rel="stylesheet"
-            integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp"
             crossorigin="anonymous"
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css"
+            integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp"
+            rel="stylesheet"
     />
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
-    <title>Plant Description</title>
+
+   <title>Plant Description</title>
 </head>
 <body class="bg-image">
+
 <!-- Header -->
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="#"></a>
-        <img src="/images/plantify_navbar.png" class="navbar-logo" height="" alt="Logo">
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="/home">Home</a>
-                </li>
-                <!--<li class="nav-item">
-                    <a class="nav-link" href="#">mer?</a>
-                </li>-->
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                        Plants
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li th:each="plant : ${admin.plant}">
-                            <a class="dropdown-item" th:href="@{/plant/{id}(id=${plant.id})}" th:text="${plant.plantName}"></a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-            <span class="navbar-text" href="#" th:text="'Hi ' + ${admin.firstName} + ' ' + ${admin.lastName} + '!'"></span>
-            <form class="d-flex" th:action="@{/logout}" method="post">
-                <input type="submit" class="btn btn-outline-danger" value="Logout"/>
-            </form>
+<header>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"></a>
+            <img alt="Logo" class="navbar-logo" height="" src="/images/logoTransparant.png" width="200px">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a aria-current="page" class="nav-link active" href="/home">Home</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"
+                           role="button">
+                            Plants
+                        </a>
+                        <div class="dropdown-menu">
+                            <table>
+                                <tr th:each="plant : ${admin.plant}">
+                                    <td><a class="dropdown-item" th:href="@{/plant/{id}(id=${plant.id})}"
+                                           th:text="${plant.plantName}"></a></td>
+                                    <td><img height="15px" th:if="${plant.doTask.get(0) == 'water'}"
+                                             th:src="@{/images/Vatten.jpg}" width="15px"></td>
+                                    <td><img height="15px" th:if="${plant.doTask.get(1) == 'nutrition'}"
+                                             th:src="@{/images/näring.jpg}" width="15px"></td>
+                                    <td><img height="15px" th:if="${plant.doTask.get(2) == 'repot'}"
+                                             th:src="@{/images/Jord.jpg}"
+                                             width="15px"></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </li>
+                </ul>
+                <span class="navbar-text" href="#"
+                      th:text="'Hi ' + ${admin.firstName} + ' ' + ${admin.lastName} + '!'"></span>
+                <form class="d-flex" method="post" th:action="@{/logout}">
+                    <input class="btn btn-outline-danger" type="submit" value="Logout"/>
+                </form>
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>
+</header>
+
+
 <div class="container" style="padding-top:32px">
     <div class="row">
         
         <!--        Left side-->
         <div class="col-sm">
+
             <div class="d-flex justify-content-center" >
                 <img th:src="${plant.getPlantStageImgResponsive}" class="plant">
             </div>
@@ -72,114 +88,106 @@
             </div>
             <div class="bg-image-bottomShelf"></div>
         </div>
-            
-        <!--        Right side-->
+
+        <!--Right side-->
+        <!--Event buttons-->
+
         <div class="col-sm">
             <div style="display: flex; justify-content: space-between; padding-bottom: 25px">
-                <a th:if="${eventDayValue.get(0) == 'water'}" th:href="'/createPlantLog/water/' + ${plant.id}" class="btn btn-outline-secondary border-0">
-                    <img th:src="@{/images/Vatten.jpg}" width="100px" height="100px">
+                <a class="btn btn-outline-secondary border-0" th:href="'/createPlantLog/water/' + ${plant.id}"
+                   th:if="${eventDayValue.get(0) == 'water'}">
+                    <img height="100px" th:src="@{/images/Vatten.jpg}" width="100px">
                 </a>
-                <a th:if="${eventDayValue.get(1) == 'nutrition'}" th:href="'/createPlantLog/nutrition/' + ${plant.id}" class="btn btn-outline-secondary border-0">
-                    <img th:src="@{/images/näring.jpg}" width="100px" height="100px">
+                <a class="btn btn-outline-secondary border-0" th:href="'/createPlantLog/nutrition/' + ${plant.id}"
+                   th:if="${eventDayValue.get(1) == 'nutrition'}">
+                    <img height="100px" th:src="@{/images/näring.jpg}" width="100px">
                 </a>
-                <a th:if="${eventDayValue.get(2) == 'repot'}" th:href="'/createPlantLog/repot/' + ${plant.id}" class="btn btn-outline-secondary border-0">
-                    <img th:src="@{/images/Jord.jpg}" width="100px" height="100px">
+                <a class="btn btn-outline-secondary border-0" th:href="'/createPlantLog/repot/' + ${plant.id}"
+                   th:if="${eventDayValue.get(2) == 'repot'}">
+                    <img height="100px" th:src="@{/images/Jord.jpg}" width="100px">
                 </a>
             </div>
+
             <div class="w-100" style="border: 3px solid rgba(0, 0, 0, 0.2);background: url(/images/shelfDesc/paper.png); background-size: cover;">
-                <!--        Info dump -->
-                <div class="bg-clip">
-                <div style="margin-left: 5%;">
-                <p class="mx-auto text-center">
-                <h2 class="text-center" th:text="${plant.plantName}"></h2>
+              <!-- Some text on specific plant -->
+            <article>
+                <h2 class="text-center"><strong th:text="${plant.plantName}"/></h2>
 
-                <strong>Plant sort:</strong>
-                <th th:text="${plant.species.name}"></th>
-                <br>
-                <strong>Latin name:</strong>
-                <th th:text="${plant.species.latinName}"></th>
-                <br>
-                <strong>Water:</strong>
-                <th th:text="${plant.species.water} + ' days' "></th>
-                <br>
-                <strong>Nutrition:</strong>
-                <th th:text="${plant.species.nutrition}  + ' days '"></th>
-                <br>
-                <strong>Repot:</strong>
-                <th th:text="${plant.species.nutrition}  + ' days'"></th>
-                <br>
-                <strong>Ready to eat:</strong>
-                <th th:text="${plant.species.readyToEat} + ' days'"></th>
-                <br>
-                <strong>Short info:</strong>
-                <th th:text="${plant.species.shortInfo}"></th>
+                <h4 class="text-center"><strong th:text="${plant.species.name} + ' '"/><i
+                        th:text="'(' + ${plant.species.latinName} + ')'"/></h4>
 
-            </p>
+                <p style="margin-top: 30px"><span th:text="${plant.species.name}"/> can be planted <span
+                        th:text="${plant.species.sowingPeriod}"/> It has a growth period of approximately <span
+                        th:text="${plant.species.readyToEat}"/> days. <span th:text="${plant.species.name}"/> is best
+                    planted in <span th:text="${plant.species.soil}"/> and needs <span
+                            th:text="${plant.species.sunlight}"/></p>
+
+                <p> During its growth period it needs some love and attention (water, plant nutrition and re-potting) in
+                    order to produce the most fabulous
+                    fruits. Check the timeline below to see when it needs to be watered, fed or re-potted. </p>
+
+                <!-- TimeLine -->
+
+                    <div style="float:left; margin:10px; display:flex; align-self:stretch;" th:each="item: ${timeline}">
+                        <div>
+                            <div style="justify-content:center; margin:0px; display:flex; align-self:stretch;">
+                                <img height="40px" th:each="img : ${item.value}" th:src="${img}" width="40px">
+                            </div>
+                            <div class="image head" style="text-align:center; color:green; font-weight:bold;"
+                                 th:if="${item.key} == ${today}" th:text="TODAY"></div>
+                            <div class="image head" style="text-align:center;" th:if="${item.key} != ${today}"
+                                 th:text="${item.key.getDayOfWeek()}"></div>
+                            <div class="image head" style="text-align:center;" th:text="${item.key}"></div>
+
+                        </div>
+                    </div>
+                    </article>
         </div>
     </div>
         </div>
-            <div class="w-100" style="border: 3px solid rgba(0, 0, 0, 0.2);">
-                <div style="float:left; margin:10px; display:flex; align-self:stretch;" th:each="item: ${timeline}">
-                    <div>
-                        <div style="justify-content:center; margin:0px; display:flex; align-self:stretch;">
-                        <img th:each="img : ${item.value}" th:src="${img}" width="40px" height="40px">
-                        </div>
-                        <div class="image head" style="text-align:center; color:green; font-weight:bold;" th:if="${item.key} == ${today}" th:text="TODAY"></div>
-                        <div class="image head" style="text-align:center;" th:if="${item.key} != ${today}" th:text="${item.key.getDayOfWeek()}"></div>
-                        <div class="image head" style="text-align:center;" th:text="${item.key}"></div>
-                    </div>
-                </div>
-
-            </div>
-            </div>
-
+          >
 </div>
 </div>
-</div>
-                </p>
-            </div>
+               
 
  </div>
 
-        <!-- Delete Plant Modal -->
-        <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="modalDeletePlant"
-             role="dialog"
-             tabindex="-1">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content ">
-                                        <button
-                            aria-label="Close"
-                            class="close text-end"
-                            data-dismiss="modal"
-                            type="button"
-                    >
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+<!-- Delete Plant Modal -->
+<div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="modalDeletePlant"
+     role="dialog"
+     tabindex="-1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content ">
+            <button
+                    aria-label="Close"
+                    class="close text-end"
+                    data-dismiss="modal"
+                    type="button"
+            >
+                <span aria-hidden="true">&times;</span>
+            </button>
 
 
-                    <div class="modal-body" text-center>
-                        <h6 th:text="'Are you sure about deleting your ' + ${plant.plantName}"></h6>
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-secondary" data-dismiss="modal" type="button">Oh god no</button>
-                        <a class="btn btn-primary" role="button" th:href="@{'/delete/' + ${plant.id}}">Yes, I'm
-                            sure!</a>
-
-                    </div>
-                </div>
+            <div class="modal-body" text-center>
+                <h6 th:text="'Are you sure about deleting your ' + ${plant.plantName}"></h6>
             </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-dismiss="modal" type="button">Oh god no</button>
+                <a class="btn btn-primary" role="button" th:href="@{'/delete/' + ${plant.id}}">Yes, I'm
+                    sure!</a>
 
+            </div>
         </div>
-
     </div>
 </div>
 <!-- ^^Delete Plant Modal^^ -->
+
 <!-- Footer -->
-<div class="fixed-bottom" style="padding-top: 10px;">
+<div style="margin-top: 140px;">
     <footer class="bg-light text-center text-lg-start">
         <!-- Copyright -->
         <div class="text-center p-3" style="background-color: hsla(0, 0%, 0%, 0.2);">
-            <a class="text-dark link-underline-opacity-50" style="padding-right: 10px;" href="#">Contact us!</a>
+            <a class="text-dark link-underline-opacity-50" href="#" style="padding-right: 10px;">Contact us!</a>
             ©2023 Copyright:
             <a class="text-dark link-underline-opacity-50" href="https://plantify.com/">plantify.com</a>
         </div>
@@ -191,8 +199,6 @@
         $('a[href$="#Modal"]').on("click", function () {
           $("#Modal").modal("show");
         });
-
-
 
 </script>
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->

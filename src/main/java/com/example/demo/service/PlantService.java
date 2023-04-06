@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.example.demo.model.Admin;
 import com.example.demo.model.Plant;
 import com.example.demo.model.PlantLog;
 import com.example.demo.model.Species;
@@ -22,6 +23,8 @@ public class PlantService {
     SpeciesRepository speciesRepository;
     @Autowired
     PlantLogRepository plantLogRepository;
+    @Autowired
+    LoginService loginService;
 
     //Creates a list of the next 5 dates a plant needs water
     public List<LocalDate> plantWaterTimeline(Long plantId) {
@@ -195,7 +198,18 @@ public class PlantService {
         return eventString;
     }
 
-
+    public int counter(Admin admin, String event) {
+        List<Plant> userPlants = plantRepository.findAllByAdminId(admin.getId());
+        int count = 0;
+        // for loop av userplants för att få med in i plants
+        for (Plant plant : userPlants) {
+            plant.setDoTask(eventDayValue(plant.getId()));
+            if (plant.getDoTask().contains(event)) {
+                count++;
+            }
+        }
+        return count;
+    }
 
     //Delete Plant
     public void deletePlant(Long id) throws Exception {
