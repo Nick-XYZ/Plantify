@@ -106,7 +106,9 @@ public class LoginController {
         Admin admin = getLoggedInAdmin();
         List<Plant> userPlants = plantRepository.findAllByAdminId(admin.getId());
         Plant plant = plantRepository.findById(id).get();
-        if (userPlants.contains(plant)) {
+       if (userPlants.contains(plant)) {
+           for (Plant plantEvent : userPlants) {
+               plantEvent.setDoTask(plantService.eventDayValue(plant.getId()));}
             model.addAttribute("today", LocalDate.now());
             model.addAttribute("eventDayValue", plantService.eventDayValue(id));
             model.addAttribute("plant", plant);

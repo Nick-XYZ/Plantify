@@ -36,7 +36,6 @@
                     <li class="nav-item">
                         <a aria-current="page" class="nav-link active" href="/home">Home</a>
                     </li>
-                    <br>
                     <li class="nav-item dropdown">
                         <a aria-expanded="false" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#"
                            role="button">
@@ -59,6 +58,11 @@
                     </table>
             </div>
             </li>
+                    <li>
+                        <button class="btn btn btn-outline-success text-center" data-target="#modalCreatePlant" data-toggle="modal" type="button">
+                            Create Plant
+                        </button>
+                    </li>
             </ul>
             <span class="navbar-text" href="#"
                   th:text="'Hi ' + ${admin.firstName} + ' ' + ${admin.lastName} + '!'"></span>
@@ -71,11 +75,14 @@
 </header>
 <main>
 
-<div class="text-center">
+<!--<div class="text-center">
     <br>
     <button class="btn btn btn-success text-center" data-target="#modalCreatePlant" data-toggle="modal" type="button">
         Create Plant
     </button>
+
+</div>-->
+
     <a th:if ="${watercount != 0}" class="btn btn btn-success text-center" th:href="@{/doAll/water}" type="button">
         Water All
     </a>
@@ -88,6 +95,7 @@
         Repot All
     </a>
 </div>
+
 <script>
         $('a[href$="#Modal"]').on("click", function () {
           $("#Modal").modal("show");
