@@ -47,7 +47,7 @@
                                     <td><a class="dropdown-item" th:href="@{/plant/{id}(id=${plant.id})}"
                                            th:text="${plant.plantName}"></a></td>
                                     <td><img height="15px" th:if="${plant.doTask.get(0) == 'water'}"
-                                             th:src="@{/images/Vatten.jpg}" width="15px"></td>
+                                             th:src="@{/images/wcan.svg}" width="15px"></td>
                                     <td><img height="15px" th:if="${plant.doTask.get(1) == 'nutrition'}"
                                              th:src="@{/images/näring.jpg}" width="15px"></td>
                                     <td><img height="15px" th:if="${plant.doTask.get(2) == 'repot'}"
@@ -91,15 +91,15 @@
             <div style="display: flex; justify-content: space-between; padding-bottom: 25px">
                 <a class="btn btn-outline-secondary border-0" th:href="'/createPlantLog/water/' + ${plant.id}"
                    th:if="${eventDayValue.get(0) == 'water'}">
-                    <img height="100px" th:src="@{/images/Vatten.jpg}" width="100px">
+                    <img height="100px" th:src="@{/images/wcan.svg}" width="100px">
                 </a>
                 <a class="btn btn-outline-secondary border-0" th:href="'/createPlantLog/nutrition/' + ${plant.id}"
                    th:if="${eventDayValue.get(1) == 'nutrition'}">
-                    <img height="100px" th:src="@{/images/näring.jpg}" width="100px">
+                    <img height="100px" th:src="@{/images/fert.svg}" width="100px">
                 </a>
                 <a class="btn btn-outline-secondary border-0" th:href="'/createPlantLog/repot/' + ${plant.id}"
                    th:if="${eventDayValue.get(2) == 'repot'}">
-                    <img height="100px" th:src="@{/images/Jord.jpg}" width="100px">
+                    <img height="100px" th:src="@{/images/pot.svg}" width="100px">
                 </a>
             </div>
 
