@@ -126,7 +126,7 @@
                         width=2px></button>
                 <ul aria-labelledby="dropdownMenu1" class="dropdown-menu text-center">
                     <br>
-                    <li><a class="btn btn-danger" data-target="#modalDeletePlant" data-toggle="modal"
+                    <li><a class="btn btn-danger" th:href="@{/delete/{id}(id=${plant.id})}"
                            type="button">
                         Remove Plant</a></li>
                     <br>
@@ -162,22 +162,6 @@
                     </table>
                 </figcaption>
             </figure>
-            <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="modalDeletePlant"
-                 role="dialog"
-                 tabindex="-1">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-body">
-                            <h6 th:text="'Are you sure about deleting ' + ${plant.plantName}"></h6>
-                        </div>
-                        <div class="modal-footer">
-                            <button class="btn btn-secondary" data-dismiss="modal" type="button">Oh god no</button>
-                            <a class="btn btn-primary" role="button" th:href="@{'/delete/' + ${plant.id}}">Yes, I'm
-                                sure!</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </article>
 
     </div>
