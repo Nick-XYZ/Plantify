@@ -186,5 +186,12 @@ public class LoginController {
             return "redirect:/home";
         }
     }
+    @PostMapping("/rename/{id}")
+    public String renamePlant(Plant plant, @PathVariable Long id) {
+        Plant p = plantRepository.findById(id).get();
+        p.setPlantName(plant.getPlantName());
+        plantRepository.save(p);
+        return "redirect:/plant/" + id;
+    }
 
 }

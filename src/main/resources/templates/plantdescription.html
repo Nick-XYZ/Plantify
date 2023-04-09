@@ -80,7 +80,9 @@
             </div>
             <div class="container d-flex justify-content-center" style="padding-top:50px">
                 <a class="btn btn-success" data-target="#modalDeletePlant" data-toggle="modal" type="button">
-                    Remove Plant</a>
+                    Remove Plant</a><br>
+                <a class="btn btn-success" data-target="#modalRenamePlant" data-toggle="modal" type="button">
+                    Rename Plant</a>
             </div>
             <div class="bg-image-bottomShelf"></div>
         </div>
@@ -143,7 +145,17 @@
         </div>
     </div>
 </div>
-
+<!-- Footer -->
+<div style="margin-top: 140px;">
+    <footer class="bg-light footer fixed-bottom text-center text-lg-start">
+        <!-- Copyright -->
+        <div class="text-center p-3" style="background-color: hsla(0, 0%, 0%, 0.2);">
+            <a class="text-dark link-underline-opacity-50" href="#" style="padding-right: 10px;">Contact us!</a>
+            ©2023 Copyright:
+            <a class="text-dark link-underline-opacity-50" href="https://plantify.com/">plantify.com</a>
+        </div>
+    </footer>
+</div>
 
 <!-- Delete Plant Modal -->
 <div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="modalDeletePlant"
@@ -159,8 +171,6 @@
             >
                 <span aria-hidden="true">&times;</span>
             </button>
-
-
             <div class="modal-body" text-center>
                 <h6 th:text="'Are you sure about deleting your ' + ${plant.plantName}"></h6>
             </div>
@@ -174,16 +184,33 @@
 </div>
 <!-- ^^Delete Plant Modal^^ -->
 
-<!-- Footer -->
-<div style="margin-top: 140px;">
-    <footer class="bg-light text-center text-lg-start">
-        <!-- Copyright -->
-        <div class="text-center p-3" style="background-color: hsla(0, 0%, 0%, 0.2);">
-            <a class="text-dark link-underline-opacity-50" href="#" style="padding-right: 10px;">Contact us!</a>
-            ©2023 Copyright:
-            <a class="text-dark link-underline-opacity-50" href="https://plantify.com/">plantify.com</a>
+<!-- Rename plant modal BELOW -->
+<div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade" id="modalRenamePlant"
+     role="dialog"
+     tabindex="-1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content ">
+            <button
+                    aria-label="Close"
+                    class="close text-end"
+                    data-dismiss="modal"
+                    type="button"
+            >
+                <span aria-hidden="true">&times;</span>
+            </button>
+            <div class="modal-body" text-center>
+                <h6 th:text="'Rename plant ' + ${plant.plantName}"></h6>
+                <div class="modal-footer">
+                    <form th:action="@{/rename/{id}(id=${plant.id})}" class="px-4 py-3" method="POST" th:object="${plant}">
+                        <div class="align-items-center">
+                            <input type="text" th:field="*{plantName}">
+                            <input type="submit" class="btn btn-outline-success" value="Save">
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
-    </footer>
+    </div>
 </div>
 
 <!-- Optional JavaScript -->
