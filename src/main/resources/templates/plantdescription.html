@@ -47,7 +47,7 @@
                                     <td><a class="dropdown-item" th:href="@{/plant/{id}(id=${plant.id})}"
                                            th:text="${plant.plantName}"></a></td>
                                     <td><img height="15px" th:if="${plant.doTask.get(0) == 'water'}"
-                                             th:src="@{/images/Vatten.jpg}" width="15px"></td>
+                                             th:src="@{/images/wcan.svg}" width="15px"></td>
                                     <td><img height="15px" th:if="${plant.doTask.get(1) == 'nutrition'}"
                                              th:src="@{/images/näring.jpg}" width="15px"></td>
                                     <td><img height="15px" th:if="${plant.doTask.get(2) == 'repot'}"
@@ -93,22 +93,22 @@
             <div style="display: flex; justify-content: space-between; padding-bottom: 25px">
                 <a class="btn btn-outline-secondary border-0" th:href="'/createPlantLog/water/' + ${plant.id}"
                    th:if="${eventDayValue.get(0) == 'water'}">
-                    <img height="100px" th:src="@{/images/Vatten.jpg}" width="100px">
+                    <img height="100px" th:src="@{/images/wcan.svg}" width="100px">
                 </a>
                 <a class="btn btn-outline-secondary border-0" th:href="'/createPlantLog/nutrition/' + ${plant.id}"
                    th:if="${eventDayValue.get(1) == 'nutrition'}">
-                    <img height="100px" th:src="@{/images/näring.jpg}" width="100px">
+                    <img height="100px" th:src="@{/images/fert.svg}" width="100px">
                 </a>
                 <a class="btn btn-outline-secondary border-0" th:href="'/createPlantLog/repot/' + ${plant.id}"
                    th:if="${eventDayValue.get(2) == 'repot'}">
-                    <img height="100px" th:src="@{/images/Jord.jpg}" width="100px">
+                    <img height="100px" th:src="@{/images/pot.svg}" width="100px">
                 </a>
             </div>
 
-            <div class="w-100"
-                 style="border: 3px solid rgba(0, 0, 0, 0.2);background: url(/images/shelfDesc/paper.png); background-size: cover;">
-                <!-- Some text on specific plant -->
-                <article>
+            <div class="w-100" style="filter: drop-shadow(0px 12px 7px rgba(34, 22, 7, 0.1));/* border: 3px solid rgba(0, 0, 0, 0.2); */background: url(/images/shelfDesc/paper.svg);background-size: 100% auto;background-position-y: top;">
+                
+                 <!-- Some text on specific plant -->
+                 <article style="padding: 12px 26px 175px 26px;">
                     <h2 class="text-center"><strong th:text="${plant.plantName}"/></h2>
 
                     <h4 class="text-center"><strong th:text="${plant.species.name} + ' '"/><i
