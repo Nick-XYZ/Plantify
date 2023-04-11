@@ -6,8 +6,6 @@ import org.hibernate.annotations.CreationTimestamp;
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.List;
-
-
 @Getter
 @Setter
 @NoArgsConstructor
@@ -18,17 +16,12 @@ public class Plant {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String plantName;
-
-    /*@Column(updatable = false)*/
     @CreationTimestamp
     private LocalDate created;
-
     @ManyToOne
     private Admin admin;
-
     @ManyToOne
     private Species species;
-
     @Transient
     private List<String> doTask;
 

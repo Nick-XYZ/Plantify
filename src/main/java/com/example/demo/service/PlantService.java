@@ -176,7 +176,8 @@ public class PlantService {
         }
         return eventString;
     }
-
+//Counter for events (water, nutrition and repot) for current day
+//used on homepage to display buttons if value is > 0
     public int counter(Admin admin, String event) {
         List<Plant> userPlants = plantRepository.findAllByAdminId(admin.getId());
         int count = 0;
