@@ -110,6 +110,16 @@
   animation-timing-function: linear;
 }
 
+.bg-image {
+    position: sticky;
+    width: 100%;
+    background-image: url(/images/planks.jpg);
+    background-size: 100% 100%;
+    background-repeat: repeat;
+    height: 100vh;
+    z-index: -2;
+}
+
 @keyframes tilt {
   from {
     transform: rotate(0deg);

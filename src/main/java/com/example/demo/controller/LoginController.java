@@ -63,9 +63,8 @@ public class LoginController {
 
             return rvLogin;
         } catch (SQLIntegrityConstraintViolationException e) {
-            System.out.println("Email allready taken");
+            System.out.println("Email already taken");
             RedirectView rvLogin = new RedirectView("/", true);
-            //If user already exists.. Model.addAttribute (first Validation exercise)
             redir.addFlashAttribute("EmailAlreadyTaken", "There is already an account with that email");
             return rvLogin;
         }
