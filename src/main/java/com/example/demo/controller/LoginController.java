@@ -46,7 +46,7 @@ public class LoginController {
     @GetMapping("/")
     public String LoadLandingPage(Model model, HttpSession session) {
         model.addAttribute("admin", new Admin());
-        return "login";
+        return "index";
     }
 
     @PostMapping("/createUser")
@@ -157,7 +157,7 @@ public class LoginController {
 
     @GetMapping("/logout")
     public String logout() {
-        return "login";
+        return "index";
     }
 
     private Admin getLoggedInAdmin() {
